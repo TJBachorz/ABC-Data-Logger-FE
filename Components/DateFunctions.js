@@ -1,5 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 export const currentDate = new Date()
 export const currentYear = new Date().getFullYear()
 export const startingYear = new Date().getFullYear() - 20
@@ -109,17 +107,6 @@ export const createNumberList = (start, end) => {
             {label: `0${i}`, value: `0${i}`}
             : {label: `${i}`, value: `${i}`}
         })
-}
-
-export const authorizeUser = (data, navigation) => {
-    if (data.token) {
-        AsyncStorage.setItem('token', data.token)
-        navigation.navigate('Case Stack')
-    } else {
-        return (
-            alert("Invalid Email or Password!")
-        )
-    }
 }
 
 export const defaultDay = () => {

@@ -3,7 +3,7 @@ import { View, Image, Text } from 'react-native';
 import { Formik } from 'formik';
 
 import { noAuthFetch } from '../../Components/FetchList';
-import { authorizeUser } from '../../Components/DateFunctions';
+import { authorizeUser } from '../../Components/ReuseableFunctions';
 import { Styles } from '../../Components/Styles';
 import TextInputField from '../../Components/TextInputField';
 import { BigButton } from '../../Components/Button';
