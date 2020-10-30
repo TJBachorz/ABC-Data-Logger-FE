@@ -2,7 +2,7 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-export default function LoginForm({navigation}) {
+export default function LoginForm({ navigation, setIsSignedIn }) {
 
     return (
         <View style={styles.container}>
@@ -33,12 +33,17 @@ export default function LoginForm({navigation}) {
                     width: 360, 
                     boxShadow: '2px 2px black'
                 }} 
-                onPress={() => navigation.navigate('User-Home-Page')}
+                onPress={() => {
+                    setIsSignedIn(true)
+                    navigation.navigate('Home')
+                }}
             />
             <View noBorder style={styles.details}>
                 <Text style={styles.detailText}>Forgot Password?</Text>
                 <Text style={styles.detailText}>|</Text>
-                <Text style={styles.detailText}>Create Account</Text>
+                <Text style={styles.detailText}
+                    onPress={() => navigation.navigate('Register')}
+                >Create Account</Text>
             </View>
         </View>
     )

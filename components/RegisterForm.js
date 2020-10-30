@@ -1,8 +1,8 @@
 import React from 'react';
-import { TextInput, View, StyleSheet, Image } from 'react-native';
+import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
-export default function LoginForm({navigation}) {
+export default function LoginForm({navigation, setIsSignedIn}) {
 
     return (
         <View style={styles.container}>
@@ -44,13 +44,30 @@ export default function LoginForm({navigation}) {
                     width: 360,
                     boxShadow: '2px 2px black'
                 }} 
-                onPress={() => navigation.navigate('User-Home-Page')}
+                onPress={() => {
+                        setIsSignedIn(true)
+                        navigation.navigate('Home')
+                }}
             />
+            <View noBorder style={styles.details}>
+                <Text style={styles.detailText}>Already have an account?</Text>
+                <Text style={styles.detailText} onPress={() => navigation.navigate("Login")}>Log In</Text>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    detailText: {
+        color: '#f8f8ff',
+        margin: 7
+    },
+    details: {
+        marginTop: 15,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
     image: {
         height: 250,
         width: 250,
