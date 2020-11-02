@@ -42,7 +42,6 @@ export default function LoginForm({navigation, setIsSignedIn}) {
                     margin: 1,
                     height: 50,
                     width: 360,
-                    boxShadow: '2px 2px black'
                 }} 
                 onPress={() => {
                         setIsSignedIn(true)
@@ -86,7 +85,6 @@ const styles = StyleSheet.create({
         fontSize: 24,
         paddingLeft: 20,
         marginBottom: 20,
-        boxShadow: '2px 2px black',
         color: '#f8f8ff'
     },
 });

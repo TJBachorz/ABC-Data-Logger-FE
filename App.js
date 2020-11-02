@@ -42,12 +42,6 @@ export default function App() {
           <Stack.Screen name="Home" options={{ title: '' }} component={HomeLogin}/>
           <Stack.Screen 
             name="Login" 
-            options={{
-              transitionSpec: {
-                open: TransitionSpecs.FadeInFromBottomAndroidSpec,
-                close: TransitionSpecs.FadeOutFromBottomAndroidSpec
-              }
-            }}
           >
             {(props) => <LoginForm setIsSignedIn={setIsSignedIn} {...props} />}
           </Stack.Screen>
