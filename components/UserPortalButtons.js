@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Button } from 'react-native-elements';
 
 export default function UserPortalButtons({navigation}) {
+
     return (
         <View style={styles.buttonContainer}>
             <Button 
@@ -15,8 +16,6 @@ export default function UserPortalButtons({navigation}) {
                     height: 50,
                     width: 360, 
                     marginBottom: 10,
-                    boxShadow: '2px 2px black',
-
                 }} 
                 onPress={() => navigation.navigate('Login')}
             />
@@ -30,7 +29,6 @@ export default function UserPortalButtons({navigation}) {
                     height: 50,
                     width: 360,
                     marginBottom: 30,
-                    boxShadow: '2px 2px black'
                 }} 
                 onPress={() => navigation.navigate('Register')}
             />
