@@ -9,7 +9,7 @@ import { Button } from 'react-native-elements';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
-import UserHomePage from './components/UserHomePage';
+import AppMainPage from './components/AppMainPage';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 
@@ -66,10 +66,10 @@ export default function App() {
               />
             )
           }} 
-            component={UserHomePage}
+            component={AppMainPage}
           />
         </Stack.Navigator>
-        : <Stack.Navigator headerMode={"Screen"} initialRouteName="Home log-in">
+        : <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
           <Stack.Screen name="Home" options={{ title: '' }} component={HomeLogin}/>
           <Stack.Screen 
             name="Login" 
