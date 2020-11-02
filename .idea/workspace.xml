@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e00d5e3c-0da8-4f6f-9664-7f4d05dcdbf6" name="Default Changelist" comment="" />
+    <list default="true" id="e00d5e3c-0da8-4f6f-9664-7f4d05dcdbf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Antecedent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Antecedent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Behavior.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Behavior.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,9 +44,9 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="120" y="143" width="1200" height="637" key="AVDManager" timestamp="1604338213156">
+    <state x="49" y="146" width="1200" height="637" key="AVDManager" timestamp="1604348840926">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="120" y="143" width="1200" height="637" key="AVDManager/0.23.1440.877@0.23.1440.877" timestamp="1604338213156" />
+    <state x="49" y="146" width="1200" height="637" key="AVDManager/0.23.1440.877@0.23.1440.877" timestamp="1604348840926" />
   </component>
 </project>

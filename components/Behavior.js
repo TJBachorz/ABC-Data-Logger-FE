@@ -18,7 +18,7 @@ export default function Behavior({navigation, incident, setIncident, caseInfo}) 
                         borderRadius: 16,
                         margin: 1,
                         height: 50,
-                        width: 360,
+                        width: 30,
                         marginBottom: 30,
                     }}
                     onPress={ () => navigation.navigate('Consequence')} 
