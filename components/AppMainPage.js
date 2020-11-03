@@ -16,8 +16,11 @@ export default function AppMainPage() {
         "antecedent": null,
         "behavior": null,
         "consequence": null,
-        "date": null,
-        "time": null,
+        "year": null,
+        "month": null,
+        "day": null,
+        "hour": null,
+        "minute": null,
         "case": null
     })
 
