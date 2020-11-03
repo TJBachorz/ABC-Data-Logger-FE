@@ -10,31 +10,32 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
     let startingYear = currentDate.getFullYear() - 20
 
     const months = {
-        "January": 31,
-        "February": 28,
-        "March": 31,
-        "April": 30,
-        "May": 31,
-        "June": 30,
-        "July": 31,
-        "August": 31,
-        "September": 30,
-        "October": 31,
-        "November": 30,
-        "December": 31,  
+        "01": 31,
+        "02": 28,
+        "03": 31,
+        "04": 30,
+        "05": 31,
+        "06": 30,
+        "07": 31,
+        "08": 31,
+        "09": 30,
+        "10": 31,
+        "11": 30,
+        "12": 31,  
     }
 
-    // const createMonthOptions = (months) => {
-    //     let names = months.keys()
-    //     return months.map(month, index) {
-    //         if (index + 1 < 10) {
-    //             return {label: `0${i}`, value: `0${i}`}
-    //         } else {
-    //             monthList.push({label: `${i}`, value: `${i}`})
-    //         }
-    //     }
-    //     return monthList
-    // }
+    const createDayOptions = () => {
+        let month = incident["month"]
+        let daysList = []
+        for (let i = 1; i <= months[month]; i++) {
+            if (i < 10) {
+                daysList.push({label: `0${i}`, value: `0${i}`})
+            } else {
+                daysList.push({label: `${i}`, value: `${i}`})
+            }
+        }
+        return daysList
+    }
 
     const createMonthOptions = () => {
         let monthList = []
@@ -46,6 +47,29 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
             }
         }
         return monthList
+    }
+    const createHourOptions = () => {
+        let hourList = []
+        for (let i = 1; i <= 24; i++) {
+            if (i < 10) {
+                hourList.push({label: `0${i}`, value: `0${i}`})
+            } else {
+                hourList.push({label: `${i}`, value: `${i}`})
+            }
+        }
+        return hourList
+    }
+
+    const createMinuteOptions = () => {
+        let minuteList = []
+        for (let i = 1; i <= 60; i++) {
+            if (i < 10) {
+                minuteList.push({label: `0${i}`, value: `0${i}`})
+            } else {
+                minuteList.push({label: `${i}`, value: `${i}`})
+            }
+        }
+        return minuteList
     }
 
     const createYearOptions = () => {
@@ -81,20 +105,20 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                 <DropDownPicker
                     placeholder="Day"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createMonthOptions()}
+                    items={createDayOptions()}
                     defaultIndex={0}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({"day": item.value})}
                 />
             </View>
-            <View style={styles.selectionContainer}>
+            <View style={styles.timeContainer}>
                 <DropDownPicker
                     placeholder="Hour"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createHourOptions()}
                     defaultIndex={0}
                     containerStyle={{height: 60, width: 100}}
-                    onChangeItem={(item) => setIncident({"year": item.value})}
+                    onChangeItem={(item) => setIncident({"hour": item.value})}
                 />
                 <DropDownPicker
                     placeholder="Minute"
@@ -102,12 +126,12 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     items={createMinuteOptions()}
                     defaultIndex={0}
                     containerStyle={{height: 60, width: 120, margin: 5}}
-                    onChangeItem={(item) => setIncident({"month": item.value})}
+                    onChangeItem={(item) => setIncident({"minute": item.value})}
                 />
             </View>
             <View style={styles.incidentButton}>
                 <Button
-                    title={"Submit IncidentDateTime"}
+                    title={"Submit Incident"}
                     type="solid" 
                     buttonStyle={{
                         background: '#1761a0',
@@ -117,7 +141,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                         width: 360,
                         marginBottom: 30,
                     }}
-                    onPress={ () => navigation.navigate('IncidentDateTime')} 
+                    onPress={ () => navigation.navigate('Home')} 
                 />
             </View>
         </>
@@ -125,12 +149,12 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
 }
 
 const styles = StyleSheet.create({
-    yearInput: {
-        borderWidth: 1,
-        height: 30,
-        fontSize: 24,
-        backgroundColor: 'white',
-        padding: 10
+    timeContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 50
     },
     headerContainer: {
         marginTop: 30,
