@@ -90,7 +90,8 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     placeholder="Year"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createYearOptions()}
-                    defaultIndex={0}
+                    defaultIndex={1}
+                    dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({"year": item.value})}
                 />
@@ -99,6 +100,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createMonthOptions()}
                     defaultIndex={0}
+                    dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 120, margin: 5}}
                     onChangeItem={(item) => setIncident({"month": item.value})}
                 />
@@ -107,6 +109,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createDayOptions()}
                     defaultIndex={0}
+                    dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({"day": item.value})}
                 />

@@ -8,6 +8,8 @@ import IncidentDateTime from './IncidentDateTime';
 import { View, Text, Modal, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const Stack = createStackNavigator()
 
@@ -26,6 +28,19 @@ export default function AppMainPage({navigation}) {
         "case": null
     })
 
+    const fetchCases = async () => {
+        const userToken = await AsyncStorage.getItem("token")
+        fetch("http://localhost:8000/accounts", {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${userToken}`
+            }.then(response => response.json())
+            .then(console.log)
+        })
+    }
+
     return (
         <>
             {!caseInfo.id ?
@@ -39,17 +54,29 @@ export default function AppMainPage({navigation}) {
                             <DropDownPicker
                                 placeholder="Case"
                                 labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                                items={[
-                                    {label: 'test', value: 'test'},
-                                    {label: 'test', value: 'test'},
-                                    {label: 'test', value: 'test'}
-                                ]}
+                                items={fetchCases()}
                                 defaultIndex={0}
                                 containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
                                 onChangeItem={(item) => setIncident({"year": item.value})}
                             />
                             <Button
                                 title={"Select Case"}
+                                type="solid" 
+                                buttonStyle={{
+                                    background: '#1761a0',
+                                    borderRadius: 16,
+                                    margin: 1,
+                                    height: 50,
+                                    width: 360,
+                                    marginBottom: 30,
+                                }}
+                                onPress={ () => {
+                                    setCaseInfo({"id": 1})
+                                    navigation.navigate('Home')
+                                }}
+                            />
+                            <Button
+                                title={"Create New Case"}
                                 type="solid" 
                                 buttonStyle={{
                                     background: '#1761a0',

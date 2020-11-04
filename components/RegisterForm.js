@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginForm({navigation, setIsSignedIn}) {
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     input: {
         borderRadius: 10,
         width: '85%',
-        height: '7.5%',
+        height: 60,
         backgroundColor: '#4c96d7',
         fontSize: 24,
         paddingLeft: 20,

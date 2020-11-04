@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
+import { Formik } from 'formik';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginForm({ navigation, setIsSignedIn }) {
+export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
+    
+    const [err, setErr] = useState("")
+
+    const loginUser = async (data) => {
+        await AsyncStorage.setItem('token', data.token)
+        setIsSignedIn(!isSignedIn)
+        navigation.navigate('Home')
+    }
 
     return (
         <View style={styles.container}>
@@ -10,33 +20,63 @@ export default function LoginForm({ navigation, setIsSignedIn }) {
                 style={styles.image} 
                 source={require('../assets/abc_logo_white.png')}
             />
-            <TextInput 
-                style={styles.input}
-                placeholder="Email"
-                placeholderTextColor="#f8f8ff"
-            />
-            <TextInput 
-                secureTextEntry={true} 
-                style={styles.input}
-                placeholder="Password"
-                placeholderTextColor="#f8f8ff"
-            />
-            <Button 
-                type="solid" 
-                title={"LOG IN"} 
-                titleStyle={{color: "#1761a0"}}
-                buttonStyle={{
-                    backgroundColor: '#f8f8ff',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360, 
-                }} 
-                onPress={() => {
-                    setIsSignedIn(true)
-                    navigation.navigate('Home')
+            <Text>{err}</Text>
+            <Formik
+                initialValues={{ email: '', password: '' }}
+                onSubmit={values => {
+                    fetch('http://localhost:8000/login', {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            email: values.email,
+                            password: values.password
+                        })
+                    }).then(response => response.json())
+                        .then(loginUser)
+                        .catch(error => {
+                            setErr(error)
+                            return error
+                        })
                 }}
-            />
+            >
+                {({ handleChange, handleBlur, handleSubmit, values }) => (
+                    <>
+                        <TextInput 
+                            style={styles.input}
+                            onChangeText={handleChange('email')}
+                            onBlur={handleBlur('email')}
+                            value={values.email}
+                            placeholder="Email"
+                            placeholderTextColor="#f8f8ff"
+                        />
+                        <TextInput 
+                            secureTextEntry={true} 
+                            style={styles.input}
+                            onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
+                            value={values.password}
+                            placeholder="Password"
+                            placeholderTextColor="#f8f8ff"
+                        />
+                        <Button 
+                        type="solid" 
+                        title={"LOG IN"} 
+                        titleStyle={{color: "#1761a0"}}
+                        buttonStyle={{
+                            backgroundColor: '#f8f8ff',
+                            borderRadius: 16,
+                            margin: 1,
+                            height: 50,
+                            width: 360, 
+                        }} 
+                        onPress={handleSubmit}
+                        />
+                    </>
+                )}
+            </Formik>
             <View noBorder style={styles.details}>
                 <Text style={styles.detailText}>Forgot Password?</Text>
                 <Text style={styles.detailText}>|</Text>
@@ -72,7 +112,7 @@ const styles = StyleSheet.create({
     input: {
         borderRadius: 10,
         width: '85%',
-        height: '7.5%',
+        height: 60,
         backgroundColor: '#4c96d7',
         fontSize: 24,
         paddingLeft: 20,

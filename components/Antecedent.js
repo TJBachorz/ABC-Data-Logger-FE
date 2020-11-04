@@ -31,6 +31,7 @@ export default function Antecedent({navigation, incident, setIncident, caseInfo}
                         {label: 'Alone (no attention)', value: 'Alone (no attention)'}
                     ]}
                     defaultIndex={0}
+                    dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
                     onChangeItem={(item) => setIncident({"antecedent": item.value})}
                 />

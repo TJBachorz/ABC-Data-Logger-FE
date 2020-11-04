@@ -32,6 +32,7 @@ export default function Consequence({navigation, incident, setIncident, caseInfo
                         {label: 'Asked to leave the room', value: 'Asked to leave the room'},
                     ]}
                     defaultIndex={0}
+                    dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
                     onChangeItem={(item) => setIncident({"Consequence": item.value})}
                 />

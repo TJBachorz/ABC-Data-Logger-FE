@@ -74,10 +74,20 @@ export default function App() {
           <Stack.Screen 
             name="Login" 
           >
-            {(props) => <LoginForm setIsSignedIn={setIsSignedIn} {...props} />}
+            {(props) => <LoginForm
+              setIsSignedIn={setIsSignedIn} 
+              isSignedIn={isSignedIn}
+              {...props} 
+              />
+            }
           </Stack.Screen>
           <Stack.Screen name="Register">
-            {(props) => <RegisterForm setIsSignedIn={setIsSignedIn} {...props} />}
+            {(props) => <RegisterForm 
+              setIsSignedIn={setIsSignedIn} 
+              isSignedIn={isSignedIn}
+              {...props} 
+              />
+            }
           </Stack.Screen>
         </Stack.Navigator>
       }

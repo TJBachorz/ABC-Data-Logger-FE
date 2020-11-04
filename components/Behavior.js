@@ -33,6 +33,7 @@ export default function Behavior({navigation, incident, setIncident, caseInfo}) 
                         {label: 'Hitting others (adults)', value: 'Hitting others (adults)'},
                     ]}
                     defaultIndex={0}
+                    dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
                     onChangeItem={(item) => setIncident({"behavior": item.value})}
                 />

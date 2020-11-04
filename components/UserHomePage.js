@@ -41,27 +41,3 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 })
-
-
-// options={{
-//     headerTitle: "",
-//     headerLeft: () => (
-//         <Button
-//             type="clear"
-//             icon={
-//                 <Icon
-//                     name="nav-icon-a"
-//                     size={22}
-//                     color="#1761a0"
-//                 />
-//             }
-//             onPress={() => alert('This is a button!')}
-//             buttonStyle={{
-//                 fontWeight: 'bold',
-//                 marginLeft: 20,
-//                 fontWeight: 200,
-//                 backgroundColor: '#f8f8ff',
-//             }}
-//         />
-//     )
-// }}
