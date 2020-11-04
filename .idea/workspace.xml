@@ -7,13 +7,8 @@
     <list default="true" id="e00d5e3c-0da8-4f6f-9664-7f4d05dcdbf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Antecedent.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Antecedent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/AppMainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AppMainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Behavior.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Behavior.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Consequence.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/Consequence.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/IncidentDateTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/IncidentDateTime.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/RegisterForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/UserHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/UserHomePage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -36,6 +31,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.updates" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -51,9 +47,17 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="49" y="146" width="1200" height="637" key="AVDManager" timestamp="1604449063041">
-      <screen x="0" y="23" width="1440" height="877" />
+    <state x="147" y="145" width="1200" height="597" key="AVDManager" timestamp="1604521074046">
+      <screen x="0" y="23" width="1440" height="821" />
     </state>
-    <state x="49" y="146" width="1200" height="637" key="AVDManager/0.23.1440.877@0.23.1440.877" timestamp="1604449063041" />
+    <state x="147" y="145" width="1200" height="597" key="AVDManager/0.23.1440.814@0.23.1440.814" timestamp="1604520818424" />
+    <state x="147" y="145" width="1200" height="597" key="AVDManager/0.23.1440.821@0.23.1440.821" timestamp="1604521074046" />
+    <state x="147" y="145" width="1200" height="597" key="AVDManager/0.23.1440.822@0.23.1440.822" timestamp="1604518155517" />
+    <state x="147" y="153" width="1200" height="637" key="AVDManager/0.23.1440.877@0.23.1440.877" timestamp="1604451653192" />
+    <state x="220" y="69" key="SettingsEditor" timestamp="1604520922424">
+      <screen x="0" y="23" width="1440" height="814" />
+    </state>
+    <state x="220" y="69" key="SettingsEditor/0.23.1440.814@0.23.1440.814" timestamp="1604520922424" />
+    <state x="220" y="70" key="SettingsEditor/0.23.1440.821@0.23.1440.821" timestamp="1604518095233" />
   </component>
 </project>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
@@ -6,10 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
     
-    const [err, setErr] = useState("")
-
-    const loginUser = async (data) => {
-        await AsyncStorage.setItem('token', data.token)
+    const loginUser = (data) => {
+        AsyncStorage.setItem('token', data.token)
         setIsSignedIn(!isSignedIn)
         navigation.navigate('Home')
     }
@@ -20,11 +18,10 @@ export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
                 style={styles.image} 
                 source={require('../assets/abc_logo_white.png')}
             />
-            <Text>{err}</Text>
             <Formik
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => {
-                    fetch('http://localhost:8000/login', {
+                    fetch('http://127.0.0.1:8000/login', {
                         method: "POST",
                         headers: {
                             "Accept": "application/json",
@@ -36,16 +33,13 @@ export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
                         })
                     }).then(response => response.json())
                         .then(loginUser)
-                        .catch(error => {
-                            setErr(error)
-                            return error
-                        })
                 }}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                     <>
                         <TextInput 
                             style={styles.input}
+                            autoCapitalize="none"
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
@@ -120,32 +114,3 @@ const styles = StyleSheet.create({
         color: '#f8f8ff'
     },
 });
-
-{/* <Formik
-        initialValues={{
-            firstName: '',
-            lastName: '',
-            email: '',
-        }}
-        onSubmit={async (values) => {
-            await new Promise((r) => setTimeout(r, 500));
-            alert(JSON.stringify(values, null, 2));
-        }}
-        >
-        <Form>
-            <label htmlFor="firstName">First Name</label>
-            <Field id="firstName" name="firstName" placeholder="Jane" />
-
-            <label htmlFor="lastName">Last Name</label>
-            <Field id="lastName" name="lastName" placeholder="Doe" />
-
-            <label htmlFor="email">Email</label>
-            <Field
-            id="email"
-            name="email"
-            placeholder="jane@acme.com"
-            type="email"
-            />
-            <button type="submit">Submit</button>
-        </Form>
-    </Formik> */}

@@ -56,7 +56,7 @@ export default function App() {
                     color="#1761a0"
                   />
                 }
-                onPress={() => alert('This is a button!')}
+                onPress={() => alert("you did it~")}
                 buttonStyle={{
                   fontWeight: 'bold',
                   marginLeft: 20,

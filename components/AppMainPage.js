@@ -9,13 +9,21 @@ import { View, Text, Modal, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { createDrawerNavigator, 
+    DrawerContentScrollView, 
+    DrawerItemList, 
+    DrawerItem
+} from '@react-navigation/drawer';
+import DataChart from './DataChart';
+// import MyDrawer from './MyDrawer';
 
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
-export default function AppMainPage({navigation}) {
+export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
 
     const [caseInfo, setCaseInfo] = useState({})
+
     const [incident, setIncident] = useState({
         "antecedent": null,
         "behavior": null,
@@ -28,18 +36,26 @@ export default function AppMainPage({navigation}) {
         "case": null
     })
 
-    const fetchCases = async () => {
-        const userToken = await AsyncStorage.getItem("token")
-        fetch("http://localhost:8000/accounts", {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${userToken}`
-            }.then(response => response.json())
-            .then(console.log)
+    const renderCases = ({cases}) => {
+        return cases.map(child => {
+            return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
         })
     }
+    
+    const fetchCases = () => {
+        AsyncStorage.getItem("token").then(token => {
+            fetch("http://localhost:8000/accounts/", {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(response => response.json())
+                .then(accounts => console.log(renderCases(accounts)))
+        })
+    }
+
 
     return (
         <>
@@ -50,14 +66,15 @@ export default function AppMainPage({navigation}) {
                         presentationStyle="pageSheet"
                     >
                         <View style={styles.centeredView}>
-                            <Text style={styles.modalText}>Please Select a Case:</Text>
+                            <Text style={styles.modalText} onPress={fetchCases}>Please Select a Case:</Text>
                             <DropDownPicker
                                 placeholder="Case"
+                                defaultValue={null}
                                 labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                                items={fetchCases()}
+                                items={[{label: "33", value: '343'}]}
                                 defaultIndex={0}
                                 containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
-                                onChangeItem={(item) => setIncident({"year": item.value})}
+                                onChangeItem={(item) => setCaseInfo({'id': item.value})}
                             />
                             <Button
                                 title={"Select Case"}
