@@ -17,7 +17,7 @@ export default function Behavior({navigation, incident, setIncident, caseInfo}) 
                     items={[
                         {label: 'Refusal to follow directions', value: 'Refusal to follow directions'},
                         {label: 'Verbal refusal', value: 'Verbal refusal'},
-                        {label: 'Making verabl threats', value: 'Making verabl threats'},
+                        {label: 'Making verbal threats', value: 'Making verbal threats'},
                         {label: 'Crying/whining', value: 'Crying/whining'},
                         {label: 'Screaming/yelling', value: 'Screaming/yelling'},
                         {label: 'Scratching', value: 'Scratching'},
@@ -35,7 +35,7 @@ export default function Behavior({navigation, incident, setIncident, caseInfo}) 
                     defaultIndex={0}
                     dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
-                    onChangeItem={(item) => setIncident({"behavior": item.value})}
+                    onChangeItem={(item) => setIncident({...incident, "behavior": item.value})}
                 />
                 <Text>{incident["behavior"]}</Text>
             </View>
