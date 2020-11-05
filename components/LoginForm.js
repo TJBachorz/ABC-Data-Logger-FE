@@ -1,15 +1,23 @@
-import React from 'react';
-import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
+import React, {useState} from 'react';
+import { TextInput, View, StyleSheet, Image, Text, Modal } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import InvalidLoginModal from './InvalidLoginModal';
 
 export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
     
+
     const loginUser = (data) => {
-        AsyncStorage.setItem('token', data.token)
-        setIsSignedIn(!isSignedIn)
-        navigation.navigate('Home')
+        if (data.token) {
+            AsyncStorage.setItem('token', data.token)
+            setIsSignedIn(!isSignedIn)
+            navigation.navigate('Home')
+        } else {
+            return (
+                <InvalidLoginModal/>
+            )
+        }
     }
 
     return (

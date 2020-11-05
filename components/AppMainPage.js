@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import UserHomePage from './UserHomePage';
 import Antecedent from './Antecedent';
@@ -20,9 +20,10 @@ import DataChart from './DataChart';
 
 const Stack = createStackNavigator();
 
-export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
+export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
 
     const [caseInfo, setCaseInfo] = useState({})
+    const [account, setAccount] = useState({})
 
     const [incident, setIncident] = useState({
         "antecedent": null,
@@ -36,12 +37,8 @@ export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
         "case": null
     })
 
-    const renderCases = ({cases}) => {
-        return cases.map(child => {
-            return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
-        })
-    }
-    
+    useEffect(() => fetchCases(), [])
+
     const fetchCases = () => {
         AsyncStorage.getItem("token").then(token => {
             fetch("http://localhost:8000/accounts/", {
@@ -52,9 +49,16 @@ export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
                     "Authorization": `Bearer ${token}`
                 }
             }).then(response => response.json())
-                .then(accounts => console.log(renderCases(accounts)))
+            .then(userAccount => setAccount(userAccount))
         })
     }
+    const renderCases = (account) => {
+        console.log(account.cases)
+        return account.cases.map(child => {
+            return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
+        })
+    }
+    
 
 
     return (
@@ -66,16 +70,18 @@ export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
                         presentationStyle="pageSheet"
                     >
                         <View style={styles.centeredView}>
-                            <Text style={styles.modalText} onPress={fetchCases}>Please Select a Case:</Text>
-                            <DropDownPicker
-                                placeholder="Case"
-                                defaultValue={null}
-                                labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                                items={[{label: "33", value: '343'}]}
-                                defaultIndex={0}
-                                containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
-                                onChangeItem={(item) => setCaseInfo({'id': item.value})}
-                            />
+                            <Text style={styles.modalText} 
+                                onPress={() => console.log(account)}
+                            >Please Select a Case:</Text>
+                            {account.cases ?
+                                <DropDownPicker
+                                    placeholder="Case"
+                                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                                    items={renderCases(account)}
+                                    defaultIndex={0}
+                                    containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
+                                    onChangeItem={(item) => setCaseInfo({'id': item.value})}
+                                /> : <Text>No Cases</Text>}
                             <Button
                                 title={"Select Case"}
                                 type="solid" 
@@ -88,7 +94,6 @@ export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
                                     marginBottom: 30,
                                 }}
                                 onPress={ () => {
-                                    setCaseInfo({"id": 1})
                                     navigation.navigate('Home')
                                 }}
                             />
@@ -104,14 +109,12 @@ export default function AppMainPage({isSignedIn, setIsSignedIn, navigation}) {
                                     marginBottom: 30,
                                 }}
                                 onPress={ () => {
-                                    setCaseInfo({"id": 1})
                                     navigation.navigate('Home')
                                 }}
                             />
                         </View>
                     </Modal>
-                </View>
-                : null 
+                </View> : null
             }
             <Stack.Navigator 
                 screenOptions={{
