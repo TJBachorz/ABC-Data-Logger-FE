@@ -15,7 +15,7 @@ export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
             navigation.navigate('Home')
         } else {
             return (
-                <InvalidLoginModal/>
+                alert("Invalid Login!")
             )
         }
     }

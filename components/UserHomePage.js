@@ -1,24 +1,35 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 
 
 export default function UserHomePage({navigation, setCaseInfo, caseInfo}) {
 
-    const getToken = async () => {
-        const token = await AsyncStorage.getItem('@storage_Key')
-        return token
+    const fetchIncidents = () => {
+        AsyncStorage.getItem("token").then(token => {
+            fetch(`http://localhost:8000/cases/${caseInfo.id}/`, {
+                method: "GET",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                }
+            }).then(response => response.json())
+            .then(renderIncidents)
+        })
     }
 
-    const renderIncidents = () => {
-        fetch(`${url}/cases/${caseInfo.id}`, {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${getToken()}`
-            }
+    const renderIncidents = ({incidents}) => {
+        return incidents.map(incident => {
+            return (
+                <>
+                    <Text>A: {incident["antecedent"]}</Text>
+                    <Text>B: {incident["behavior"]}</Text>
+                    <Text>C: {incident["consequence"]}</Text>
+                    <Text>Date & Time: {incident["antecedent"]}</Text>
+                </>
+            )
         })
     }
 
@@ -28,7 +39,7 @@ export default function UserHomePage({navigation, setCaseInfo, caseInfo}) {
                 contentContainerStyle={styles.historyContainer}
             >
                 <Text>History here</Text>
-                {/* <Text>{renderIncidents()}</Text> */}
+                {fetchIncidents()}
             </ScrollView>
             <View style={styles.incidentButton}>
                 <Button

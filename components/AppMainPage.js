@@ -53,7 +53,6 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
         })
     }
     const renderCases = (account) => {
-        console.log(account.cases)
         return account.cases.map(child => {
             return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
         })
@@ -70,9 +69,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         presentationStyle="pageSheet"
                     >
                         <View style={styles.centeredView}>
-                            <Text style={styles.modalText} 
-                                onPress={() => console.log(account)}
-                            >Please Select a Case:</Text>
+                            <Text style={styles.modalText}>Please Select a Case:</Text>
                             {account.cases ?
                                 <DropDownPicker
                                     placeholder="Case"
