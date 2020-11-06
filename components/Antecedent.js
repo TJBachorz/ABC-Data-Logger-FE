@@ -1,10 +1,66 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 
+let currentDate = new Date()
+
+const defaultDay = () => {
+    const currentDay = currentDate.getDate()
+    if (currentDay < 10) {
+        return `0${currentDay}`
+    } else {
+        return `${currentDay}`
+    }
+}
+
+const defaultMinutes = () => {
+    const minutes = currentDate.getMinutes()
+    if (minutes < 10) {
+        return `0${minutes}`
+    } else {
+        return `${minutes}`
+    }
+}   
+
+const defaultMonth = () => {
+    const currentMonth = currentDate.getMonth() + 1
+    if (currentMonth < 10) {
+        return `0${currentMonth}`
+    } else {
+        return `${currentMonth}`
+    }
+}
+
+const defaultHours = () => {
+    let hours = currentDate.getHours()
+    if (hours > 12) {
+        hours -= 12
+    }
+    if (hours < 10) {
+        return `0${hours}`
+    }
+    return hours
+}
+
 
 export default function Antecedent({navigation, incident, setIncident, caseInfo}) {
+
+    const navigateToNextPage = () => {
+        if (incident["antecedent"]) {
+            navigation.navigate("Behavior")
+        } else {
+            alert ("Select an Antecedent")
+        }
+    }
+
+    useEffect(() => {
+        setIncident({"year": `${currentDate.getFullYear()}`,
+        "month": `${defaultMonth()}`,
+        "hour": `${defaultHours()}`,
+        "minute": `${defaultMinutes()}`,
+        "day": `${defaultDay()}`})
+    }, [])
 
     return (
         <>
@@ -31,11 +87,10 @@ export default function Antecedent({navigation, incident, setIncident, caseInfo}
                         {label: 'Alone (no attention)', value: 'Alone (no attention)'}
                     ]}
                     defaultIndex={0}
-                    dropDownMaxHeight={225}
+                    dropDownMaxHeight={375}
                     containerStyle={{height: 100, width: 360}}
                     onChangeItem={(item) => setIncident({...incident, "antecedent": item.value})}
                 />
-                <Text>{incident["antecedent"]}</Text>
             </View>
             <View style={styles.incidentButton}>
                 <Button
@@ -49,7 +104,7 @@ export default function Antecedent({navigation, incident, setIncident, caseInfo}
                         width: 360,
                         marginBottom: 30,
                     }}
-                    onPress={ () => navigation.navigate('Behavior')} 
+                    onPress={navigateToNextPage} 
                 />
             </View>
         </>

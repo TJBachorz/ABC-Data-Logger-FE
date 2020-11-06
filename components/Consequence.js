@@ -6,6 +6,14 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Consequence({navigation, incident, setIncident, caseInfo}) {
 
+    const navigateToNextPage = () => {
+        if (incident["consequence"]) {
+            navigation.navigate('IncidentDateTime')        
+        } else {
+            alert ("Select a Consequence")
+        }
+    }
+
     return (
         <>
             <View style={styles.headerContainer}>
@@ -32,11 +40,10 @@ export default function Consequence({navigation, incident, setIncident, caseInfo
                         {label: 'Asked to leave the room', value: 'Asked to leave the room'},
                     ]}
                     defaultIndex={0}
-                    dropDownMaxHeight={225}
+                    dropDownMaxHeight={375}
                     containerStyle={{height: 100, width: 360}}
                     onChangeItem={(item) => setIncident({...incident, "consequence": item.value})}
                 />
-                <Text>{incident["Consequence"]}</Text>
             </View>
             <View style={styles.incidentButton}>
                 <Button
@@ -50,7 +57,7 @@ export default function Consequence({navigation, incident, setIncident, caseInfo
                         width: 360,
                         marginBottom: 30,
                     }}
-                    onPress={ () => navigation.navigate('IncidentDateTime')} 
+                    onPress={navigateToNextPage} 
                 />
             </View>
         </>

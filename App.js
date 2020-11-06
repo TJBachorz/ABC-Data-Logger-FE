@@ -39,20 +39,24 @@ function HomeLogin({navigation}) {
 
 function CustomDrawerContent({ navigation }) {
   return (
-    <Button
-      title="Log Out"
-      style={styles.logout}
-      icon={
-        <Icon
-            name="logout"
-            size={20}
-            color="#1761a0"
-        />
-      }
-      onPress={() => {
-        setIsSignedIn(!isSignedIn)
-        navigation.navigate('Home');
-      }}/>
+    <View>
+      <View style={styles.drawerButton}>    
+        <Button
+          title="Log Out"
+          style={styles.logout}
+          icon={
+            <Icon
+                name="logout"
+                size={5}
+                color="#1761a0"
+            />
+          }
+          onPress={() => {
+            setIsSignedIn(!isSignedIn)
+            navigation.navigate('Home');
+        }}/>
+      </View>
+    </View>
   );
 }
 
@@ -67,7 +71,7 @@ export default function App() {
       { isSignedIn ? 
         <Drawer.Navigator
           overlayColor="transparent"
-          // drawerContent={(props) => <CustomDrawerContent {...props} />}
+          drawerContent={(props) => <CustomDrawerContent {...props} />}
           drawerStyle={{
             backgroundColor: '#f8f8ff',
             width: 350,
@@ -120,7 +124,10 @@ export default function App() {
 
 const styles = StyleSheet.create({
   drawerButton: {
-    fontSize: 34
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   headerImage: {
     bottom: '90%'
@@ -136,8 +143,8 @@ const styles = StyleSheet.create({
     width: 250,
   },
   logout: {
-    width: 10,
-    height: 10,
+    width: 100,
+    height: 100,
     padding: 0,
     margin: 0,
     backgroundColor: "green"

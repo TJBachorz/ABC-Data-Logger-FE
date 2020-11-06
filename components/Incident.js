@@ -21,15 +21,19 @@ export default function Incident({incident}) {
 
     const dateToString = () => {
         const date = incident["date"].split("-")
-        return `${months[date[1]]} ${date[2]}, ${date[0]} -`
+        return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
     }
 
     const timeToString = () => {
         const time = incident["time"].split(":")
-        if (+time[0] >= 12) {
-            return `${time[0]-12}:${time[1]} AM`
+        if (+time[0] > 12) {
+            return `${+time[0]-12}:${time[1]} PM`
+        } else if (+time[0] === 12) {
+            return `${+time[0]}:${time[1]} PM`
+        } else if (+time[0] === 0) {
+            return `12:${time[1]} AM`
         }
-        return `- ${time[0]}:${time[1]} PM`
+        return `${+time[0]}:${time[1]} AM`
     }
 
     return (
@@ -44,7 +48,7 @@ export default function Incident({incident}) {
 
 const styles = StyleSheet.create({
     datetime: {
-        fontSize: 25,
+        fontSize: 24,
         fontWeight: '400',
         color: '#f8f8ff',
         marginBottom: 10

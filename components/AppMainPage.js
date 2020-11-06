@@ -18,18 +18,59 @@ import { createDrawerNavigator,
 import DataChart from './DataChart';
 import Icon from 'react-native-vector-icons/Fontisto';
 
+let currentDate = new Date()
 
+const defaultDay = () => {
+    const currentDay = currentDate.getDate()
+    if (currentDay < 10) {
+        return `0${currentDay}`
+    } else {
+        return `${currentDay}`
+    }
+}
+
+const defaultMinutes = () => {
+    const minutes = currentDate.getMinutes()
+    if (minutes < 10) {
+        return `0${minutes}`
+    } else {
+        return `${minutes}`
+    }
+}   
+
+const defaultMonth = () => {
+    const currentMonth = currentDate.getMonth() + 1
+    if (currentMonth < 10) {
+        return `0${currentMonth}`
+    } else {
+        return `${currentMonth}`
+    }
+}
+
+const defaultHours = () => {
+    let hours = currentDate.getHours()
+    if (hours > 12) {
+        hours -= 12
+    }
+    if (hours < 10) {
+        return `0${hours}`
+    }
+    return hours
+}
 
 const Stack = createStackNavigator();
 
 export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
 
+    const [incidentHistory, setIncidentHistory ] = useState([])
     const [account, setAccount] = useState({})
     const [selected, setSelected] = useState(false)
-
     const [incident, setIncident] = useState({})
 
-    useEffect(() => fetchCases(), [])
+    useEffect(() => {
+        fetchCases()
+        
+    }, [])
 
     const fetchCases = () => {
         AsyncStorage.getItem("token").then(token => {
@@ -49,6 +90,8 @@ export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
             return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
         })
     }
+
+    console.log(incident)
 
     return (
         <>
@@ -140,6 +183,8 @@ export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
                         )
                     }}>
                     {(props) => <UserHomePage 
+                            incidentHistory={incidentHistory}
+                            setIncidentHistory={setIncidentHistory}
                             setCaseInfo={setCaseInfo} 
                             caseInfo={caseInfo} 
                             {...props}
@@ -182,6 +227,8 @@ export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
                             caseInfo={caseInfo} 
                             incident={incident}
                             setIncident={setIncident}
+                            incidentHistory={incidentHistory}
+                            setIncidentHistory={setIncidentHistory}
                             {...props}
                         />
                     }

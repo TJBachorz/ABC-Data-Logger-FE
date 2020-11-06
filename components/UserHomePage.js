@@ -5,9 +5,7 @@ import { Button } from 'react-native-elements';
 import Incident from './Incident';
 
 
-export default function UserHomePage({navigation, setCaseInfo, caseInfo}) {
-
-    const [incidentHistory, setIncidentHistory ] = useState([])
+export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, setCaseInfo, caseInfo}) {
 
     useEffect(() => {
         if (caseInfo.id) {
@@ -30,7 +28,8 @@ export default function UserHomePage({navigation, setCaseInfo, caseInfo}) {
     }
 
     const renderIncidents = () => {
-        return incidentHistory.reverse().map(incident => <Incident key={incident.id} incident={incident}/>)
+        let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
+        return history.map(incident => <Incident key={incident.id} incident={incident}/>)
     }
 
     return (
