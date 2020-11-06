@@ -33,7 +33,7 @@ export default function Antecedent({navigation, incident, setIncident, caseInfo}
                     defaultIndex={0}
                     dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
-                    onChangeItem={(item) => setIncident({"antecedent": item.value})}
+                    onChangeItem={(item) => setIncident({...incident, "antecedent": item.value})}
                 />
                 <Text>{incident["antecedent"]}</Text>
             </View>

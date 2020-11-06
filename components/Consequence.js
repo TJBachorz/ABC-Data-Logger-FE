@@ -34,7 +34,7 @@ export default function Consequence({navigation, incident, setIncident, caseInfo
                     defaultIndex={0}
                     dropDownMaxHeight={225}
                     containerStyle={{height: 100, width: 360}}
-                    onChangeItem={(item) => setIncident({"Consequence": item.value})}
+                    onChangeItem={(item) => setIncident({...incident, "consequence": item.value})}
                 />
                 <Text>{incident["Consequence"]}</Text>
             </View>

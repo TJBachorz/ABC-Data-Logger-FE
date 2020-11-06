@@ -26,8 +26,10 @@
 
 // export default function MyDrawer() {
 //     return (
-//         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
+//         <Drawer.Navigator>
 //             <Drawer.Screen name="Data-Chart" component={DataChart}/>
 //         </Drawer.Navigator>
 //     );
 // }
+
+// // drawerContent={props => <CustomDrawerContent {...props} 

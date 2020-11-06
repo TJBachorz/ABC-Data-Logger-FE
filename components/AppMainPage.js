@@ -8,34 +8,26 @@ import IncidentDateTime from './IncidentDateTime';
 import { View, Text, Modal, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-elements';
+import { DrawerActions } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createDrawerNavigator, 
     DrawerContentScrollView, 
     DrawerItemList, 
-    DrawerItem
+    DrawerItem,
 } from '@react-navigation/drawer';
 import DataChart from './DataChart';
-// import MyDrawer from './MyDrawer';
+import Icon from 'react-native-vector-icons/Fontisto';
+
 
 
 const Stack = createStackNavigator();
 
-export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
+export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
 
-    const [caseInfo, setCaseInfo] = useState({})
     const [account, setAccount] = useState({})
+    const [selected, setSelected] = useState(false)
 
-    const [incident, setIncident] = useState({
-        "antecedent": null,
-        "behavior": null,
-        "consequence": null,
-        "year": null,
-        "month": null,
-        "day": null,
-        "hour": null,
-        "minute": null,
-        "case": null
-    })
+    const [incident, setIncident] = useState({})
 
     useEffect(() => fetchCases(), [])
 
@@ -57,12 +49,10 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
             return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
         })
     }
-    
-
 
     return (
         <>
-            {!caseInfo.id ?
+            {!selected ?
                 <View style={styles.centeredView}>
                     <Modal
                         animationType="slide"
@@ -91,7 +81,12 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                                     marginBottom: 30,
                                 }}
                                 onPress={ () => {
-                                    navigation.navigate('Home')
+                                    setSelected(!selected)
+                                    if (caseInfo.id) {
+                                        navigation.navigate('Home')
+                                    } else {
+                                        setSelected(!selected)
+                                    }
                                 }}
                             />
                             <Button
@@ -118,9 +113,32 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                     headerStyle: {
                         backgroundColor: '#f8f8ff',
                     },
-                }}
-            >
-                <Stack.Screen name="Home">
+                }}>
+
+                <Stack.Screen 
+                    name="Home"
+                    options={{
+                        headerTitle: "",
+                        headerLeft: () => (
+                            <Button
+                                type="clear"
+                                icon={
+                                    <Icon
+                                        name="nav-icon-a"
+                                        size={20}
+                                        color="#1761a0"
+                                    />
+                                }
+                                onPress={() => navigation.openDrawer()}
+                                buttonStyle={{
+                                fontWeight: 'bold',
+                                marginLeft: 20,
+                                fontWeight: 200,
+                                backgroundColor: '#f8f8ff',
+                                }}
+                            />
+                        )
+                    }}>
                     {(props) => <UserHomePage 
                             setCaseInfo={setCaseInfo} 
                             caseInfo={caseInfo} 
@@ -128,6 +146,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         />
                     }
                 </Stack.Screen>
+
                 <Stack.Screen name="Antecedent">
                     {(props) => <Antecedent  
                             caseInfo={caseInfo} 
@@ -137,6 +156,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         />
                     }
                 </Stack.Screen>
+
                 <Stack.Screen name="Behavior">
                     {(props) => <Behavior  
                             caseInfo={caseInfo} 
@@ -146,6 +166,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         />
                     }
                 </Stack.Screen>
+
                 <Stack.Screen name="Consequence">
                     {(props) => <Consequence  
                             caseInfo={caseInfo} 
@@ -155,6 +176,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         />
                     }
                 </Stack.Screen>
+
                 <Stack.Screen name="IncidentDateTime">
                     {(props) => <IncidentDateTime  
                             caseInfo={caseInfo} 
@@ -164,6 +186,7 @@ export default function AppMainPage({ isSignedIn, setIsSignedIn, navigation }) {
                         />
                     }
                 </Stack.Screen>
+
             </Stack.Navigator>
         </>
     )
