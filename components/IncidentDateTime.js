@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Incident from './Incident';
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
 
@@ -23,18 +24,30 @@ const monthsWithDays = {
     "12": 31,
 }
 
+let currentDate = new Date()
+let startingYear = currentDate.getFullYear() - 10
 
-export default function IncidentDateTime({navigation, incident, setIncident, caseInfo}) {
+export default function IncidentDateTime({navigation, incidentHistory, setIncidentHistory, incident, setIncident, caseInfo}) {
 
-    let currentDate = new Date()
-    let startingYear = currentDate.getFullYear() - 10
+    const [AMPM, setAMPM] = useState("AM")
 
     const submitIncident = () => {
         postIncident()
         navigation.navigate('Home')
     }
 
+    const calcHours = () => {
+        let incidentCopy = JSON.parse(JSON.stringify(incident))
+        console.log("incident copy", incidentCopy)
+        if (AMPM === "PM" && incident["hour"] !== "12") {
+            incidentCopy["hour"] = +incidentCopy["hour"] + 12
+        } else if (AMPM === "AM" && incident["hour"] === "12")
+            incidentCopy["hour"] = "00"
+        return `${incidentCopy["hour"]}`
+    }
+
     const postIncident = () => {
+        console.log("pre-post", incident)
         return AsyncStorage.getItem("token").then(token => {
             fetch("http://localhost:8000/incidents/", {
                 method: "POST",
@@ -48,11 +61,11 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     "behavior": `${incident["behavior"]}`,
                     "consequence": `${incident["consequence"]}`,
                     "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
-                    "time": `${incident["hour"]}:${incident["minute"]}:00`,
+                    "time": `${calcHours()}:${incident["minute"]}:00`,
                     "case": `${caseInfo.id}`
                 })
             }).then(response => response.json())
-            .then(console.log)
+            .then(newIncident => setIncidentHistory([...incidentHistory, newIncident]))
         })
     }
 
@@ -105,7 +118,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     placeholder="Year"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
-                    defaultIndex={1}
+                    defaultValue={incident["year"]}
                     dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({...incident, "year": item.value})}
@@ -114,7 +127,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     placeholder="Month"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createMonthOptions()}
-                    defaultIndex={0}
+                    defaultValue={incident["month"]}
                     dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 120, margin: 5}}
                     onChangeItem={(item) => setIncident({...incident, "month": item.value})}
@@ -123,7 +136,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                     placeholder="Day"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createDayOptions()}
-                    defaultIndex={0}
+                    defaultValue={incident["day"]}
                     dropDownMaxHeight={200}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({...incident, "day": item.value})}
@@ -133,18 +146,33 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                 <DropDownPicker
                     placeholder="Hour"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createNumberList(1, 24)}
-                    defaultIndex={0}
+                    items={createNumberList(1, 12)}
+                    defaultValue={incident["hour"]}
                     containerStyle={{height: 60, width: 100}}
                     onChangeItem={(item) => setIncident({...incident, "hour": item.value})}
                 />
+                <Text style={styles.colon}>:</Text>
                 <DropDownPicker
                     placeholder="Minute"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(0, 59)}
-                    defaultIndex={0}
+                    defaultValue={incident["minute"]}
                     containerStyle={{height: 60, width: 120, margin: 5}}
                     onChangeItem={(item) => setIncident({...incident, "minute": item.value})}
+                />
+                <DropDownPicker
+                    placeholder="Minute"
+                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                    items={[
+                        {label: "AM", value: "AM"},
+                        {label: "PM", value: "PM"}
+                    ]}
+                    defaultValue={AMPM}
+                    containerStyle={{height: 60, width: 120, margin: 5}}
+                    onChangeItem={(item) => {
+                        console.log(incident)
+                        setAMPM(item.value)}
+                    }
                 />
             </View>
             <View style={styles.incidentButton}>
@@ -159,14 +187,20 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                         width: 360,
                         marginBottom: 30,
                     }}
-                    onPress={submitIncident} 
+                    onPress={submitIncident}
                 />
             </View>
         </>
     )
 }
 
+// onPress={submitIncident} 
 const styles = StyleSheet.create({
+    colon: {
+        fontSize: 24,
+        padding: 4,
+        paddingLeft: 8
+    },
     timeContainer: {
         flex: 1,
         flexDirection: 'row',
