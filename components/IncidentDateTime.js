@@ -141,7 +141,7 @@ export default function IncidentDateTime({navigation, incident, setIncident, cas
                 <DropDownPicker
                     placeholder="Minute"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createNumberList(1, 60)}
+                    items={createNumberList(0, 59)}
                     defaultIndex={0}
                     containerStyle={{height: 60, width: 120, margin: 5}}
                     onChangeItem={(item) => setIncident({...incident, "minute": item.value})}

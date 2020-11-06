@@ -54,7 +54,6 @@ export default function DataChartMainPage({navigation, caseInfo}) {
                     )
                 }}>
                 {(props) => <DataChart 
-                        setCaseInfo={setCaseInfo} 
                         caseInfo={caseInfo} 
                         {...props}
                     />

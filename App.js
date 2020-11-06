@@ -16,6 +16,9 @@ import { createDrawerNavigator,
   DrawerItemList, 
   DrawerItem
 } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -34,6 +37,25 @@ function HomeLogin({navigation}) {
   )
 }
 
+function CustomDrawerContent({ navigation }) {
+  return (
+    <Button
+      title="Log Out"
+      style={styles.logout}
+      icon={
+        <Icon
+            name="logout"
+            size={20}
+            color="#1761a0"
+        />
+      }
+      onPress={() => {
+        setIsSignedIn(!isSignedIn)
+        navigation.navigate('Home');
+      }}/>
+  );
+}
+
 export default function App() {
 
   const [isSignedIn, setIsSignedIn] = useState(false)
@@ -44,13 +66,16 @@ export default function App() {
       <StatusBar style="auto"/>
       { isSignedIn ? 
         <Drawer.Navigator
+          overlayColor="transparent"
+          // drawerContent={(props) => <CustomDrawerContent {...props} />}
           drawerStyle={{
             backgroundColor: '#f8f8ff',
-            width: 240,
+            width: 350,
           }}
         >
           <Drawer.Screen 
-            name="Home" 
+            name="Home"
+            style={styles.drawerButton} 
           >
             {(props) => <AppMainPage
               caseInfo={caseInfo}
@@ -58,16 +83,14 @@ export default function App() {
               {...props} 
             />}
           </Drawer.Screen>
-          {/* <Drawer.Screen 
+          <Drawer.Screen 
             name="Charts" 
-            component={DataChartMainPage}
           >
             {(props) => <DataChartMainPage
               caseInfo={caseInfo}
-              setCaseInfo={setCaseInfo}
               {...props} 
             />}
-          </Drawer.Screen> */}
+          </Drawer.Screen>
         </Drawer.Navigator>
         : <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
           <Stack.Screen name="Home" options={{ title: '' }} component={HomeLogin}/>
@@ -96,8 +119,8 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  drawerStyle: {
-    width: '80%'
+  drawerButton: {
+    fontSize: 34
   },
   headerImage: {
     bottom: '90%'
@@ -111,5 +134,12 @@ const styles = StyleSheet.create({
   image: {
     height: 250,
     width: 250,
+  },
+  logout: {
+    width: 10,
+    height: 10,
+    padding: 0,
+    margin: 0,
+    backgroundColor: "green"
   }
 });
