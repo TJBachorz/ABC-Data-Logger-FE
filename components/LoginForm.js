@@ -4,14 +4,13 @@ import { Button } from 'react-native-elements';
 import { Formik } from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginForm({ navigation, isSignedIn, setIsSignedIn }) {
+export default function LoginForm({ navigation }) {
     
 
     const loginUser = (data) => {
         if (data.token) {
             AsyncStorage.setItem('token', data.token)
-            setIsSignedIn(!isSignedIn)
-            navigation.navigate('Home')
+            navigation.navigate('Case Selection')
         } else {
             return (
                 alert("Invalid Login!")

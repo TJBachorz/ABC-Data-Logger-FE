@@ -5,7 +5,7 @@ import Antecedent from './Antecedent';
 import Behavior from './Behavior';
 import Consequence from './Consequence';
 import IncidentDateTime from './IncidentDateTime';
-import { View, Text, Modal, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-elements';
 import { DrawerActions } from '@react-navigation/native';
@@ -18,148 +18,25 @@ import { createDrawerNavigator,
 import DataChart from './DataChart';
 import Icon from 'react-native-vector-icons/Fontisto';
 
-let currentDate = new Date()
-
-const defaultDay = () => {
-    const currentDay = currentDate.getDate()
-    if (currentDay < 10) {
-        return `0${currentDay}`
-    } else {
-        return `${currentDay}`
-    }
-}
-
-const defaultMinutes = () => {
-    const minutes = currentDate.getMinutes()
-    if (minutes < 10) {
-        return `0${minutes}`
-    } else {
-        return `${minutes}`
-    }
-}   
-
-const defaultMonth = () => {
-    const currentMonth = currentDate.getMonth() + 1
-    if (currentMonth < 10) {
-        return `0${currentMonth}`
-    } else {
-        return `${currentMonth}`
-    }
-}
-
-const defaultHours = () => {
-    let hours = currentDate.getHours()
-    if (hours > 12) {
-        hours -= 12
-    }
-    if (hours < 10) {
-        return `0${hours}`
-    }
-    return hours
-}
-
 const Stack = createStackNavigator();
 
-export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
+export default function AppMainPage({ caseInfo, navigation }) {
 
     const [incidentHistory, setIncidentHistory ] = useState([])
-    const [account, setAccount] = useState({})
-    const [selected, setSelected] = useState(false)
     const [incident, setIncident] = useState({})
-
-    useEffect(() => {
-        fetchCases()
-        
-    }, [])
-
-    const fetchCases = () => {
-        AsyncStorage.getItem("token").then(token => {
-            fetch("http://localhost:8000/accounts/", {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(response => response.json())
-            .then(userAccount => setAccount(userAccount))
-        })
-    }
-    const renderCases = (account) => {
-        return account.cases.map(child => {
-            return {label: `${child.name}, ${child.dob}`, value: `${child.id}`}
-        })
-    }
-
-    console.log(incident)
 
     return (
         <>
-            {!selected ?
-                <View style={styles.centeredView}>
-                    <Modal
-                        animationType="slide"
-                        presentationStyle="pageSheet"
-                    >
-                        <View style={styles.centeredView}>
-                            <Text style={styles.modalText}>Please Select a Case:</Text>
-                            {account.cases ?
-                                <DropDownPicker
-                                    placeholder="Case"
-                                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                                    items={renderCases(account)}
-                                    defaultIndex={0}
-                                    containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
-                                    onChangeItem={(item) => setCaseInfo({'id': item.value})}
-                                /> : <Text>No Cases</Text>}
-                            <Button
-                                title={"Select Case"}
-                                type="solid" 
-                                buttonStyle={{
-                                    background: '#1761a0',
-                                    borderRadius: 16,
-                                    margin: 1,
-                                    height: 50,
-                                    width: 360,
-                                    marginBottom: 30,
-                                }}
-                                onPress={ () => {
-                                    setSelected(!selected)
-                                    if (caseInfo.id) {
-                                        navigation.navigate('Home')
-                                    } else {
-                                        setSelected(!selected)
-                                    }
-                                }}
-                            />
-                            <Button
-                                title={"Create New Case"}
-                                type="solid" 
-                                buttonStyle={{
-                                    background: '#1761a0',
-                                    borderRadius: 16,
-                                    margin: 1,
-                                    height: 50,
-                                    width: 360,
-                                    marginBottom: 30,
-                                }}
-                                onPress={ () => {
-                                    navigation.navigate('Home')
-                                }}
-                            />
-                        </View>
-                    </Modal>
-                </View> : null
-            }
             <Stack.Navigator 
                 screenOptions={{
                     headerStyle: {
                         backgroundColor: '#f8f8ff',
                     },
                 }}>
-
+                    
+                
                 <Stack.Screen 
-                    name="Home"
+                    name="Incident History"
                     options={{
                         headerTitle: "",
                         headerLeft: () => (
@@ -185,7 +62,6 @@ export default function AppMainPage({ caseInfo, setCaseInfo, navigation }) {
                     {(props) => <UserHomePage 
                             incidentHistory={incidentHistory}
                             setIncidentHistory={setIncidentHistory}
-                            setCaseInfo={setCaseInfo} 
                             caseInfo={caseInfo} 
                             {...props}
                         />

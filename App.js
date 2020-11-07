@@ -7,6 +7,8 @@ import { StyleSheet, View, Image } from 'react-native';
 
 import { Button } from 'react-native-elements';
 import LoginForm from './components/LoginForm';
+import DrawerContent from './components/DrawerContent';
+import CaseSelection from './components/CaseSelection';
 import DataChartMainPage from './components/DataChartMainPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
@@ -37,85 +39,90 @@ function HomeLogin({navigation}) {
   )
 }
 
-function CustomDrawerContent({ navigation }) {
-  return (
-    <View>
-      <View style={styles.drawerButton}>    
-        <Button
-          title="Log Out"
-          style={styles.logout}
-          icon={
-            <Icon
-                name="logout"
-                size={5}
-                color="#1761a0"
-            />
-          }
-          onPress={() => {
-            setIsSignedIn(!isSignedIn)
-            navigation.navigate('Home');
-        }}/>
-      </View>
-    </View>
-  );
-}
-
 export default function App() {
 
+  const [account, setAccount] = useState({})
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [caseInfo, setCaseInfo] = useState({})
-  
+
   return (
     <NavigationContainer>
       <StatusBar style="auto"/>
-      { isSignedIn ? 
+      { isSignedIn && caseInfo.id ? 
         <Drawer.Navigator
-          overlayColor="transparent"
-          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          drawerContent={
+            (props) => <DrawerContent 
+              setIsSignedIn={setIsSignedIn}
+              isSignedIn={isSignedIn} 
+              caseInfo={caseInfo} 
+              {...props} />
+          }
           drawerStyle={{
-            backgroundColor: '#f8f8ff',
+            backgroundColor: "#1761a0",
+            borderRightColor: "#f8f8ff",
             width: 350,
           }}
         >
           <Drawer.Screen 
             name="Home"
-            style={styles.drawerButton} 
           >
             {(props) => <AppMainPage
               caseInfo={caseInfo}
-              setCaseInfo={setCaseInfo}
               {...props} 
             />}
           </Drawer.Screen>
-          <Drawer.Screen 
-            name="Charts" 
-          >
+
+          <Drawer.Screen name="Charts"
+            options={{
+              headerTitle: "",
+              headerLeft: () => (
+                  <Button
+                      type="clear"
+                      icon={
+                          <Icon
+                              name="nav-icon-a"
+                              size={20}
+                              color="#1761a0"
+                          />
+                      }
+                      onPress={() => navigation.openDrawer()}
+                      buttonStyle={{
+                      fontWeight: 'bold',
+                      marginLeft: 20,
+                      fontWeight: 200,
+                      backgroundColor: '#f8f8ff',
+                      }}
+                  />
+              )
+          }}>
             {(props) => <DataChartMainPage
               caseInfo={caseInfo}
               {...props} 
             />}
           </Drawer.Screen>
+
         </Drawer.Navigator>
         : <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
+
           <Stack.Screen name="Home" options={{ title: '' }} component={HomeLogin}/>
-          <Stack.Screen 
-            name="Login" 
-          >
-            {(props) => <LoginForm
-              setIsSignedIn={setIsSignedIn} 
+
+          <Stack.Screen name="Login" component={LoginForm}/>
+
+          <Stack.Screen name="Register" component={RegisterForm}/>
+
+          <Stack.Screen name="Case Selection">
+            {(props) => <CaseSelection 
+              caseInfo={caseInfo} 
+              setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}
+              setIsSignedIn={setIsSignedIn} 
+              account={account}
+              setAccount={setAccount}
               {...props} 
               />
             }
           </Stack.Screen>
-          <Stack.Screen name="Register">
-            {(props) => <RegisterForm 
-              setIsSignedIn={setIsSignedIn} 
-              isSignedIn={isSignedIn}
-              {...props} 
-              />
-            }
-          </Stack.Screen>
+
         </Stack.Navigator>
       }
     </NavigationContainer>
@@ -142,11 +149,4 @@ const styles = StyleSheet.create({
     height: 250,
     width: 250,
   },
-  logout: {
-    width: 100,
-    height: 100,
-    padding: 0,
-    margin: 0,
-    backgroundColor: "green"
-  }
 });
