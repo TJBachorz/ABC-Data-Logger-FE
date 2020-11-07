@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
+
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Incident from './Incident';
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
 

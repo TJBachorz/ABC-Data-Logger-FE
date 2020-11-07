@@ -1,21 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import UserHomePage from './UserHomePage';
 import Antecedent from './Antecedent';
 import Behavior from './Behavior';
 import Consequence from './Consequence';
 import IncidentDateTime from './IncidentDateTime';
-import { View, Text, StyleSheet} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { StyleSheet} from 'react-native';
 import { Button } from 'react-native-elements';
-import { DrawerActions } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createDrawerNavigator, 
-    DrawerContentScrollView, 
-    DrawerItemList, 
-    DrawerItem,
-} from '@react-navigation/drawer';
-import DataChart from './DataChart';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();

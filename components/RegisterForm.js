@@ -1,6 +1,8 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
+
+import { Formik } from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterForm({ navigation }) {

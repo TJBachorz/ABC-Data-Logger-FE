@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Image, Text } from 'react-native';
-import DataChart from './DataChart';
+import { StyleSheet, View, Image } from 'react-native';
+
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Drawer } from 'react-native-paper';
-import { floor } from 'react-native-reanimated';
 
 
 export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn }) {

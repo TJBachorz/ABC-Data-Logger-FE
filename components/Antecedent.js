@@ -44,7 +44,7 @@ const defaultHours = () => {
 }
 
 
-export default function Antecedent({navigation, incident, setIncident, caseInfo}) {
+export default function Antecedent({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
         if (incident["antecedent"]) {

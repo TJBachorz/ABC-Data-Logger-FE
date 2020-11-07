@@ -1,11 +1,11 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {useEffect, useState} from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Incident from './Incident';
 
-
-export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, setCaseInfo, caseInfo}) {
+export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, caseInfo}) {
 
     useEffect(() => {
         if (caseInfo.id) {

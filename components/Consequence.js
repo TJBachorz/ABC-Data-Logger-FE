@@ -3,8 +3,7 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-
-export default function Consequence({navigation, incident, setIncident, caseInfo}) {
+export default function Consequence({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
         if (incident["consequence"]) {

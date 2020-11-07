@@ -1,11 +1,6 @@
 import 'react-native-gesture-handler';
-import React, {useState} from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image } from 'react-native';
-
-import { Button } from 'react-native-elements';
+import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LoginForm from './components/LoginForm';
 import DrawerContent from './components/DrawerContent';
 import CaseSelection from './components/CaseSelection';
@@ -13,13 +8,13 @@ import DataChartMainPage from './components/DataChartMainPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
 import AppMainPage from './components/AppMainPage';
-import { createDrawerNavigator, 
-  DrawerContentScrollView, 
-  DrawerItemList, 
-  DrawerItem
-} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View, Image } from 'react-native';
+import { Button } from 'react-native-elements';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 
 const Drawer = createDrawerNavigator();

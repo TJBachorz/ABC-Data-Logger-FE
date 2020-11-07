@@ -10,7 +10,7 @@ export default function UserPortalButtons({navigation}) {
                 type="solid" 
                 title={"LOG IN"} 
                 buttonStyle={{
-                    background: 'linear-gradient(45deg, #4c96d7 30%, #1761a0 90%)',
+                    background: '#4c96d7',
                     borderRadius: 16,
                     margin: 1,
                     height: 50,
@@ -23,7 +23,7 @@ export default function UserPortalButtons({navigation}) {
                 type="solid" 
                 title={"CREATE ACCOUNT"} 
                 buttonStyle={{
-                    background: 'linear-gradient(45deg, #4c96d7 30%, #1761a0 90%)',
+                    background: '#4c96d7',
                     borderRadius: 16,
                     margin: 1,
                     height: 50,
