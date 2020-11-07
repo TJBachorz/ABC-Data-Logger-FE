@@ -7,6 +7,7 @@ import { StyleSheet, View, Image } from 'react-native';
 
 import { Button } from 'react-native-elements';
 import LoginForm from './components/LoginForm';
+import CaseSelection from './components/CaseSelection';
 import DataChartMainPage from './components/DataChartMainPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
@@ -62,16 +63,17 @@ function CustomDrawerContent({ navigation }) {
 
 export default function App() {
 
+  const [account, setAccount] = useState({})
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [caseInfo, setCaseInfo] = useState({})
-  
+
   return (
     <NavigationContainer>
       <StatusBar style="auto"/>
-      { isSignedIn ? 
+      { isSignedIn && caseInfo.id ? 
         <Drawer.Navigator
           overlayColor="transparent"
-          drawerContent={(props) => <CustomDrawerContent {...props} />}
+          // drawerContent={(props) => <CustomDrawerContent {...props} />}
           drawerStyle={{
             backgroundColor: '#f8f8ff',
             width: 350,
@@ -83,39 +85,39 @@ export default function App() {
           >
             {(props) => <AppMainPage
               caseInfo={caseInfo}
-              setCaseInfo={setCaseInfo}
               {...props} 
             />}
           </Drawer.Screen>
-          <Drawer.Screen 
-            name="Charts" 
-          >
+
+          <Drawer.Screen name="Charts">
             {(props) => <DataChartMainPage
               caseInfo={caseInfo}
               {...props} 
             />}
           </Drawer.Screen>
+
         </Drawer.Navigator>
         : <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
+
           <Stack.Screen name="Home" options={{ title: '' }} component={HomeLogin}/>
-          <Stack.Screen 
-            name="Login" 
-          >
-            {(props) => <LoginForm
-              setIsSignedIn={setIsSignedIn} 
+
+          <Stack.Screen name="Login" component={LoginForm}/>
+
+          <Stack.Screen name="Register" component={RegisterForm}/>
+
+          <Stack.Screen name="Case Selection">
+            {(props) => <CaseSelection 
+              caseInfo={caseInfo} 
+              setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}
+              setIsSignedIn={setIsSignedIn} 
+              account={account}
+              setAccount={setAccount}
               {...props} 
               />
             }
           </Stack.Screen>
-          <Stack.Screen name="Register">
-            {(props) => <RegisterForm 
-              setIsSignedIn={setIsSignedIn} 
-              isSignedIn={isSignedIn}
-              {...props} 
-              />
-            }
-          </Stack.Screen>
+
         </Stack.Navigator>
       }
     </NavigationContainer>

@@ -3,7 +3,7 @@ import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginForm({navigation, setIsSignedIn}) {
+export default function RegisterForm({ navigation }) {
 
     return (
         <View style={styles.container}>
@@ -44,10 +44,7 @@ export default function LoginForm({navigation, setIsSignedIn}) {
                     height: 50,
                     width: 360,
                 }} 
-                onPress={() => {
-                        setIsSignedIn(true)
-                        navigation.navigate('Home')
-                }}
+                onPress={() => {navigation.navigate('Case Selection')}}
             />
             <View noBorder style={styles.details}>
                 <Text style={styles.detailText}>Already have an account?</Text>

@@ -14,16 +14,17 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
     }, [caseInfo.id])
 
     const fetchIncidents = () => {
-        AsyncStorage.getItem("token").then(token => {
-            fetch(`http://localhost:8000/cases/${caseInfo.id}/`, {
-                method: "GET",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                }
-            }).then(response => response.json())
-            .then(child => setIncidentHistory(child.incidents))
+        AsyncStorage.getItem("token")
+            .then(token => {
+                fetch(`http://localhost:8000/cases/${caseInfo.id}/`, {
+                    method: "GET",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    }
+                }).then(response => response.json())
+                .then(child => setIncidentHistory(child.incidents))
         })
     }
 

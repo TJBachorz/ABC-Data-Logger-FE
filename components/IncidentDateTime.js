@@ -38,7 +38,6 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
 
     const calcHours = () => {
         let incidentCopy = JSON.parse(JSON.stringify(incident))
-        console.log("incident copy", incidentCopy)
         if (AMPM === "PM" && incident["hour"] !== "12") {
             incidentCopy["hour"] = +incidentCopy["hour"] + 12
         } else if (AMPM === "AM" && incident["hour"] === "12")
@@ -47,7 +46,6 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
     }
 
     const postIncident = () => {
-        console.log("pre-post", incident)
         return AsyncStorage.getItem("token").then(token => {
             fetch("http://localhost:8000/incidents/", {
                 method: "POST",
@@ -170,7 +168,6 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     defaultValue={AMPM}
                     containerStyle={{height: 60, width: 120, margin: 5}}
                     onChangeItem={(item) => {
-                        console.log(incident)
                         setAMPM(item.value)}
                     }
                 />
