@@ -39,29 +39,6 @@ function HomeLogin({navigation}) {
   )
 }
 
-function CustomDrawerContent({ navigation }) {
-  return (
-    <View>
-      <View style={styles.drawerButton}>    
-        <Button
-          title="Log Out"
-          style={styles.logout}
-          icon={
-            <Icon
-                name="logout"
-                size={5}
-                color="#1761a0"
-            />
-          }
-          onPress={() => {
-            setIsSignedIn(!isSignedIn)
-            navigation.navigate('Home');
-        }}/>
-      </View>
-    </View>
-  );
-}
-
 export default function App() {
 
   const [account, setAccount] = useState({})
@@ -73,16 +50,21 @@ export default function App() {
       <StatusBar style="auto"/>
       { isSignedIn && caseInfo.id ? 
         <Drawer.Navigator
-          overlayColor="transparent"
-          // drawerContent={(props) => <DrawerContent {...props} />}
+          drawerContent={
+            (props) => <DrawerContent 
+              setIsSignedIn={setIsSignedIn}
+              isSignedIn={isSignedIn} 
+              caseInfo={caseInfo} 
+              {...props} />
+          }
           drawerStyle={{
-            backgroundColor: '#f8f8ff',
+            backgroundColor: "#1761a0",
+            borderRightColor: "#f8f8ff",
             width: 350,
           }}
         >
           <Drawer.Screen 
             name="Home"
-            style={styles.drawerButton} 
           >
             {(props) => <AppMainPage
               caseInfo={caseInfo}
@@ -90,7 +72,29 @@ export default function App() {
             />}
           </Drawer.Screen>
 
-          <Drawer.Screen name="Charts">
+          <Drawer.Screen name="Charts"
+            options={{
+              headerTitle: "",
+              headerLeft: () => (
+                  <Button
+                      type="clear"
+                      icon={
+                          <Icon
+                              name="nav-icon-a"
+                              size={20}
+                              color="#1761a0"
+                          />
+                      }
+                      onPress={() => navigation.openDrawer()}
+                      buttonStyle={{
+                      fontWeight: 'bold',
+                      marginLeft: 20,
+                      fontWeight: 200,
+                      backgroundColor: '#f8f8ff',
+                      }}
+                  />
+              )
+          }}>
             {(props) => <DataChartMainPage
               caseInfo={caseInfo}
               {...props} 
@@ -145,11 +149,4 @@ const styles = StyleSheet.create({
     height: 250,
     width: 250,
   },
-  logout: {
-    width: 100,
-    height: 100,
-    padding: 0,
-    margin: 0,
-    backgroundColor: "green"
-  }
 });
