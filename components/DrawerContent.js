@@ -9,11 +9,6 @@
 
 // const Drawer = createDrawerNavigator();
 
-// const logout = async () => {
-//     await AsyncStorage.clear()
-//     setIsSignedIn(!isSignedIn)
-//     navigation.navigate("Home")
-// }
 
 // function CustomDrawerContent(props) {
 //     return (
@@ -24,12 +19,19 @@
 //     );
 // }
 
-// export default function MyDrawer() {
+// export default function DrawerContent() {
+    
+//     const logout = async () => {
+//         await AsyncStorage.clear()
+//         setIsSignedIn(!isSignedIn)
+//         navigation.navigate("Home")
+//     }
+
+
 //     return (
 //         <Drawer.Navigator>
-//             <Drawer.Screen name="Data-Chart" component={DataChart}/>
 //         </Drawer.Navigator>
 //     );
 // }
 
-// // drawerContent={props => <CustomDrawerContent {...props} 
+// drawerContent={props => <CustomDrawerContent {...props} 

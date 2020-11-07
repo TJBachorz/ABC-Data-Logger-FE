@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, Text, StyleSheet, DevSettings} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -86,7 +86,7 @@ export default function CaseSelection({
                     marginBottom: 30,
                 }}
                 onPress={ () => {
-                    navigation.navigate('Home')
+                    DevSettings.reload()                
                 }}
             />
         </View>

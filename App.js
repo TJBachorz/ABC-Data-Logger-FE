@@ -7,6 +7,7 @@ import { StyleSheet, View, Image } from 'react-native';
 
 import { Button } from 'react-native-elements';
 import LoginForm from './components/LoginForm';
+import DrawerContent from './components/DrawerContent';
 import CaseSelection from './components/CaseSelection';
 import DataChartMainPage from './components/DataChartMainPage';
 import RegisterForm from './components/RegisterForm';
@@ -73,7 +74,7 @@ export default function App() {
       { isSignedIn && caseInfo.id ? 
         <Drawer.Navigator
           overlayColor="transparent"
-          // drawerContent={(props) => <CustomDrawerContent {...props} />}
+          // drawerContent={(props) => <DrawerContent {...props} />}
           drawerStyle={{
             backgroundColor: '#f8f8ff',
             width: 350,

@@ -33,7 +33,7 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
 
     const submitIncident = () => {
         postIncident()
-        navigation.navigate('Home')
+        navigation.navigate('Incident History')
     }
 
     const calcHours = () => {
