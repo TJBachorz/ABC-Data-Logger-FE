@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function LoginForm({ navigation }) {
     
 
-    const loginUser = (data) => {
+    const authorizeUser = (data) => {
         if (data.token) {
             AsyncStorage.setItem('token', data.token)
             navigation.navigate('Case Selection')
@@ -19,6 +19,21 @@ export default function LoginForm({ navigation }) {
         }
     }
 
+    const loginUser = (values) => {
+        fetch('http://localhost:8000/login', {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: values.email,
+                password: values.password
+            })
+        }).then(response => response.json())
+            .then(authorizeUser)
+        }
+
     return (
         <View style={styles.container}>
             <Image 
@@ -27,20 +42,7 @@ export default function LoginForm({ navigation }) {
             />
             <Formik
                 initialValues={{ email: '', password: '' }}
-                onSubmit={values => {
-                    fetch('http://127.0.0.1:8000/login', {
-                        method: "POST",
-                        headers: {
-                            "Accept": "application/json",
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            email: values.email,
-                            password: values.password
-                        })
-                    }).then(response => response.json())
-                        .then(loginUser)
-                }}
+                onSubmit={values => loginUser(values)}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                     <>

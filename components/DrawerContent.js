@@ -27,7 +27,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                 <Drawer.Section style={styles.drawerSection}>
                     <DrawerItem 
                         label="Home" 
-                        style={styles.drawerItem}
+                        style={styles.drawerItemHome}
                         labelStyle={styles.itemLabel}
                         icon={({ color, size }) => (
                             <Icon
@@ -106,6 +106,11 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
 }
 
 const styles = StyleSheet.create({
+    drawerItemHome: {
+        borderTopWidth: 1,
+        borderTopColor: "gray",
+        paddingTop: 10
+    },
     drawerSection: {
         marginTop: 15
     },
@@ -123,12 +128,10 @@ const styles = StyleSheet.create({
         fontSize: 40,
         marginTop: 100,
         borderBottomWidth: 1,
-        borderBottomColor: "#f8f8ff"
+        borderBottomColor: "gray"
     },
     image: {
         marginLeft: 70,
-        marginTop: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: "#f8f8ff",
+        marginTop: 10,
     },
 });
