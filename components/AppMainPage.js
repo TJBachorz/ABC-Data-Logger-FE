@@ -11,10 +11,17 @@ import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();
 
-export default function AppMainPage({ caseInfo, navigation }) {
+export default function AppMainPage({ 
+    caseInfo, 
+    navigation, 
+    incident, 
+    setIncident, 
+    incidentHistory, 
+    setIncidentHistory 
+}) {
 
-    const [incidentHistory, setIncidentHistory ] = useState([])
-    const [incident, setIncident] = useState({})
+    // const [incidentHistory, setIncidentHistory ] = useState([])
+    // const [incident, setIncident] = useState({})
 
     return (
         <>

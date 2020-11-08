@@ -8,6 +8,7 @@ import DataChartMainPage from './components/DataChartMainPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
 import AppMainPage from './components/AppMainPage';
+import UserCaseMainPage from './components/UserCaseMainPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -39,6 +40,8 @@ export default function App() {
   const [account, setAccount] = useState({})
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [caseInfo, setCaseInfo] = useState({})
+  const [incidentHistory, setIncidentHistory ] = useState([])
+  const [incident, setIncident] = useState({})
 
   return (
     <NavigationContainer>
@@ -62,6 +65,10 @@ export default function App() {
             name="Home"
           >
             {(props) => <AppMainPage
+              incident={incident}
+              setIncident={setIncident}
+              incidentHistory={incidentHistory}
+              setIncidentHistory={setIncidentHistory}
               caseInfo={caseInfo}
               {...props} 
             />}
@@ -91,6 +98,36 @@ export default function App() {
               )
           }}>
             {(props) => <DataChartMainPage
+              incidentHistory={incidentHistory}
+              caseInfo={caseInfo}
+              {...props} 
+            />}
+          </Drawer.Screen>
+
+          <Drawer.Screen name="Cases"
+            options={{
+              headerTitle: "",
+              headerLeft: () => (
+                  <Button
+                      type="clear"
+                      icon={
+                          <Icon
+                              name="nav-icon-a"
+                              size={20}
+                              color="#1761a0"
+                          />
+                      }
+                      onPress={() => navigation.openDrawer()}
+                      buttonStyle={{
+                      fontWeight: 'bold',
+                      marginLeft: 20,
+                      fontWeight: 200,
+                      backgroundColor: '#f8f8ff',
+                      }}
+                  />
+              )
+          }}>
+            {(props) => <UserCaseMainPage
               caseInfo={caseInfo}
               {...props} 
             />}

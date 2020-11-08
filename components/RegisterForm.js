@@ -22,7 +22,6 @@ export default function RegisterForm({ navigation }) {
             })
         }).then(response => response.json())
         .then(data => loginUser(data, values))
-        // .then(data => console.log(data.user.id))
     }
     
     const loginUser = (data, values) => {

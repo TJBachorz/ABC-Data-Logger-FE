@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, DevSettings} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
+import UserCaseSelection from './UserCaseSelection';
+
+import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const currentYear = new Date().getFullYear()
@@ -15,6 +17,8 @@ export default function CaseSelection({
     setIsSignedIn, 
     navigation 
 }) {
+
+    const [isNewCase, setIsNewCase] = useState(false)
 
     useEffect(() => fetchCases(), [])
 
@@ -35,7 +39,10 @@ export default function CaseSelection({
     
     const renderCases = (account) => {
         return account.cases.map(child => {
-            return {label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, value: `${child.id}`}
+            return ({
+                label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
+                value: {"id": `${child.id}`, "name": `${child.name}`
+            })
         })
     }
 
@@ -47,6 +54,14 @@ export default function CaseSelection({
     }
 
     return (
+        {isNewCase ? 
+            <UserCaseSelection 
+                account={account}
+                setAccount={setAccount}
+            /> 
+            : <NewCase
+            
+            />} 
         <View style={styles.centeredView}>
             {account.cases ?
                 <>
@@ -57,7 +72,10 @@ export default function CaseSelection({
                         items={renderCases(account)}
                         defaultIndex={0}
                         containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
-                        onChangeItem={(item) => setCaseInfo({'id': item.value})}
+                        onChangeItem={(item) => setCaseInfo({
+                            'id': item.value.id, 
+                            "name": item.value.name
+                        })}
                     />
                     <Button
                         title={"Select Case"}
@@ -85,9 +103,7 @@ export default function CaseSelection({
                     width: 360,
                     marginBottom: 30,
                 }}
-                onPress={ () => {
-                    DevSettings.reload()                
-                }}
+                onPress={() => (setIsNewCase(!isNewCase))}
             />
         </View>
     )

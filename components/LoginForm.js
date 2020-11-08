@@ -14,7 +14,7 @@ export default function LoginForm({ navigation }) {
             navigation.navigate('Case Selection')
         } else {
             return (
-                alert("Invalid Login!")
+                alert("Invalid Email or Password!")
             )
         }
     }
