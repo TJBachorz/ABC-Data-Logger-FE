@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LoginForm from './components/LoginForm';
 import DrawerContent from './components/DrawerContent';
-import CaseSelection from './components/CaseSelection';
-import DataChartMainPage from './components/DataChartMainPage';
+import CaseSelectionMainPage from './components/CaseSelectionMainPage';
+import DataChartStackPage from './components/DataChartStackPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
-import AppMainPage from './components/AppMainPage';
-import UserCaseMainPage from './components/UserCaseMainPage';
+import AppMainStackPage from './components/AppMainStackPage';
+import UserCaseStackPage from './components/UserCaseStackPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -64,7 +64,7 @@ export default function App() {
           <Drawer.Screen 
             name="Home"
           >
-            {(props) => <AppMainPage
+            {(props) => <AppMainStackPage
               incident={incident}
               setIncident={setIncident}
               incidentHistory={incidentHistory}
@@ -74,7 +74,7 @@ export default function App() {
             />}
           </Drawer.Screen>
 
-          <Drawer.Screen name="Charts"
+          <Drawer.Screen name="Data"
             options={{
               headerTitle: "",
               headerLeft: () => (
@@ -97,7 +97,7 @@ export default function App() {
                   />
               )
           }}>
-            {(props) => <DataChartMainPage
+            {(props) => <DataChartStackPage
               incidentHistory={incidentHistory}
               caseInfo={caseInfo}
               {...props} 
@@ -127,7 +127,7 @@ export default function App() {
                   />
               )
           }}>
-            {(props) => <UserCaseMainPage
+            {(props) => <UserCaseStackPage
               caseInfo={caseInfo}
               {...props} 
             />}
@@ -143,7 +143,7 @@ export default function App() {
           <Stack.Screen name="Register" component={RegisterForm}/>
 
           <Stack.Screen name="Case Selection">
-            {(props) => <CaseSelection 
+            {(props) => <CaseSelectionMainPage 
               caseInfo={caseInfo} 
               setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}

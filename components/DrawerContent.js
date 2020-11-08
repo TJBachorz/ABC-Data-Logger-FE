@@ -60,7 +60,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                                 color="#f8f8ff"
                             />
                         )}
-                        onPress={() => {}} 
+                        onPress={() => navigation.navigate("Cases")} 
                     />
                     <DrawerItem 
                         label="Data" 
@@ -72,7 +72,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                                 color="#f8f8ff"
                             />
                         )}
-                        onPress={() => navigation.navigate("Charts")} 
+                        onPress={() => navigation.navigate("Data")} 
                     />
                     <DrawerItem 
                         label="Link Accounts" 
