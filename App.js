@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import LoginForm from './components/LoginForm';
 import DrawerContent from './components/DrawerContent';
-import CaseSelectionMainPage from './components/CaseSelectionMainPage';
+import LoginCaseSelection from './components/LoginCaseSelection';
 import DataChartStackPage from './components/DataChartStackPage';
 import RegisterForm from './components/RegisterForm';
 import UserPortalButtons from './components/UserPortalButtons';
@@ -128,7 +128,12 @@ export default function App() {
               )
           }}>
             {(props) => <UserCaseStackPage
+              isSignedIn={isSignedIn}
+              setIsSignedIn={setIsSignedIn}
+              account={account}
+              setAccount={setAccount}
               caseInfo={caseInfo}
+              setCaseInfo={setCaseInfo}
               {...props} 
             />}
           </Drawer.Screen>
@@ -143,7 +148,7 @@ export default function App() {
           <Stack.Screen name="Register" component={RegisterForm}/>
 
           <Stack.Screen name="Case Selection">
-            {(props) => <CaseSelectionMainPage 
+            {(props) => <LoginCaseSelection 
               caseInfo={caseInfo} 
               setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}

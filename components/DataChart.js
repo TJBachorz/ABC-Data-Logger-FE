@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 
-export default function DataChart({ incidentHistory, caseInfo}) {
+export default function DataChart({ incidentHistory, caseInfo }) {
     return (
         <View style={styles.historyContainer}>
             <Text>Data Charts</Text>

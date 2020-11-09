@@ -5,11 +5,13 @@ import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export default function UserCaseSelection({
+export default function LoginCaseSelection({
     account,
     setAccount,
     caseInfo,
     setCaseInfo,
+    isSignedIn,
+    setIsSignedIn,
     navigation 
 }) {
 
@@ -39,8 +41,9 @@ export default function UserCaseSelection({
         })
     }
 
-    const selectNewCase = () => {
+    const signInUser = () => {
         if (caseInfo.id) {
+            setIsSignedIn(!isSignedIn)
             navigation.navigate('Home')
         }
     }
@@ -74,10 +77,23 @@ export default function UserCaseSelection({
                             width: 360,
                             marginBottom: 30,
                         }}
-                        onPress={selectNewCase}
+                        onPress={signInUser}
                     /> 
                 </> : <Text>No cases Associated with this account</Text>
             }
+            <Button
+                title={"Create New Case"}
+                type="solid" 
+                buttonStyle={{
+                    background: '#1761a0',
+                    borderRadius: 16,
+                    margin: 1,
+                    height: 50,
+                    width: 360,
+                    marginBottom: 30,
+                }}
+                onPress={() => {}}
+            />
         </View>
     )
 }
