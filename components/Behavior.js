@@ -20,6 +20,7 @@ export default function Behavior({ navigation, incident, setIncident }) {
             </View>
             <View style={styles.selectionContainer}>
                 <DropDownPicker
+                    placeholder="Select a Behavior"
                     labelStyle={{fontSize: 24, color: 'black', padding: 10}}
                     items={[
                         {label: 'Refusal to follow directions', value: 'Refusal to follow directions'},
@@ -39,6 +40,7 @@ export default function Behavior({ navigation, incident, setIncident }) {
                         {label: 'Hitting others (students)', value: 'Hitting others (students)'},
                         {label: 'Hitting others (adults)', value: 'Hitting others (adults)'},
                     ]}
+                    itemStyle={{justifyContent: 'flex-start'}}
                     defaultIndex={0}
                     dropDownMaxHeight={375}
                     containerStyle={{height: 100, width: 360}}

@@ -69,6 +69,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
             </View>
             <View style={styles.selectionContainer}>
                 <DropDownPicker
+                    placeholder="Select an Antecedent"
                     labelStyle={{fontSize: 24, color: 'black', padding: 10}}
                     items={[
                         {label: 'Given direction/task/activity', value: 'Given direction/task/activity'},
@@ -86,6 +87,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
                         {label: 'Alone (no activity)', value: 'Alone (no activity)'},
                         {label: 'Alone (no attention)', value: 'Alone (no attention)'}
                     ]}
+                    itemStyle={{justifyContent: 'flex-start'}}
                     defaultIndex={0}
                     dropDownMaxHeight={375}
                     containerStyle={{height: 100, width: 360}}

@@ -53,9 +53,10 @@ export default function UserCaseSelection({
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
                     <DropDownPicker
-                        placeholder="Case"
+                        placeholder="Select a Case"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={renderCases(account)}
+                        itemStyle={{justifyContent: 'flex-start'}}
                         defaultIndex={0}
                         containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
                         onChangeItem={(item) => setCaseInfo({
@@ -63,7 +64,7 @@ export default function UserCaseSelection({
                             "name": item.value.name
                         })}
                     />
-                    <Button
+                    <Button 
                         title={"Select Case"}
                         type="solid" 
                         buttonStyle={{

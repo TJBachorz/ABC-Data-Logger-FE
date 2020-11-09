@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         margin: 7
     },
     details: {
-        marginTop: 15,
+        marginTop: 35,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

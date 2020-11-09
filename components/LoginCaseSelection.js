@@ -56,10 +56,11 @@ export default function LoginCaseSelection({
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
                     <DropDownPicker
-                        placeholder="Case"
+                        placeholder="Select a Case"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={renderCases(account)}
                         defaultIndex={0}
+                        itemStyle={{justifyContent: 'flex-start'}}
                         containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
                         onChangeItem={(item) => setCaseInfo({
                             'id': item.value.id, 
