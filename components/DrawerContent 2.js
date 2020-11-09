@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
-
+import { StyleSheet, View, Image, Text } from 'react-native';
+import DataChart from './DataChart';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Drawer } from 'react-native-paper';
+import { floor } from 'react-native-reanimated';
 
 
 export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn }) {
@@ -27,7 +28,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                 <Drawer.Section style={styles.drawerSection}>
                     <DrawerItem 
                         label="Home" 
-                        style={styles.drawerItemHome}
+                        style={styles.drawerItem}
                         labelStyle={styles.itemLabel}
                         icon={({ color, size }) => (
                             <Icon
@@ -60,7 +61,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                                 color="#f8f8ff"
                             />
                         )}
-                        onPress={() => navigation.navigate("Cases")} 
+                        onPress={() => {}} 
                     />
                     <DrawerItem 
                         label="Data" 
@@ -72,7 +73,7 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
                                 color="#f8f8ff"
                             />
                         )}
-                        onPress={() => navigation.navigate("Data")} 
+                        onPress={() => navigation.navigate("Charts")} 
                     />
                     <DrawerItem 
                         label="Link Accounts" 
@@ -106,11 +107,6 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
 }
 
 const styles = StyleSheet.create({
-    drawerItemHome: {
-        borderTopWidth: 1,
-        borderTopColor: "gray",
-        paddingTop: 10
-    },
     drawerSection: {
         marginTop: 15
     },
@@ -128,10 +124,12 @@ const styles = StyleSheet.create({
         fontSize: 40,
         marginTop: 100,
         borderBottomWidth: 1,
-        borderBottomColor: "gray"
+        borderBottomColor: "#f8f8ff"
     },
     image: {
         marginLeft: 70,
-        marginTop: 10,
+        marginTop: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: "#f8f8ff",
     },
 });

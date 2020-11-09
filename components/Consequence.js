@@ -20,6 +20,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
             </View>
             <View style={styles.selectionContainer}>
                 <DropDownPicker
+                    placeholder="Select a Consequence"
                     labelStyle={{fontSize: 24, color: 'black', padding: 10}}
                     items={[
                         {label: 'Verbal redirection', value: 'Verbal redirection'},
@@ -38,6 +39,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
                         {label: 'Timeout', value: 'Timeout'},
                         {label: 'Asked to leave the room', value: 'Asked to leave the room'},
                     ]}
+                    itemStyle={{justifyContent: 'flex-start'}}
                     defaultIndex={0}
                     dropDownMaxHeight={375}
                     containerStyle={{height: 100, width: 360}}

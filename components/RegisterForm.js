@@ -22,7 +22,6 @@ export default function RegisterForm({ navigation }) {
             })
         }).then(response => response.json())
         .then(data => loginUser(data, values))
-        // .then(data => console.log(data.user.id))
     }
     
     const loginUser = (data, values) => {
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
         margin: 7
     },
     details: {
-        marginTop: 15,
+        marginTop: 35,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

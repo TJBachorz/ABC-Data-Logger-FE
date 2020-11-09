@@ -14,7 +14,7 @@ export default function LoginForm({ navigation }) {
             navigation.navigate('Case Selection')
         } else {
             return (
-                alert("Invalid Login!")
+                alert("Invalid Email or Password!")
             )
         }
     }
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         margin: 7
     },
     details: {
-        marginTop: 15,
+        marginTop: 35,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center'

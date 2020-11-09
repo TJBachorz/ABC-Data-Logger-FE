@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, DevSettings} from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DropDownPicker from 'react-native-dropdown-picker';
 
-const currentYear = new Date().getFullYear()
-
-export default function CaseSelection({
-    account, 
-    setAccount, 
-    caseInfo, 
-    setCaseInfo, 
-    isSignedIn, 
-    setIsSignedIn, 
+export default function LoginCaseSelection({
+    account,
+    setAccount,
+    caseInfo,
+    setCaseInfo,
+    isSignedIn,
+    setIsSignedIn,
     navigation 
 }) {
 
@@ -35,7 +34,10 @@ export default function CaseSelection({
     
     const renderCases = (account) => {
         return account.cases.map(child => {
-            return {label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, value: `${child.id}`}
+            return ({
+                label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
+                value: {"id": `${child.id}`, "name": `${child.name}`}
+            })
         })
     }
 
@@ -46,18 +48,24 @@ export default function CaseSelection({
         }
     }
 
+    const currentYear = new Date().getFullYear()
+
     return (
         <View style={styles.centeredView}>
             {account.cases ?
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
                     <DropDownPicker
-                        placeholder="Case"
+                        placeholder="Select a Case"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={renderCases(account)}
                         defaultIndex={0}
+                        itemStyle={{justifyContent: 'flex-start'}}
                         containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
-                        onChangeItem={(item) => setCaseInfo({'id': item.value})}
+                        onChangeItem={(item) => setCaseInfo({
+                            'id': item.value.id, 
+                            "name": item.value.name
+                        })}
                     />
                     <Button
                         title={"Select Case"}
@@ -85,13 +93,12 @@ export default function CaseSelection({
                     width: 360,
                     marginBottom: 30,
                 }}
-                onPress={ () => {
-                    DevSettings.reload()                
-                }}
+                onPress={() => {}}
             />
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     centeredView: {
         flex: 1,
@@ -104,4 +111,3 @@ const styles = StyleSheet.create({
         marginBottom: 20
     }
 })
-

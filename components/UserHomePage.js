@@ -39,7 +39,7 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
                 <Text style={styles.incidentHeader}>Incident History:</Text>
             </View>
             <ScrollView contentContainerStyle={styles.historyContainer}>
-                {incidentHistory ? renderIncidents() : <Text>No Incident History</Text>}
+                {incidentHistory ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
             </ScrollView>
             <View style={styles.incidentButton}>
                 <Button
@@ -74,6 +74,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         margin: 3
+    },
+    noIncidents: {
+        fontSize: 18,
+        marginTop: 50
     },
     incidentHeader: {
         fontSize: 32,

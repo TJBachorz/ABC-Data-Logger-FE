@@ -11,10 +11,14 @@ import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();
 
-export default function AppMainPage({ caseInfo, navigation }) {
-
-    const [incidentHistory, setIncidentHistory ] = useState([])
-    const [incident, setIncident] = useState({})
+export default function AppMainStackPage({ 
+    caseInfo, 
+    navigation, 
+    incident, 
+    setIncident, 
+    incidentHistory, 
+    setIncidentHistory 
+}) {
 
     return (
         <>
@@ -105,6 +109,8 @@ export default function AppMainPage({ caseInfo, navigation }) {
         </>
     )
 }
+// Make a Universal Case Stack for selecting, creating or deleting cases, write login so that users dont get signed out
+
 
 const styles = StyleSheet.create({
     centeredView: {
