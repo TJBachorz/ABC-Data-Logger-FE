@@ -109,6 +109,8 @@ export default function AppMainStackPage({
         </>
     )
 }
+// Make a Universal Case Stack for selecting, creating or deleting cases, write login so that users dont get signed out
+
 
 const styles = StyleSheet.create({
     centeredView: {
