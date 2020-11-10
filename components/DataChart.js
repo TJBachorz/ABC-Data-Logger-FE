@@ -5,7 +5,9 @@ import {
     View,
     ScrollView
 } from 'react-native';
-import { VictoryBar, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
+
+import DropDownPicker from 'react-native-dropdown-picker';
+import { VictoryBar, VictoryChart, VictoryStack, VictoryTheme, VictoryAxis } from "victory-native";
 import { countBy, uniq } from 'lodash';
 
 
@@ -27,10 +29,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
 
     const datesOfIncidents = (mappedIncidents) => {
         return mappedIncidents.map(incident => incident.date)
-    }
-
-    console.log(behaviorFrequencyToDate('Making verbal threats'))
-    
+    }    
 
     const data = [
         {date: 7, frequency: 1},
@@ -48,22 +47,32 @@ export default function DataChart({ incidentHistory, caseInfo }){
 
 
     return (
-        <View style={styles.container}>
-            <Text>Charts for {caseInfo.name}</Text>
-            <VictoryChart domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
-                <VictoryAxis
-                    tickValues={[7, 14, 21, 28]}
-                    tickFormat={["Oct 7", "Oct 14", "Oct 21", "Oct 28"]}
-                />  
-                <VictoryBar data={behaviorFrequencyToDate('Making verbal threats')} x="date" y="frequency" />
-                <VictoryAxis
-                    dependentAxis
-                    // tickFormat specifies how ticks should be displayed
-                    tickFormat={[5, 10, 15, 20]}
-                />
-            </VictoryChart>
-            <Text>I'm a placeholder Chart!  I can't tell you shit about fuck! :D</Text>
-        </View>
+        <>
+            {/* <DropDownPicker
+                        placeholder="Month"
+                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                        items={createMonthOptions()}
+                        defaultValue={incident["month"]}
+                        dropDownMaxHeight={200}
+                        containerStyle={{height: 60, width: 120, margin: 5}}
+                        onChangeItem={(item) => setIncident({...incident, "month": item.value})}
+                    /> */}
+            <View style={styles.container}>
+                <Text>Charts for {caseInfo.name}</Text>
+                <VictoryChart domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
+                    <VictoryAxis
+                        tickValues={[7, 14, 21, 28]}
+                        tickFormat={["Oct 7", "Oct 14", "Oct 21", "Oct 28"]}
+                    />  
+                    <VictoryBar style={{ data: { fill: '#1761a0'} }} data={behaviorFrequencyToDate('Screaming/yelling')} x="date" y="frequency" />
+                    <VictoryAxis
+                        dependentAxis
+                        tickValues={[1, 2]}
+                        tickFormat={[1, 2]}
+                    />
+                </VictoryChart>
+            </View>
+        </>
     );
 }
 

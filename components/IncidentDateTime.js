@@ -151,6 +151,7 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                 />
                 <Text style={styles.colon}>:</Text>
                 <DropDownPicker
+                    style={styles.dropDown}
                     placeholder="Minute"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(0, 59)}
@@ -222,5 +223,8 @@ const styles = StyleSheet.create({
     },
     labelHeader: {
         fontSize: 48
+    },
+    dropDown: {
+        borderRadius: 8
     }
 })

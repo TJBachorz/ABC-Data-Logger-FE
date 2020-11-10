@@ -38,9 +38,18 @@ export default function Incident({ incident }) {
     return (
         <View style={styles.incidentView}>
             <Text style={styles.datetime}>{dateToString()}{timeToString()}</Text>
-            <Text style={styles.abcText}>A: {incident["antecedent"]}</Text>
-            <Text style={styles.abcText}>B: {incident["behavior"]}</Text>
-            <Text style={styles.abcText}>C: {incident["consequence"]}</Text>
+            <View style={styles.abcView}>
+                <Text style={[styles.abcTextHeader, styles.A]}>A</Text>
+                <Text style={styles.abcText}>{incident["antecedent"]}</Text>
+            </View>
+            <View style={styles.abcView}>
+                <Text style={[styles.abcTextHeader, styles.B]}>B</Text>
+                <Text style={styles.abcText}>{incident["behavior"]}</Text>
+            </View>
+            <View style={styles.abcView}>
+                <Text style={[styles.abcTextHeader, styles.C]}>C</Text>
+                <Text style={styles.abcText}>{incident["consequence"]}</Text>
+            </View>
         </View>
     )
 }
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
     datetime: {
         fontSize: 24,
         fontWeight: '400',
-        color: '#f8f8ff',
+        color: 'black',
         marginBottom: 10
     },
     incidentView: {
@@ -57,14 +66,45 @@ const styles = StyleSheet.create({
         alignItems: "flex-start",
         margin: 15,
         padding: 15,
-        borderWidth: 1,
-        borderRadius: 7,
-        backgroundColor: "#1761a0",
+        // borderWidth: 1,
+        // borderColor: '#1761a0',
+        // borderStyle: 'dashed',
+        borderRadius: 8,
+        backgroundColor: "white",
         shadowColor: 'black',
         shadowOffset: {width: 23, height: 23}
     },
     abcText: {
-        color: '#f8f8ff',   
+        color: 'black',   
         fontSize: 20
+    },
+    A: {
+        paddingLeft: 2.75,
+        paddingRight: 2.75
+
+    },
+    B: {
+        paddingLeft: 3,
+        paddingRight: 3
+    },
+    C: {
+        paddingLeft: 2.5,
+        paddingRight: 2.5
+
+    },
+    abcTextHeader: {
+        backgroundColor: "#1761a0",
+        color: 'white',   
+        fontSize: 20,
+        marginRight: 8,
+        fontWeight: '600',
+        borderStyle: 'solid',
+        borderRadius: 7,
+        overflow: 'hidden',
+    },
+    abcView: {
+        flexDirection: 'row',
+        width: '95%',
+        margin: 2
     }
 })
