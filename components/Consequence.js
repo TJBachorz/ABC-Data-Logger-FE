@@ -42,7 +42,13 @@ export default function Consequence({ navigation, incident, setIncident }) {
                     itemStyle={{justifyContent: 'flex-start'}}
                     defaultIndex={0}
                     dropDownMaxHeight={375}
-                    containerStyle={{height: 100, width: 360}}
+                    containerStyle={{
+                        height: 100, 
+                        width: 360, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.4,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "consequence": item.value})}
                 />
             </View>
@@ -57,6 +63,9 @@ export default function Consequence({ navigation, incident, setIncident }) {
                         height: 50,
                         width: 360,
                         marginBottom: 30,
+                        shadowColor: 'black',
+                        shadowOpacity: 0.4,
+                        shadowOffset: {width: 2, height: 2}
                     }}
                     onPress={navigateToNextPage} 
                 />
