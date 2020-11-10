@@ -31,7 +31,7 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
 
     const renderIncidents = () => {
         let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
-        return <IncidentHeaders history={history}/>
+        return <IncidentHeaders key={"history"} history={history}/>
     }
 
     // const renderIncidents = () => {

@@ -63,7 +63,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
 
     const createMonthOptions = () => {
         return months.map(month => {
-            return {label: dayjs(`${month}`).format("MMM"), value: `${month}`}
+            return {label: dayjs(month).format("MMM"), value: `${month}`}
         })
     }
 
@@ -167,7 +167,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 200, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.1,
+                                shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedBehavior(item.value)}
@@ -184,7 +184,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 100, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.1,
+                                shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedYear(item.value)}
@@ -199,7 +199,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 120, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.1,
+                                shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedMonth(item.value)}

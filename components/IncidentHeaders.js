@@ -9,7 +9,7 @@ import Incident from './Incident';
 
 export default function IncidentHeaders({history}) {
 
-    const [isDateHeaderCollapsed, setIsDateHeaderCollapsed] = useState(false)
+    // const [isDateHeaderCollapsed, setIsDateHeaderCollapsed] = useState(false)
 
     const incidentDates = () => {
         return uniq(history.map(incident => incident.date))
@@ -30,17 +30,17 @@ export default function IncidentHeaders({history}) {
                     <View>
                         <Text 
                             style={styles.dateHeader}
-                            onPress={() => setIsDateHeaderCollapsed(!isDateHeaderCollapsed)}
+                            // onPress={() => setIsDateHeaderCollapsed(!isDateHeaderCollapsed)}
                         >
                             {dayjs(month).format("MMMM")} {day}, {year}
                         </Text>
-                        <Collapsible collapsed={isDateHeaderCollapsed}>
+                        {/* <Collapsible collapsed={isDateHeaderCollapsed}> */}
                             {filterIncidentsByDate(date).map(incident => {
                                 return (
-                                    <Incident incident={incident}/>
+                                    <Incident key={incident.id} incident={incident}/>
                                 )
                             })}
-                        </Collapsible>
+                        {/* </Collapsible> */}
                     </View>
                 )
             })}
