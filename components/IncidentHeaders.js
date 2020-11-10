@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+
 import dayjs from 'dayjs';
 import { countBy, uniq } from 'lodash';
 import Collapsible from 'react-native-collapsible';
@@ -27,7 +28,7 @@ export default function IncidentHeaders({history}) {
                 const month = splitDate[1]
                 const day = splitDate[2]
                 return (
-                    <View>
+                    <View key={date}>
                         <Text 
                             style={styles.dateHeader}
                             // onPress={() => setIsDateHeaderCollapsed(!isDateHeaderCollapsed)}
