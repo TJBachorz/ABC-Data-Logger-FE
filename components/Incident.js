@@ -37,7 +37,6 @@ export default function Incident({ incident }) {
 
     return (
         <View style={styles.incidentView}>
-            <Text style={styles.datetime}>{dateToString()}{timeToString()}</Text>
             <View style={styles.abcView}>
                 <Text style={[styles.abcTextHeader, styles.A]}>A</Text>
                 <Text style={styles.abcText}>{incident["antecedent"]}</Text>
@@ -50,18 +49,22 @@ export default function Incident({ incident }) {
                 <Text style={[styles.abcTextHeader, styles.C]}>C</Text>
                 <Text style={styles.abcText}>{incident["consequence"]}</Text>
             </View>
+            <Text style={styles.datetime}>{timeToString()}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     datetime: {
-        fontSize: 24,
+        fontSize: 12,
         fontWeight: '400',
-        color: 'black',
-        marginBottom: 10
+        color: 'gray',
+        // marginBottom: 3,
+        alignSelf: 'stretch',
+        textAlign: 'right'
     },
     incidentView: {
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: "flex-start",
         width: '90%',

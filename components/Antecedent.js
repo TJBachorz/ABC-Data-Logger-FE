@@ -43,7 +43,6 @@ const defaultHours = () => {
     return hours
 }
 
-
 export default function Antecedent({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {

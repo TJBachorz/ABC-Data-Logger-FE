@@ -11,8 +11,6 @@ import { VictoryLine, VictoryChart, VictoryStack, VictoryTheme, VictoryAxis } fr
 import { countBy, uniq } from 'lodash';
 import dayjs from 'dayjs';
 import EmptyGraphSplash from './EmptyGraphSplash';
-import zIndex from '@material-ui/core/styles/zIndex';
-
 
 const monthsNumsAndStrings = {
     "01": "January",
@@ -78,13 +76,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
         {date: 31, frequency: 1},
         {date: 1, frequency: 1}
     ];
-    // const data = [
-    //     { date: 1, frequency: 13000 },
-    //     { date: 2, frequency: 16500 },
-    //     { date: 3, frequency: 14250 },
-    //     { date: 4, frequency: 19000 }
-    // ];
-
+    
     const abbrMonth = () => {
         return dayjs(selectedMonth).format("MMM")
     }
@@ -175,7 +167,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 200, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.2,
+                                shadowOpacity: 0.1,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedBehavior(item.value)}
@@ -192,7 +184,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 100, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.2,
+                                shadowOpacity: 0.1,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedYear(item.value)}
@@ -207,7 +199,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 height: 60, 
                                 width: 120, 
                                 shadowColor: 'black',
-                                shadowOpacity: 0.2,
+                                shadowOpacity: 0.1,
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedMonth(item.value)}

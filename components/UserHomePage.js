@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Incident from './Incident';
+import IncidentHeaders from './IncidentHeaders';
 import dayjs from 'dayjs';
 
 export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, caseInfo}) {
@@ -31,8 +31,13 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
 
     const renderIncidents = () => {
         let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
-        return history.map(incident => <Incident key={incident.id} incident={incident}/>)
+        return <IncidentHeaders history={history}/>
     }
+
+    // const renderIncidents = () => {
+    //     let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
+    //     return history.map(incident => <Incident key={incident.id} incident={incident}/>)
+    // }
 
     return (
         <>  
