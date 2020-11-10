@@ -4,10 +4,10 @@ import { Button } from 'react-native-elements';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import dayjs from 'dayjs';
+
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
-
-// const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,]
 
 const monthsWithDays = {
     "01": 31, 
@@ -118,7 +118,13 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
                     defaultValue={incident["year"]}
                     dropDownMaxHeight={200}
-                    containerStyle={{height: 60, width: 100}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 100, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "year": item.value})}
                 />
                 <DropDownPicker
@@ -127,7 +133,14 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     items={createMonthOptions()}
                     defaultValue={incident["month"]}
                     dropDownMaxHeight={200}
-                    containerStyle={{height: 60, width: 120, margin: 5}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 120,
+                        margin: 5, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "month": item.value})}
                 />
                 <DropDownPicker
@@ -136,7 +149,13 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     items={createDayOptions()}
                     defaultValue={incident["day"]}
                     dropDownMaxHeight={200}
-                    containerStyle={{height: 60, width: 100}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 100, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "day": item.value})}
                 />
             </View>
@@ -146,7 +165,13 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(1, 12)}
                     defaultValue={incident["hour"]}
-                    containerStyle={{height: 60, width: 100}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 100, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "hour": item.value})}
                 />
                 <Text style={styles.colon}>:</Text>
@@ -156,7 +181,14 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(0, 59)}
                     defaultValue={incident["minute"]}
-                    containerStyle={{height: 60, width: 120, margin: 5}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 120, 
+                        margin: 5,
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => setIncident({...incident, "minute": item.value})}
                 />
                 <DropDownPicker
@@ -167,7 +199,14 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                         {label: "PM", value: "PM"}
                     ]}
                     defaultValue={AMPM}
-                    containerStyle={{height: 60, width: 120, margin: 5}}
+                    containerStyle={{
+                        height: 60, 
+                        width: 120,
+                        margin: 5, 
+                        shadowColor: 'black',
+                        shadowOpacity: 0.2,
+                        shadowOffset: {width: 1, height: 1}
+                    }}
                     onChangeItem={(item) => {
                         setAMPM(item.value)}
                     }
@@ -184,6 +223,9 @@ export default function IncidentDateTime({navigation, incidentHistory, setIncide
                         height: 50,
                         width: 360,
                         marginBottom: 30,
+                        shadowColor: 'black',
+                        shadowOpacity: 0.4,
+                        shadowOffset: {width: 2, height: 2}
                     }}
                     onPress={submitIncident}
                 />

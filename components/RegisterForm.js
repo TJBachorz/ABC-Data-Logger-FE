@@ -136,6 +136,9 @@ export default function RegisterForm({ navigation }) {
                                 margin: 1,
                                 height: 50,
                                 width: 360,
+                                shadowColor: 'black',
+                                shadowOpacity: 0.4,
+                                shadowOffset: {width: 2, height: 2}
                             }} 
                             onPress={handleSubmit}
                         />

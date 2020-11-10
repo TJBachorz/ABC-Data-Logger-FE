@@ -64,15 +64,14 @@ const styles = StyleSheet.create({
     incidentView: {
         justifyContent: 'center',
         alignItems: "flex-start",
+        width: '90%',
         margin: 15,
         padding: 15,
-        // borderWidth: 1,
-        // borderColor: '#1761a0',
-        // borderStyle: 'dashed',
         borderRadius: 8,
         backgroundColor: "white",
         shadowColor: 'black',
-        shadowOffset: {width: 23, height: 23}
+        shadowOpacity: 0.4,
+        shadowOffset: {width: 1, height: 1}
     },
     abcText: {
         color: 'black',   

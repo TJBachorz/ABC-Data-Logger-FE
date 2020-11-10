@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Incident from './Incident';
+import dayjs from 'dayjs';
 
 export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, caseInfo}) {
 
@@ -51,6 +52,9 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
                         marginBottom: 30,
                         height: 50,
                         width: 360,
+                        shadowColor: 'black',
+                        shadowOpacity: 0.4,
+                        shadowOffset: {width: 2, height: 2},
                     }}
                     onPress={ () => navigation.navigate('Antecedent')} 
                 />

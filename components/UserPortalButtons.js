@@ -16,6 +16,9 @@ export default function UserPortalButtons({navigation}) {
                     height: 50,
                     width: 360, 
                     marginBottom: 10,
+                    shadowColor: 'black',
+                    shadowOpacity: 0.4,
+                    shadowOffset: {width: 2, height: 2}
                 }} 
                 onPress={() => navigation.navigate('Login')}
             />
@@ -29,6 +32,9 @@ export default function UserPortalButtons({navigation}) {
                     height: 50,
                     width: 360,
                     marginBottom: 30,
+                    shadowColor: 'black',
+                    shadowOpacity: 0.4,
+                    shadowOffset: {width: 2, height: 2}
                 }} 
                 onPress={() => navigation.navigate('Register')}
             />
