@@ -18,10 +18,10 @@ export default function Incident({ incident }) {
         "12": "December",  
     }
 
-    const dateToString = () => {
-        const date = incident["date"].split("-")
-        return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
-    }
+    // const dateToString = () => {
+    //     const date = incident["date"].split("-")
+    //     return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
+    // }
 
     const timeToString = () => {
         const time = incident["time"].split(":")
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: '400',
         color: 'gray',
-        // marginBottom: 3,
         alignSelf: 'stretch',
         textAlign: 'right'
     },

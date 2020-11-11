@@ -9,11 +9,13 @@ import { Drawer } from 'react-native-paper';
 
 export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn }) {
     
-    const logout = async () => {
+    const logout = () => {
         AsyncStorage.clear()
         setIsSignedIn(!isSignedIn)
         navigation.navigate("Home")
     }
+
+    // logout used to be an async function, if logout errors occur investigate returning to async
 
     return (
         <View style={{flex: 1}}>
