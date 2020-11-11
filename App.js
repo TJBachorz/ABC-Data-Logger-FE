@@ -36,6 +36,7 @@ function HomeLogin({navigation}) {
 }
 
 export default function App() {
+  
 
   LogBox.ignoreAllLogs();
 

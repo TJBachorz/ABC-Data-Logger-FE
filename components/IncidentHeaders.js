@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import { uniq } from 'lodash';
@@ -24,7 +24,7 @@ const months = {
 
 export default function IncidentHeaders({history}) {
 
-    // const [isDateHeaderCollapsed, setIsDateHeaderCollapsed] = useState(false)
+    
 
     const incidentDates = () => {
         return uniq(history.map(incident => incident.date))
@@ -50,7 +50,7 @@ export default function IncidentHeaders({history}) {
                             {/* {dayjs(month).format("MMMM")} {day}, {year} */}
                             {months[month]} {day}, {year}
                         </Text>
-                        {/* <Collapsible collapsed={true}> */}
+                        {/* <Collapsible collapsed={isDateHeaderCollapsed}> */}
                             {filterIncidentsByDate(date).map(incident => {
                                 return (
                                     <Incident key={incident.id} incident={incident}/>
