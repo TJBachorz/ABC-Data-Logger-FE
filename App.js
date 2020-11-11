@@ -13,7 +13,7 @@ import UserCaseStackPage from './components/UserCaseStackPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, LogBox } from 'react-native';
 import { Button } from 'react-native-elements';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
@@ -36,6 +36,9 @@ function HomeLogin({navigation}) {
 }
 
 export default function App() {
+  
+
+  LogBox.ignoreAllLogs();
 
   const [account, setAccount] = useState({})
   const [isSignedIn, setIsSignedIn] = useState(false)

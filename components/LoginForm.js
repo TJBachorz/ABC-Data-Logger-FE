@@ -65,20 +65,20 @@ export default function LoginForm({ navigation }) {
                             placeholderTextColor="#f8f8ff"
                         />
                         <Button 
-                        type="solid" 
-                        title={"LOG IN"} 
-                        titleStyle={{color: "#1761a0"}}
-                        buttonStyle={{
-                            backgroundColor: '#f8f8ff',
-                            borderRadius: 16,
-                            margin: 1,
-                            height: 50,
-                            width: 360, 
-                            shadowColor: 'black',
-                            shadowOpacity: 0.4,
-                            shadowOffset: {width: 2, height: 2}
-                        }} 
-                        onPress={handleSubmit}
+                            type="solid" 
+                            title={"LOG IN"} 
+                            titleStyle={{color: "#1761a0"}}
+                            buttonStyle={{
+                                backgroundColor: '#f8f8ff',
+                                borderRadius: 16,
+                                margin: 1,
+                                height: 50,
+                                width: 360, 
+                                shadowColor: 'black',
+                                shadowOpacity: 0.4,
+                                shadowOffset: {width: 2, height: 2}
+                            }} 
+                            onPress={handleSubmit}
                         />
                     </>
                 )}
@@ -123,6 +123,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         paddingLeft: 20,
         marginBottom: 20,
-        color: '#f8f8ff'
+        color: '#f8f8ff',
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowOffset: {width: 2, height: 2}
     },
 });

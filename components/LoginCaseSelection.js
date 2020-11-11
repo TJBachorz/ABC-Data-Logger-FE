@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 
@@ -61,7 +61,15 @@ export default function LoginCaseSelection({
                         items={renderCases(account)}
                         defaultIndex={0}
                         itemStyle={{justifyContent: 'flex-start'}}
-                        containerStyle={{marginBottom: 100, marginTop: 40,height: 60, width: 200}}
+                        containerStyle={{
+                            height: 60, 
+                            width: 200, 
+                            shadowColor: 'black',
+                            shadowOpacity: 0.2,
+                            marginBottom: 100, 
+                            marginTop: 40,
+                            shadowOffset: {width: 1, height: 1}
+                        }}
                         onChangeItem={(item) => setCaseInfo({
                             'id': item.value.id, 
                             "name": item.value.name
@@ -77,6 +85,9 @@ export default function LoginCaseSelection({
                             height: 50,
                             width: 360,
                             marginBottom: 30,
+                            shadowColor: 'black',
+                            shadowOpacity: 0.4,
+                            shadowOffset: {width: 2, height: 2}
                         }}
                         onPress={signInUser}
                     /> 
@@ -92,6 +103,9 @@ export default function LoginCaseSelection({
                     height: 50,
                     width: 360,
                     marginBottom: 30,
+                    shadowColor: 'black',
+                    shadowOpacity: 0.4,
+                    shadowOffset: {width: 2, height: 2}
                 }}
                 onPress={() => {}}
             />

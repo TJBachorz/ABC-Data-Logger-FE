@@ -2,17 +2,14 @@ import React, { useState } from 'react';
 import {
     StyleSheet,
     Text,
-    View,
-    ScrollView
+    View
 } from 'react-native';
 
 import DropDownPicker from 'react-native-dropdown-picker';
-import { VictoryLine, VictoryChart, VictoryStack, VictoryTheme, VictoryAxis } from "victory-native";
+import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import { countBy, uniq } from 'lodash';
 import dayjs from 'dayjs';
 import EmptyGraphSplash from './EmptyGraphSplash';
-import zIndex from '@material-ui/core/styles/zIndex';
-
 
 const monthsNumsAndStrings = {
     "01": "January",
@@ -65,26 +62,14 @@ export default function DataChart({ incidentHistory, caseInfo }){
 
     const createMonthOptions = () => {
         return months.map(month => {
-            return {label: dayjs(`${month}`).format("MMM"), value: `${month}`}
+            return {label: month, value: month}
         })
     }
 
+    //dayjs(month).format("MMM")
+
     const currentYear = dayjs().format("YYYY")
-
-    const data = [
-        {date: 7, frequency: 1},
-        {date: 6, frequency: 1},
-        {date: 5, frequency: 19},
-        {date: 31, frequency: 1},
-        {date: 1, frequency: 1}
-    ];
-    // const data = [
-    //     { date: 1, frequency: 13000 },
-    //     { date: 2, frequency: 16500 },
-    //     { date: 3, frequency: 14250 },
-    //     { date: 4, frequency: 19000 }
-    // ];
-
+    
     const abbrMonth = () => {
         return dayjs(selectedMonth).format("MMM")
     }
@@ -145,9 +130,41 @@ export default function DataChart({ incidentHistory, caseInfo }){
                     : <EmptyGraphSplash/>
                 }
                 <View style={styles.pickerContainers}>
+                    <View style={styles.pickersContainer}>
+                        <DropDownPicker
+                            zIndex={1}
+                            placeholder="Year"
+                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                            items={createNumberList(+currentYear - 30, +currentYear).reverse()}
+                            dropDownMaxHeight={200}
+                            containerStyle={{
+                                height: 60, 
+                                width: 100, 
+                                shadowColor: 'black',
+                                shadowOpacity: 0.2,
+                                shadowOffset: {width: 1, height: 1}
+                            }}
+                            onChangeItem={(item) => setSelectedYear(item.value)}
+                        />
+                        <DropDownPicker
+                            zIndex={1}
+                            placeholder="Month"
+                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                            items={createMonthOptions()}
+                            dropDownMaxHeight={200}
+                            containerStyle={{
+                                height: 60, 
+                                width: 120, 
+                                shadowColor: 'black',
+                                shadowOpacity: 0.2,
+                                shadowOffset: {width: 1, height: 1}
+                            }}
+                            onChangeItem={(item) => setSelectedMonth(item.value)}
+                        />
+                    </View>
                     <View style={styles.behaviorPicker}>
                         <DropDownPicker
-                            zIndex={5500}
+                            zIndex={4000}
                             placeholder="Select a Behavior"
                             labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                             items={[
@@ -179,38 +196,6 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 shadowOffset: {width: 1, height: 1}
                             }}
                             onChangeItem={(item) => setSelectedBehavior(item.value)}
-                        />
-                    </View>
-                    <View style={styles.pickersContainer}>
-                        <DropDownPicker
-                            zIndex={1}
-                            placeholder="Year"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                            items={createNumberList(+currentYear - 30, +currentYear).reverse()}
-                            dropDownMaxHeight={200}
-                            containerStyle={{
-                                height: 60, 
-                                width: 100, 
-                                shadowColor: 'black',
-                                shadowOpacity: 0.2,
-                                shadowOffset: {width: 1, height: 1}
-                            }}
-                            onChangeItem={(item) => setSelectedYear(item.value)}
-                        />
-                        <DropDownPicker
-                            zIndex={1}
-                            placeholder="Month"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                            items={createMonthOptions()}
-                            dropDownMaxHeight={200}
-                            containerStyle={{
-                                height: 60, 
-                                width: 120, 
-                                shadowColor: 'black',
-                                shadowOpacity: 0.2,
-                                shadowOffset: {width: 1, height: 1}
-                            }}
-                            onChangeItem={(item) => setSelectedMonth(item.value)}
                         />
                     </View>
                 </View>
@@ -246,6 +231,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     pickerContainers: {
-        // flexDirection: 'column-reverse'
+        flexDirection: 'column-reverse'
     }
 });

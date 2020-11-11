@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     splashContainer: {
         flexDirection: 'column',
         justifyContent: 'center',
+        alignItems: 'center',
         margin: 100,
     },
     image: {
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     splashText: {
         fontSize: 14,
         marginTop: 10,
-        width: "90%"
-
+        width: 300,
+        textAlign: 'center'
     }
 })

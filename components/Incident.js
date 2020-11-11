@@ -18,10 +18,10 @@ export default function Incident({ incident }) {
         "12": "December",  
     }
 
-    const dateToString = () => {
-        const date = incident["date"].split("-")
-        return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
-    }
+    // const dateToString = () => {
+    //     const date = incident["date"].split("-")
+    //     return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
+    // }
 
     const timeToString = () => {
         const time = incident["time"].split(":")
@@ -37,7 +37,6 @@ export default function Incident({ incident }) {
 
     return (
         <View style={styles.incidentView}>
-            <Text style={styles.datetime}>{dateToString()}{timeToString()}</Text>
             <View style={styles.abcView}>
                 <Text style={[styles.abcTextHeader, styles.A]}>A</Text>
                 <Text style={styles.abcText}>{incident["antecedent"]}</Text>
@@ -50,18 +49,21 @@ export default function Incident({ incident }) {
                 <Text style={[styles.abcTextHeader, styles.C]}>C</Text>
                 <Text style={styles.abcText}>{incident["consequence"]}</Text>
             </View>
+            <Text style={styles.datetime}>{timeToString()}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     datetime: {
-        fontSize: 24,
+        fontSize: 12,
         fontWeight: '400',
-        color: 'black',
-        marginBottom: 10
+        color: 'gray',
+        alignSelf: 'stretch',
+        textAlign: 'right'
     },
     incidentView: {
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: "flex-start",
         width: '90%',
