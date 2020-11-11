@@ -123,6 +123,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
         paddingLeft: 20,
         marginBottom: 20,
-        color: '#f8f8ff'
+        color: '#f8f8ff',
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowOffset: {width: 2, height: 2}
     },
 });
