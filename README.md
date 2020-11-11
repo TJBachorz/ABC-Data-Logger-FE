@@ -14,14 +14,11 @@
 
 ## About
 
-Hundreds of thousands of families world-wide struggle with the difficulties that come with raising a child with developmental disabilities.  
-While therapy is important, healthcare professionals cannot always be present to log data relating to incidents of mal-adaptive behavior. Thus, the 
-onus lies with the parents to be able to log these occurances.  There is enough pressure on these parents as it is, so there needs to be an easier, quicker way 
-for parents to log this data.  This is the problem that the ABC Data Logger hopes to solve.
+Hundreds of thousands of families world-wide struggle with the difficulties that come with raising a child with developmental disabilities.  While therapy is important, healthcare professionals cannot always be present to log data relating to incidents of mal-adaptive behavior. Thus, the onus lies with the parents to be able to log these occurances.  There is enough pressure on these parents as it is, so there needs to be an easier, quicker way for parents to log this data.  This is the problem that the ABC Data Logger hopes to solve.
 
 ## Intro Video
 
-Check out a short [demo] of the ABC Data Logger in action!(https://www.loom.com/share/c280f34e2cc94b17b930588afb980799)
+Check out a short [demo](https://www.loom.com/share/c280f34e2cc94b17b930588afb980799) of the ABC Data Logger in action! 
 
 ## Getting Started
 
