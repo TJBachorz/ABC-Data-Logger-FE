@@ -89,6 +89,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
                     itemStyle={{justifyContent: 'flex-start'}}
                     defaultIndex={0}
                     dropDownMaxHeight={375}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
                         height: 100, 
                         width: 360, 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
 import UserHomePage from './UserHomePage';
 import Antecedent from './Antecedent';
 import Behavior from './Behavior';
@@ -63,7 +63,10 @@ export default function AppMainStackPage({
                     }
                 </Stack.Screen>
 
-                <Stack.Screen name="Antecedent">
+                <Stack.Screen name="Antecedent"
+                    options={{
+                        headerTitle: ""
+                    }}>
                     {(props) => <Antecedent  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -73,7 +76,11 @@ export default function AppMainStackPage({
                     }
                 </Stack.Screen>
 
-                <Stack.Screen name="Behavior">
+                <Stack.Screen name="Behavior"
+                    options={{
+                        headerTitle: ""
+                    }}>
+
                     {(props) => <Behavior  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -83,7 +90,11 @@ export default function AppMainStackPage({
                     }
                 </Stack.Screen>
 
-                <Stack.Screen name="Consequence">
+                <Stack.Screen name="Consequence"
+                    options={{
+                        headerTitle: ""
+                    }}>
+
                     {(props) => <Consequence  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -93,7 +104,11 @@ export default function AppMainStackPage({
                     }
                 </Stack.Screen>
 
-                <Stack.Screen name="IncidentDateTime">
+                <Stack.Screen name="IncidentDateTime"
+                    options={{
+                        headerTitle: ""
+                    }}>
+                    
                     {(props) => <IncidentDateTime  
                             caseInfo={caseInfo} 
                             incident={incident}

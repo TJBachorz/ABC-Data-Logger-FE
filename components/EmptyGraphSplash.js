@@ -14,7 +14,7 @@ export default function EmptyGraphSplash() {
                 source={require('../assets/graph-splash.png')}
                 zIndex={1000}
             />
-            <Text style={styles.splashText}>Select from the dropdown menus to generate a graph.</Text>
+            <Text style={styles.splashText}>Select from the dropdown menus to generate a graph showing the frequency of behavior.</Text>
         </View>
     )
 }
@@ -24,13 +24,15 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 100,
+        marginTop: 100,
+        marginBottom: 50
     },
     image: {
         height: 220,
         width: 220,
     },
     splashText: {
+        color: 'gray',
         fontSize: 14,
         marginTop: 10,
         width: 300,

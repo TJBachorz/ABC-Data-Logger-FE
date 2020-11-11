@@ -48,7 +48,7 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
                     buttonStyle={{
                         background: '#1761a0',
                         borderRadius: 16,
-                        marginBottom: 30,
+                        marginBottom: 35,
                         height: 50,
                         width: 360,
                         shadowColor: 'black',

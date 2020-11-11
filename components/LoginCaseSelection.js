@@ -61,6 +61,7 @@ export default function LoginCaseSelection({
                         items={renderCases(account)}
                         defaultIndex={0}
                         itemStyle={{justifyContent: 'flex-start'}}
+                        dropDownStyle={{backgroundColor: '#f8f8ff'}}
                         containerStyle={{
                             height: 60, 
                             width: 200, 

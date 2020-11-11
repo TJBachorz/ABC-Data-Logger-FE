@@ -122,10 +122,11 @@ export default function IncidentDateTime({
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
                     defaultValue={incident["year"]}
-                    dropDownMaxHeight={200}
+                    dropDownMaxHeight={172}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 100, 
+                        height: 80, 
+                        width: 110, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -137,10 +138,11 @@ export default function IncidentDateTime({
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createMonthOptions()}
                     defaultValue={incident["month"]}
-                    dropDownMaxHeight={200}
+                    dropDownMaxHeight={172}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 120,
+                        height: 80, 
+                        width: 130,
                         margin: 5, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
@@ -153,10 +155,11 @@ export default function IncidentDateTime({
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createDayOptions()}
                     defaultValue={incident["day"]}
-                    dropDownMaxHeight={200}
+                    dropDownMaxHeight={172}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 100, 
+                        height: 80, 
+                        width: 110, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -170,9 +173,11 @@ export default function IncidentDateTime({
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(1, 12)}
                     defaultValue={incident["hour"]}
+                    dropDownMaxHeight={185}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 100, 
+                        height: 80, 
+                        width: 110, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -186,9 +191,11 @@ export default function IncidentDateTime({
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={createNumberList(0, 59)}
                     defaultValue={incident["minute"]}
+                    dropDownMaxHeight={185}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 120, 
+                        height: 80, 
+                        width: 130, 
                         margin: 5,
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
@@ -197,16 +204,17 @@ export default function IncidentDateTime({
                     onChangeItem={(item) => setIncident({...incident, "minute": item.value})}
                 />
                 <DropDownPicker
-                    placeholder="Minute"
+                    placeholder="AM/PM"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                     items={[
                         {label: "AM", value: "AM"},
                         {label: "PM", value: "PM"}
                     ]}
                     defaultValue={AMPM}
+                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
-                        height: 60, 
-                        width: 120,
+                        height: 80, 
+                        width: 90,
                         margin: 5, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
@@ -250,7 +258,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 50
+        marginBottom: 100
     },
     headerContainer: {
         marginTop: 30,
@@ -262,7 +270,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 80,
+        marginTop: 20,
     },
     incidentButton: {
         justifyContent: 'center',

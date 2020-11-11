@@ -35,7 +35,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
     const [selectedYear, setSelectedYear] = useState("")
     const [maxDays, setMaxDays] = useState(2)
 
-    const behaviorFrequencyToDate = (selectedBehavior) => {
+    const behaviorFrequencyToDate = () => {
         const incidentsByBehavior = incidentHistory.filter(incident => {
             return incident.behavior === selectedBehavior
         })
@@ -65,8 +65,6 @@ export default function DataChart({ incidentHistory, caseInfo }){
             return {label: month, value: month}
         })
     }
-
-    //dayjs(month).format("MMM")
 
     const currentYear = dayjs().format("YYYY")
     
@@ -134,12 +132,13 @@ export default function DataChart({ incidentHistory, caseInfo }){
                         <DropDownPicker
                             zIndex={1}
                             placeholder="Year"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                            labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={createNumberList(+currentYear - 30, +currentYear).reverse()}
-                            dropDownMaxHeight={200}
+                            dropDownMaxHeight={160}
+                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
-                                height: 60, 
-                                width: 100, 
+                                height: 70, 
+                                width: 120, 
                                 shadowColor: 'black',
                                 shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
@@ -149,11 +148,12 @@ export default function DataChart({ incidentHistory, caseInfo }){
                         <DropDownPicker
                             zIndex={1}
                             placeholder="Month"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                            labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={createMonthOptions()}
-                            dropDownMaxHeight={200}
+                            dropDownMaxHeight={160}
+                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
-                                height: 60, 
+                                height: 70, 
                                 width: 120, 
                                 shadowColor: 'black',
                                 shadowOpacity: 0.2,
@@ -166,7 +166,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                         <DropDownPicker
                             zIndex={4000}
                             placeholder="Select a Behavior"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                            labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={[
                                 {label: 'Refusal to follow directions', value: 'Refusal to follow directions'},
                                 {label: 'Verbal refusal', value: 'Verbal refusal'},
@@ -186,11 +186,12 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 {label: 'Hitting others (adults)', value: 'Hitting others (adults)'},
                             ]}
                             itemStyle={{justifyContent: 'flex-start'}}
-                            dropDownMaxHeight={375}
+                            dropDownMaxHeight={260}
                             dropDownStyle={{zIndex: 10500}}
+                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
-                                height: 60, 
-                                width: 200, 
+                                height: 70, 
+                                width: 270, 
                                 shadowColor: 'black',
                                 shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
@@ -219,7 +220,7 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
     behaviorPicker: {
-        marginTop: 25,
+        marginTop: 20,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center'

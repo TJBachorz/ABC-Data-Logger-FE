@@ -134,6 +134,7 @@ export default function RegisterForm({ navigation }) {
                                 backgroundColor: '#f8f8ff',
                                 borderRadius: 16,
                                 margin: 1,
+                                marginTop: 25,
                                 height: 50,
                                 width: 360,
                                 shadowColor: 'black',
