@@ -7,6 +7,21 @@ import Collapsible from 'react-native-collapsible';
 
 import Incident from './Incident';
 
+const months = {
+    "01": "January",
+    "02": "February",
+    "03": "March",
+    "04": "April",
+    "05": "May",
+    "06": "June",
+    "07": "July",
+    "08": "August",
+    "09": "September",
+    "10": "October",
+    "11": "November",
+    "12": "December",  
+}
+
 
 export default function IncidentHeaders({history}) {
 
@@ -33,9 +48,10 @@ export default function IncidentHeaders({history}) {
                             style={styles.dateHeader}
                             // onPress={() => setIsDateHeaderCollapsed(!isDateHeaderCollapsed)}
                         >
-                            {dayjs(month).format("MMMM")} {day}, {year}
+                            {/* {dayjs(month).format("MMMM")} {day}, {year} */}
+                            {months[month]} {day}, {year}
                         </Text>
-                        {/* <Collapsible collapsed={isDateHeaderCollapsed}> */}
+                        {/* <Collapsible collapsed={true}> */}
                             {filterIncidentsByDate(date).map(incident => {
                                 return (
                                     <Incident key={incident.id} incident={incident}/>
