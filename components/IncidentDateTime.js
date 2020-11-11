@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
-import { StyleSheet, View, Text, TextInput } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import dayjs from 'dayjs';
-
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
 
@@ -27,7 +25,14 @@ const monthsWithDays = {
 let currentDate = new Date()
 let startingYear = currentDate.getFullYear() - 10
 
-export default function IncidentDateTime({navigation, incidentHistory, setIncidentHistory, incident, setIncident, caseInfo}) {
+export default function IncidentDateTime({
+    navigation, 
+    incidentHistory, 
+    setIncidentHistory, 
+    incident, 
+    setIncident, 
+    caseInfo
+}) {
 
     const [AMPM, setAMPM] = useState("AM")
 

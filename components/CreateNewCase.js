@@ -6,8 +6,6 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
 
-// const days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,]
-
 const monthsWithDays = {
     "01": 31, 
     "02": 28, 

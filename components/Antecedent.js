@@ -61,8 +61,6 @@ export default function Antecedent({ navigation, incident, setIncident }) {
         "day": `${defaultDay()}`})
     }, [])
 
-    console.log(incident)
-
     return (
         <>
             <View style={styles.headerContainer}>

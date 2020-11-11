@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import Incident from './Incident';
 
-
 const months = {
     "01": "January",
     "02": "February",
@@ -23,12 +22,10 @@ const months = {
     "12": "December",  
 }
 
-
-export default function IncidentHeaders({history}) {
+export default function IncidentHeaders({ history }) {
 
     const [ activeArray, setActiveArray] = useState([])
     
-
     const incidentDates = () => {
         return uniq(history.map(incident => incident.date))
     }
@@ -41,8 +38,6 @@ export default function IncidentHeaders({history}) {
         const filteredArray = activeArray.filter(item => {
             return item !== date
         })
-        // return filteredArray
-        console.log(filteredArray)
         setActiveArray(filteredArray)
     }
 
@@ -106,11 +101,6 @@ const styles = StyleSheet.create({
         color: "#1761a0",
         fontWeight: "700",
         paddingRight: 75,
-        // borderWidth: 1,
-        // borderColor: "black",
-        // borderBottomColor: "black",
-        // borderBottomWidth: 1,
-        // borderStyle: "solid"
     },
     incidentDateContainer: {
         margin: 2

@@ -18,11 +18,6 @@ export default function Incident({ incident }) {
         "12": "December",  
     }
 
-    // const dateToString = () => {
-    //     const date = incident["date"].split("-")
-    //     return `${months[date[1]]} ${date[2]}, ${date[0]} -- `
-    // }
-
     const timeToString = () => {
         const time = incident["time"].split(":")
         if (+time[0] > 12) {

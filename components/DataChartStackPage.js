@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();
 
-export default function DataChartStackPage({navigation, caseInfo, incidentHistory}) {
+export default function DataChartStackPage({ navigation, caseInfo, incidentHistory }) {
     return (
         <Stack.Navigator 
                 screenOptions={{

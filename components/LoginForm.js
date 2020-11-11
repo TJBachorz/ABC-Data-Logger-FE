@@ -6,7 +6,6 @@ import { Formik } from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginForm({ navigation }) {
-    
 
     const authorizeUser = (data) => {
         if (data.token) {
