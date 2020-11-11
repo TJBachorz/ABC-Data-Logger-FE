@@ -3,8 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import { uniq } from 'lodash';
 import Collapsible from 'react-native-collapsible';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import Incident from './Incident';
+
 
 const months = {
     "01": "January",
@@ -24,6 +26,7 @@ const months = {
 
 export default function IncidentHeaders({history}) {
 
+    const [ activeArray, setActiveArray] = useState([])
     
 
     const incidentDates = () => {
@@ -32,6 +35,24 @@ export default function IncidentHeaders({history}) {
 
     const filterIncidentsByDate = (date) => {
         return history.filter(incident => incident.date === date)
+    }
+
+    const filterDateOutOfActiveArray = (date) => {
+        const filteredArray = activeArray.filter(item => {
+            return item !== date
+        })
+        // return filteredArray
+        console.log(filteredArray)
+        setActiveArray(filteredArray)
+    }
+
+    const addOrRemoveFromArray = (event, date) => {
+        event.preventDefault()
+        if (activeArray.includes(date)) {
+            filterDateOutOfActiveArray(date)
+        } else {
+            setActiveArray([...activeArray, date])
+        }
     }
 
     return (
@@ -45,18 +66,19 @@ export default function IncidentHeaders({history}) {
                     <View key={date}>
                         <Text 
                             style={styles.dateHeader}
-                            // onPress={() => setIsDateHeaderCollapsed(!isDateHeaderCollapsed)}
+                            onPress={(event) => addOrRemoveFromArray(event, date)}
                         >
-                            {/* {dayjs(month).format("MMMM")} {day}, {year} */}
                             {months[month]} {day}, {year}
                         </Text>
-                        {/* <Collapsible collapsed={isDateHeaderCollapsed}> */}
+                        <Collapsible 
+                            collapsed={!activeArray.includes(date)}
+                        >
                             {filterIncidentsByDate(date).map(incident => {
                                 return (
                                     <Incident key={incident.id} incident={incident}/>
                                 )
                             })}
-                        {/* </Collapsible> */}
+                        </Collapsible>
                     </View>
                 )
             })}
@@ -66,8 +88,8 @@ export default function IncidentHeaders({history}) {
 
 const styles = StyleSheet.create({
     dateHeader: {
-        margin: 2,
-        fontSize: 18,
+        margin: 10,
+        fontSize: 26,
         color: "#1761a0",
         fontWeight: "700"
     },
