@@ -29,7 +29,7 @@ Count calories in real time! MealPlanner has all the tools you need to plan a he
    <img src="https://media4.giphy.com/media/50yS5tKNpF21zU4tsF/giphy.gif" width="368" height ="783" />
    
    # Updating and Deleting Info:
-   <img src="./Change-delete-info.gif" width="368" height ="783" />
+   <img src="https://media2.giphy.com/media/bPGbOdVYbMimjv1VWU/giphy.gif" width="368" height ="783" />
    
 
 * Save yourself as a unique user, so you never miss your meals!
