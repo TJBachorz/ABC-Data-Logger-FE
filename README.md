@@ -23,7 +23,7 @@ Count calories in real time! MealPlanner has all the tools you need to plan a he
 
 
    # Creating and Updating User:
-   <img src="https://media1.giphy.com/media/5Imt9DlRz1vnJTM8P0/giphy.gif" width="1035" height ="649" />
+   <img src="https://media1.giphy.com/media/5Imt9DlRz1vnJTM8P0/giphy.gif" width="368" height ="783" />
    
    # Creating and Updating Meals:
    <img src="./Create-update-meals.gif" width="1035" height ="649" />
