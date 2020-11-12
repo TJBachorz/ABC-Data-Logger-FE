@@ -19,7 +19,7 @@ Developer's Note:  My name is T.J. Bachorz and this project is the first major p
 
 ## Intro Video
 
-Check out a short [demo](INSERT VIDEO HERE!!!) of the ABC Data Logger in action! 
+Check out a short [demo](https://www.loom.com/share/ceb43bedf201465f8bec3eee151d2bbd) of the ABC Data Logger in action! 
 
 ## Features
 
