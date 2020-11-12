@@ -13,9 +13,9 @@
 
 ## About
 
-Hundreds of thousands of families world-wide struggle with the difficulties that come with raising a child with developmental disabilities.  While therapy is important, healthcare professionals cannot always be present to log data relating to incidents of mal-adaptive behavior. Thus, the onus lies with the parents to be able to log these occurances.  There is enough pressure on these parents as it is, so there needs to be an easier, quicker way for parents to log this data.  This is the problem that the ABC Data Logger hopes to solve.
+Hundreds of thousands of families world-wide struggle with the difficulties associated with raising a child with developmental disabilities.  While therapy is important, healthcare professionals cannot always be present to log data relating to incidents of mal-adaptive behavior. Thus, the onus lies with the parents to be able to log these occurances.  There is already enough pressure on the parents of children with developmental disabilities, so there needs to be an easier, quicker way for parents to log this data.  This is the problem that the ABC Data Logger hopes to solve.
 
-Developer's Note:  My name is Thomas Bachorz and this project is the first major product of my education at Flatiron School Denver's Software Engineering program.  My wife is a BCBA who active works with children with developmental disabilities, and has been looking for a reliable ABC data logging app for sometime, as it would make her life, as well as those she serves, much easier.  I'd like to use my newfound passion and skill with technology to make cool things that make the world a better, easier place.  To this end, the ABC Data Logger seemed like the perfect place to start.
+Developer's Note:  My name is T.J. Bachorz and this project is the first major product of my education at Flatiron School Denver's Software Engineering program.  My wife is a BCBA (Board Certified Behavioral Analyst) who actively works with children with developmental disabilities, and has been looking for a reliable ABC data logging app for sometime, as it would make her life--as well as her client's lives, much easier.  My goal is to use my newfound passion and skill with technology to create cool things that make the world a better, easier place, so why not start at home?  To this end, I started development on the ABC Data Logger.
 
 ## Intro Video
 
@@ -23,24 +23,24 @@ Check out a short [demo](INSERT VIDEO HERE!!!) of the ABC Data Logger in action!
 
 ## Features
 
-Create a unique user profile and add cases/clients to your account. If you are logging for an established client, the home screen will populate with a log of that child/client's past incidents, ordered from newest to oldest.  
+Create a unique user profile and add cases/clients to your account. If you are logging data for an established client, the home screen will populate with a log of that child/client's past incidents, ordered from most recent to oldest.  
 
    # Log-in and Browse Incident History:
    <img src="https://media1.giphy.com/media/5Imt9DlRz1vnJTM8P0/giphy.gif" width="368" height ="783" />
 
-Then, from the convenience of the home screen, log a new incident.  Incident logging takes you through a series of downdown menus where you can select the following:
+Then, from the convenience of the home screen select the bottom blue button to begin logging a new incident.  Incident logging takes you through a series of drop-down menus where you will select the following:
 
-A: Antecedent -- The cause of, or what led up to the client/child's behaviors.
-B: Behavior -- What the did, Ex: Screaming, crying, property descruction, hitting.
-C: Consequence -- What the parent/caretaker/professional did to quell the behavior.
-Date & time of the incident.
+* A: Antecedent -- The cause of, or what led up to the client/child's behavior.
+* B: Behavior -- What the child did, Ex: Screaming, crying, property descruction, hitting.
+* C: Consequence -- What the parent/caretaker/professional did to quell the behavior.
+* And finally, logging the date & time of the incident.
 
-The new incident will then immediately render on the history logs.
+The new incident will then immediately populate on the incident history logs.
    
    # Logging a New Incident:
    <img src="https://media4.giphy.com/media/50yS5tKNpF21zU4tsF/giphy.gif" width="368" height ="783" />
    
-With an established client, the ABC Data Logger can compile incident data logs into useful graphs that make for convenience data analysis. Currently behaviorial frequency can be viewed on a month-by-month basis, with more graph detailing duration and frequency and different scales currently in development.
+With an established client, the ABC Data Logger can compile incident data logs into useful graphs that make for convenient data analysis. Currently, behaviorial frequency can be viewed by month, with more graphs detailing duration and frequency currently in development.
    
    # Utilizing Graphs and Data:
    <img src="https://media2.giphy.com/media/bPGbOdVYbMimjv1VWU/giphy.gif" width="368" height ="783" />
