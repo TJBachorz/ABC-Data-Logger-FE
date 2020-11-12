@@ -106,7 +106,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
             <View style={styles.pageStyle}>
                 {selectedBehavior && selectedMonth && selectedYear ?
                     <View style={styles.container}>
-                        <Text style={styles.chartHeaderText}>Occurances of {selectedBehavior} for the month of {dayjs(selectedMonth).format("MMMM")}, {dayjs(selectedYear).format("YYYY")}</Text>
+                        <Text style={styles.chartHeaderText}>Occurrences of {selectedBehavior} for the month of {dayjs(selectedMonth).format("MMMM")}, {dayjs(selectedYear).format("YYYY")}</Text>
                         <VictoryChart style={styles.graph} domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
                             <VictoryAxis
                                 tickValues={[7, 14, 21, 28]}
