@@ -43,7 +43,9 @@ export default function LoginCaseSelection({
 
     const signInUser = () => {
         if (caseInfo.id) {
-            setIsSignedIn(!isSignedIn)
+            if (!isSignedIn) {
+                setIsSignedIn(!isSignedIn)
+            }
             navigation.navigate('Home')
         }
     }
