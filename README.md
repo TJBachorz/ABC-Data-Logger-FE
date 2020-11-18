@@ -1,6 +1,6 @@
 # ABC Data Logger
 
->A quick and convenient way to lot ABC data.
+>A quick and convenient way to log ABC data.
 
 ## Table of Contents
 * [About](#about)
