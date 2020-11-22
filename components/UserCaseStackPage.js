@@ -1,5 +1,5 @@
 import React from 'react'
-import CaseSelectionMainPage from './CaseSelectionMainPage';
+import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
 
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,6 +9,8 @@ import Icon from 'react-native-vector-icons/Fontisto';
 const Stack = createStackNavigator();
 
 export default function UserCaseStackPage({ 
+    isSignedIn,
+    setIsSignedIn,
     navigation, 
     account, 
     setAccount, 
@@ -49,7 +51,9 @@ export default function UserCaseStackPage({
                     )
                 }}>
                     
-                {(props) => <CaseSelectionMainPage
+                {(props) => <CaseSelection
+                        isSignedIn={isSignedIn}
+                        setIsSignedIn={setIsSignedIn}
                         account={account}
                         setAccount={setAccount}
                         caseInfo={caseInfo}
@@ -60,7 +64,7 @@ export default function UserCaseStackPage({
                 }
             </Stack.Screen>
             <Stack.Screen 
-                name="New Case Page"
+                name="Create New Case"
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
@@ -84,11 +88,9 @@ export default function UserCaseStackPage({
                     )
                 }}>
                     
-                {(props) => <CreateNewCase
-                        account={account}
-                        setAccount={setAccount}
+                {(props) => <CreateNewCase 
                         caseInfo={caseInfo}
-                        setCaseInfo={setCaseInfo} 
+                        setCaseInfo={setCaseInfo}
                         navigation={navigation}
                         {...props}
                     />

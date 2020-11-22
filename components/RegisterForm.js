@@ -57,8 +57,8 @@ export default function RegisterForm({ navigation }) {
 
     const authorizeUser = (data) => {
         if (data.token) {
-            AsyncStorage.setItem('token', data.token)
-            navigation.navigate('Case Selection')
+            AsyncStorage.setItem("token", data.token)
+            navigation.navigate("Case Selection Main")
         } else {
             return (
                 alert("Invalid Login!")

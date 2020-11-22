@@ -5,19 +5,17 @@ import { Button } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import IncidentHeaders from './IncidentHeaders';
 
-export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, caseInfo}) {
-
-    console.log(caseInfo.dob)
+export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {
 
     useEffect(() => {
         if (caseInfo.id) {
             fetchIncidents()
         }
     }, [caseInfo.id])
-
+    
     const fetchIncidents = () => {
         AsyncStorage.getItem("token")
-            .then(token => {
+        .then(token => {
                 fetch(`http://localhost:8000/cases/${caseInfo.id}/`, {
                     method: "GET",
                     headers: {
@@ -29,7 +27,7 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
                 .then(child => setIncidentHistory(child.incidents))
             })
     }
-
+    
     const renderIncidents = () => {
         let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
         return <IncidentHeaders key={"history"} history={history}/>

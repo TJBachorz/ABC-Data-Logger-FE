@@ -10,7 +10,7 @@ export default function LoginForm({ navigation }) {
     const authorizeUser = (data) => {
         if (data.token) {
             AsyncStorage.setItem('token', data.token)
-            navigation.navigate('Case Selection')
+            navigation.navigate('Case Selection Main')
         } else {
             return (
                 alert("Invalid Email or Password!")

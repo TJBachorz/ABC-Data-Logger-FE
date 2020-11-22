@@ -1,13 +1,17 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import LoginForm from './components/LoginForm';
-import DrawerContent from './components/DrawerContent';
-import LoginCaseSelection from './components/LoginCaseSelection';
-import DataChartStackPage from './components/DataChartStackPage';
 import RegisterForm from './components/RegisterForm';
+
+import DrawerContent from './components/DrawerContent';
+import DataChartStackPage from './components/DataChartStackPage';
 import UserPortalButtons from './components/UserPortalButtons';
 import AppMainStackPage from './components/AppMainStackPage';
+
+import CaseSelection from './components/CaseSelection';
+import CreateNewCase from './components/CreateNewCase';
 import UserCaseStackPage from './components/UserCaseStackPage';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -38,12 +42,12 @@ function HomeLogin({navigation}) {
 export default function App() {
   
 
-  LogBox.ignoreAllLogs();
+  // LogBox.ignoreAllLogs();
 
   const [account, setAccount] = useState({})
   const [isSignedIn, setIsSignedIn] = useState(false)
   const [caseInfo, setCaseInfo] = useState({})
-  const [incidentHistory, setIncidentHistory ] = useState([])
+  const [incidentHistory, setIncidentHistory] = useState([])
   const [incident, setIncident] = useState({})
 
   return (
@@ -52,10 +56,12 @@ export default function App() {
       { isSignedIn && caseInfo.id ? 
         <Drawer.Navigator
           drawerContent={
-            (props) => <DrawerContent 
-              setIsSignedIn={setIsSignedIn}
-              isSignedIn={isSignedIn} 
+            (props) => <DrawerContent
+              setAccount={setAccount}
               caseInfo={caseInfo} 
+              setCaseInfo={setCaseInfo}
+              isSignedIn={isSignedIn} 
+              setIsSignedIn={setIsSignedIn}
               {...props} />
           }
           drawerStyle={{
@@ -150,14 +156,23 @@ export default function App() {
 
           <Stack.Screen name="Register" component={RegisterForm}/>
 
-          <Stack.Screen name="Case Selection">
-            {(props) => <LoginCaseSelection 
+          <Stack.Screen name="Case Selection Main">
+            {(props) => <CaseSelection 
+              account={account}
+              setAccount={setAccount}
               caseInfo={caseInfo} 
               setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}
               setIsSignedIn={setIsSignedIn} 
-              account={account}
-              setAccount={setAccount}
+              {...props} 
+              />
+            }
+          </Stack.Screen>
+
+          <Stack.Screen name="Create New Case">
+            {(props) => <CreateNewCase 
+              caseInfo={caseInfo} 
+              setCaseInfo={setCaseInfo} 
               {...props} 
               />
             }

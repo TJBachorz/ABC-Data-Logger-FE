@@ -7,11 +7,20 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Drawer } from 'react-native-paper';
 
 
-export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn }) {
-    
+export default function DrawerContent({ 
+    caseInfo,
+    setCaseInfo,
+    setAccount,
+    isSignedIn, 
+    setIsSignedIn, 
+    navigation, 
+}) {
+
     const logout = () => {
         AsyncStorage.clear()
-        setIsSignedIn(!isSignedIn)
+        setCaseInfo({})
+        setAccount({})
+        setIsSignedIn(false)
         navigation.navigate("Home")
     }
 

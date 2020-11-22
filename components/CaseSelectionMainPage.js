@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import UserCaseSelection from './UserCaseSelection';
 import CreateNewCase from './CreateNewCase';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';

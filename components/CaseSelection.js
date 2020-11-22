@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-export default function LoginCaseSelection({
+export default function CaseSelection({
     account,
     setAccount,
     caseInfo,
@@ -15,9 +15,12 @@ export default function LoginCaseSelection({
     navigation 
 }) {
 
-    useEffect(() => fetchCases(), [])
+    const [selectedCase, setSelectedCase] = useState({})
+
+    useEffect(() => fetchCases(), [caseInfo])
 
     const fetchCases = () => {
+        console.log("fetching...")
         AsyncStorage.getItem("token")
             .then(token => {
                 return fetch("http://localhost:8000/accounts/", {
@@ -42,6 +45,7 @@ export default function LoginCaseSelection({
     }
 
     const signInUser = () => {
+        setCaseInfo(selectedCase)
         if (caseInfo.id) {
             if (!isSignedIn) {
                 setIsSignedIn(!isSignedIn)
@@ -54,9 +58,10 @@ export default function LoginCaseSelection({
 
     return (
         <View style={styles.centeredView}>
-            {account.cases ?
+            {account.cases !== undefined ?
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
+                    <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
                     <DropDownPicker
                         placeholder="Select a Case"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
@@ -73,7 +78,7 @@ export default function LoginCaseSelection({
                             marginTop: 40,
                             shadowOffset: {width: 1, height: 1}
                         }}
-                        onChangeItem={(item) => setCaseInfo({
+                        onChangeItem={(item) => setSelectedCase({
                             'id': item.value.id, 
                             "name": item.value.name,
                             "dob": item.value.dob
@@ -111,7 +116,7 @@ export default function LoginCaseSelection({
                     shadowOpacity: 0.4,
                     shadowOffset: {width: 2, height: 2}
                 }}
-                onPress={() => {}}
+                onPress={() => navigation.navigate("Create New Case")}
             />
         </View>
     )
@@ -127,5 +132,13 @@ const styles = StyleSheet.create({
     selectionText: {
         fontSize: 24,
         marginBottom: 20
+    },
+    currentCase: {
+        fontSize: 12,
+    },
+    caseDisplay: {
+        color: '#1761a0',
+        fontSize: 14,
+        fontWeight: '600'
     }
 })
