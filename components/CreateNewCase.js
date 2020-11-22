@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
@@ -33,6 +34,38 @@ export default function NewCase({
 }) {
 
     const [newCase, setNewCase] = useState({})
+
+    const createCase = () => {
+        AsyncStorage.getItem("token")
+            .then(token => {
+                fetch("http://localhost:8000/cases/", {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        name: newCase["name"],
+                        dob: `${newCase["year"]}-${newCase["month"]}-${newCase["day"]}`
+                    })
+                }).then(response => response.json())
+                .then(createdCase => linkCaseToAccount(createdCase, token))
+                .then(console.log)
+            })
+    }
+
+    const linkCaseToAccount = (createdCase, token) => {
+        return fetch("http://localhost:8000/caselinks", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({case: createdCase.id})
+        }).then(response => response.json())
+    }
 
     const determineIfLeapYear = (info) => {
         if (info["month"] === "02" && info["year"] % 4 === 0) {
@@ -74,20 +107,24 @@ export default function NewCase({
     }
 
     return (
-        <View>
-            <Text>Please Enter a Name For This Case:</Text>
-            <TextInput
+        <View style={styles.caseCreation}>
+            <Text style={styles.selectionHeader}>Enter a Name and Date of Birth:</Text>
+            <Text>{newCase["name"]}{newCase["year"]}{newCase["month"]}{newCase["day"]}</Text>
+            <TextInput 
+                style={styles.input}
+                placeholder="Case Name"
+                placeholderTextColor="#f8f8ff"
+                onChangeText={text => setNewCase({...newCase, "name": text})}
             />
             <View style={styles.selectionContainer}>
-                <Text>Please Select Date of Birth:</Text>
-                <View>
+                <View style={styles.datePickers}>
                     <DropDownPicker
                         placeholder="Year"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
                         defaultValue={newCase["year"]}
-                        dropDownMaxHeight={200}
-                        containerStyle={{height: 60, width: 100}}
+                        dropDownMaxHeight={250}
+                        containerStyle={{height: 60, width: 110}}
                         onChangeItem={(item) => setNewCase({...newCase, "year": item.value})}
                     />
                     <DropDownPicker
@@ -95,8 +132,8 @@ export default function NewCase({
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createMonthOptions()}
                         defaultValue={newCase["month"]}
-                        dropDownMaxHeight={200}
-                        containerStyle={{height: 60, width: 120, margin: 5}}
+                        dropDownMaxHeight={250}
+                        containerStyle={{height: 60, width: 130, margin: 5}}
                         onChangeItem={(item) => setNewCase({...newCase, "month": item.value})}
                     />
                     <DropDownPicker
@@ -104,14 +141,14 @@ export default function NewCase({
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createDayOptions()}
                         defaultValue={newCase["day"]}
-                        dropDownMaxHeight={200}
-                        containerStyle={{height: 60, width: 100}}
+                        dropDownMaxHeight={250}
+                        containerStyle={{height: 60, width: 110}}
                         onChangeItem={(item) => setNewCase({...newCase, "day": item.value})}
                     />
                 </View>
             </View>
             <Button
-                title={"Select Case"}
+                title={"Create New Case"}
                 type="solid" 
                 buttonStyle={{
                     background: '#1761a0',
@@ -121,36 +158,33 @@ export default function NewCase({
                     width: 360,
                     marginBottom: 30,
                 }}
-                onPress={() => {}}
+                onPress={createCase}
             /> 
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    colon: {
-        fontSize: 24,
-        padding: 4,
-        paddingLeft: 8
-    },
-    timeContainer: {
+    caseCreation:{
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    datePickers: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 50
     },
-    headerContainer: {
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
+    selectionHeader: {
+        fontSize: 20,
     },
     selectionContainer: {
-        flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 80,
+        marginTop: 50,
+        marginBottom: 220,
     },
     newCaseButton: {
         justifyContent: 'center',
@@ -158,5 +192,18 @@ const styles = StyleSheet.create({
     },
     labelHeader: {
         fontSize: 48
+    },
+    input: {
+        borderRadius: 10,
+        width: '85%',
+        height: 60,
+        backgroundColor: '#4c96d7',
+        fontSize: 24,
+        paddingLeft: 20,
+        marginTop: 40,
+        color: '#f8f8ff',
+        shadowColor: 'black',
+        shadowOpacity: 0.3,
+        shadowOffset: {width: 2, height: 2}
     }
 })

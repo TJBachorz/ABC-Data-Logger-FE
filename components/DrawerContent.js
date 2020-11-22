@@ -15,8 +15,6 @@ export default function DrawerContent({ navigation, isSignedIn, setIsSignedIn })
         navigation.navigate("Home")
     }
 
-    // logout used to be an async function, if logout errors occur investigate returning to async
-
     return (
         <View style={{flex: 1}}>
             <DrawerContentScrollView>

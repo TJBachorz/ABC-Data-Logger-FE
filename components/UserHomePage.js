@@ -7,6 +7,8 @@ import IncidentHeaders from './IncidentHeaders';
 
 export default function UserHomePage({incidentHistory, setIncidentHistory, navigation, caseInfo}) {
 
+    console.log(caseInfo.dob)
+
     useEffect(() => {
         if (caseInfo.id) {
             fetchIncidents()
@@ -25,7 +27,7 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
                     }
                 }).then(response => response.json())
                 .then(child => setIncidentHistory(child.incidents))
-        })
+            })
     }
 
     const renderIncidents = () => {
@@ -37,9 +39,10 @@ export default function UserHomePage({incidentHistory, setIncidentHistory, navig
         <>  
             <View style={styles.incidentHistoryHeaderView}>
                 <Text style={styles.incidentHeader}>Incident History:</Text>
+    <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
             </View>
             <ScrollView contentContainerStyle={styles.historyContainer}>
-                {incidentHistory ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
+                {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
             </ScrollView>
             <View style={styles.incidentButton}>
                 <Button
@@ -67,6 +70,12 @@ const styles = StyleSheet.create({
         marginTop: 30,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    caseHeader: {
+        fontSize: 20,
+        fontWeight: '500',
+
+        color: '#1761a0',
     },
     incidentHistoryHeaderView: {
         justifyContent: 'center',

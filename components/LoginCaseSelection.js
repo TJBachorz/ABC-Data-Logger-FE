@@ -36,7 +36,7 @@ export default function LoginCaseSelection({
         return account.cases.map(child => {
             return ({
                 label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
-                value: {"id": `${child.id}`, "name": `${child.name}`}
+                value: {"id": `${child.id}`, "name": `${child.name}`, "dob": `${child.dob}`}
             })
         })
     }
@@ -75,7 +75,8 @@ export default function LoginCaseSelection({
                         }}
                         onChangeItem={(item) => setCaseInfo({
                             'id': item.value.id, 
-                            "name": item.value.name
+                            "name": item.value.name,
+                            "dob": item.value.dob
                         })}
                     />
                     <Button
