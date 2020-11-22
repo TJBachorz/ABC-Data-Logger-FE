@@ -1,6 +1,6 @@
 # ABC Data Logger
 
->A quick and convenient way to lot ABC data.
+>A quick and convenient way to log ABC data.
 
 ## Table of Contents
 * [About](#about)
@@ -13,7 +13,7 @@
 
 ## About
 
-Hundreds of thousands of families world-wide struggle with the difficulties associated with raising a child with developmental disabilities.  While therapy is important, healthcare professionals cannot always be present to log data relating to incidents of mal-adaptive behavior. Thus, the onus lies with the parents to be able to log these occurances.  There is already enough pressure on the parents of children with developmental disabilities, so there needs to be an easier, quicker way for parents to log this data.  This is the problem that the ABC Data Logger hopes to solve.
+Hundreds of thousands of families world-wide struggle with the difficulties associated with raising a child with developmental disabilities.  While therapy is important, healthcare professionals cannot always be present to log data relating to behavioral incidents. Thus, the onus lies with the parents to be able to log these occurances.  There is already enough pressure on the parents of children with developmental disabilities, so there needs to be an easier, quicker way for parents to log this data.  This is the problem that the ABC Data Logger seeks to solve.
 
 Developer's Note:  My name is T.J. Bachorz and this project is the first major product of my education at Flatiron School Denver's Software Engineering program.  My wife is a BCBA (Board Certified Behavioral Analyst) who actively works with children with developmental disabilities, and has been looking for a reliable ABC data logging app for sometime, as it would make her life--as well as her client's lives, much easier.  My goal is to use my newfound passion and skill with technology to create cool things that make the world a better, easier place, so why not start at home?  To this end, I started development on the ABC Data Logger.
 
@@ -69,4 +69,6 @@ The ABC Data Logger is currently under active development, with plans to release
 
 Author : TJ Bachorz
 
-[Github](https://github.com/TJBachorz) -- [Linked-in](https://www.linkedin.com/in/tjbachorz/) -- [Email](tjbachorz@gmail.com) -- [Medium](https://tjbachorz.medium.com/)
+[Github](https://github.com/TJBachorz) -- [Linked-in](https://www.linkedin.com/in/tjbachorz/) -- [Medium](https://tjbachorz.medium.com/)
+
+tjbachorz@gmail.com
