@@ -17,11 +17,11 @@ export default function CaseSelection({
 }) {
 
     const [selectedCase, setSelectedCase] = useState({})
+    const [isCaseSelected, setIsCaseSelected] = useState(false)
 
     useEffect(() => fetchCases(), [isNewCase])
 
     const fetchCases = () => {
-        console.log("fetching...")
         AsyncStorage.getItem("token")
             .then(token => {
                 return fetch("http://localhost:8000/accounts/", {
@@ -40,16 +40,29 @@ export default function CaseSelection({
         return account.cases.map(child => {
             return ({
                 label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
-                value: {"id": `${child.id}`, "name": `${child.name}`, "dob": `${child.dob}`}
+                value: {id: child.id, name: child.name, dob: child.dob}
             })
         })
     }
 
+    useEffect(() => makeSetCase(), [isCaseSelected])
+
+    useEffect(() => signInUser(), [caseInfo])
+    
+    const makeSetCase = () => {
+        if (selectedCase && isCaseSelected) {
+            const { id, name, dob } = selectedCase
+            setCaseInfo({id, name, dob})
+            setSelectedCase({})
+            setIsCaseSelected(false)
+        }
+    }
+
     const signInUser = () => {
-        setCaseInfo(selectedCase)
         if (caseInfo.id) {
             if (!isSignedIn) {
                 setIsSignedIn(!isSignedIn)
+                return;
             }
             navigation.navigate('Home')
         }
@@ -80,9 +93,9 @@ export default function CaseSelection({
                             shadowOffset: {width: 1, height: 1}
                         }}
                         onChangeItem={(item) => setSelectedCase({
-                            'id': item.value.id, 
-                            "name": item.value.name,
-                            "dob": item.value.dob
+                            id: item.value.id, 
+                            name: item.value.name,
+                            dob: item.value.dob
                         })}
                     />
                     <Button
@@ -99,7 +112,7 @@ export default function CaseSelection({
                             shadowOpacity: 0.4,
                             shadowOffset: {width: 2, height: 2}
                         }}
-                        onPress={signInUser}
+                        onPress={() => setIsCaseSelected(true)}
                     /> 
                 </> : <Text>No cases Associated with this account</Text>
             }

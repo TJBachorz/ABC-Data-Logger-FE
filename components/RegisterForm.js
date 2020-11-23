@@ -25,6 +25,7 @@ export default function RegisterForm({ navigation }) {
     }
     
     const loginUser = (data, values) => {
+        console.log(data)
         if (data.user.id) {
             fetch('http://localhost:8000/login', {
             method: "POST",

@@ -23,7 +23,7 @@ const monthsWithDays = {
 }
 
 let currentDate = new Date()
-let startingYear = currentDate.getFullYear() - 10
+let startingYear = currentDate.getFullYear() - 20
 
 export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
@@ -55,6 +55,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
         }
         setIsNewCase(!isNewCase)
         navigation.navigate("Case Selection Main")
+
     }
 
     const linkCaseToAccount = (createdCase, token) => {
