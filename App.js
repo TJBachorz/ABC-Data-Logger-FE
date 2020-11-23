@@ -40,7 +40,6 @@ function HomeLogin({navigation}) {
 }
 
 export default function App() {
-  
 
   // LogBox.ignoreAllLogs();
 
@@ -49,6 +48,7 @@ export default function App() {
   const [caseInfo, setCaseInfo] = useState({})
   const [incidentHistory, setIncidentHistory] = useState([])
   const [incident, setIncident] = useState({})
+  const [isNewCase, setIsNewCase] = useState(false)
 
   return (
     <NavigationContainer>
@@ -143,6 +143,8 @@ export default function App() {
               setAccount={setAccount}
               caseInfo={caseInfo}
               setCaseInfo={setCaseInfo}
+              isNewCase={isNewCase} 
+              setIsNewCase={setIsNewCase}
               {...props} 
             />}
           </Drawer.Screen>
@@ -163,16 +165,17 @@ export default function App() {
               caseInfo={caseInfo} 
               setCaseInfo={setCaseInfo} 
               isSignedIn={isSignedIn}
-              setIsSignedIn={setIsSignedIn} 
+              setIsSignedIn={setIsSignedIn}
+              isNewCase={isNewCase}
               {...props} 
               />
             }
           </Stack.Screen>
 
           <Stack.Screen name="Create New Case">
-            {(props) => <CreateNewCase 
-              caseInfo={caseInfo} 
-              setCaseInfo={setCaseInfo} 
+            {(props) => <CreateNewCase
+              isNewCase={isNewCase}
+              setIsNewCase={setIsNewCase} 
               {...props} 
               />
             }

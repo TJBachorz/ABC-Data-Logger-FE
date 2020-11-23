@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
 
@@ -15,6 +15,8 @@ export default function UserCaseStackPage({
     account, 
     setAccount, 
     caseInfo,
+    isNewCase,
+    setIsNewCase,
     setCaseInfo
 }) {
 
@@ -52,6 +54,7 @@ export default function UserCaseStackPage({
                 }}>
                     
                 {(props) => <CaseSelection
+                        isNewCase={isNewCase}
                         isSignedIn={isSignedIn}
                         setIsSignedIn={setIsSignedIn}
                         account={account}
@@ -89,8 +92,8 @@ export default function UserCaseStackPage({
                 }}>
                     
                 {(props) => <CreateNewCase 
-                        caseInfo={caseInfo}
-                        setCaseInfo={setCaseInfo}
+                        isNewCase={isNewCase}
+                        setIsNewCase={setIsNewCase}
                         navigation={navigation}
                         {...props}
                     />

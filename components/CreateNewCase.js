@@ -25,7 +25,7 @@ const monthsWithDays = {
 let currentDate = new Date()
 let startingYear = currentDate.getFullYear() - 10
 
-export default function NewCase({ caseInfo, setCaseInfo, navigation }) {
+export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
     const [newCase, setNewCase] = useState({})
 
@@ -53,6 +53,7 @@ export default function NewCase({ caseInfo, setCaseInfo, navigation }) {
         if (caseLink.status > 300) {
             alert("Error Occurred, Account Failed to link")
         }
+        setIsNewCase(!isNewCase)
         navigation.navigate("Case Selection Main")
     }
 
@@ -66,11 +67,6 @@ export default function NewCase({ caseInfo, setCaseInfo, navigation }) {
             },
             body: JSON.stringify({case: createdCase.id})
         }).then(response => response.json())
-        .then(setCaseInfo({
-            id: createdCase.id,
-            name: createdCase.name,
-            dob: createdCase.dob,
-        }))
     }
 
     const determineIfLeapYear = (info) => {

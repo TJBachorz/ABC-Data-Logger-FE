@@ -12,12 +12,13 @@ export default function CaseSelection({
     setCaseInfo,
     isSignedIn,
     setIsSignedIn,
+    isNewCase,
     navigation 
 }) {
 
     const [selectedCase, setSelectedCase] = useState({})
 
-    useEffect(() => fetchCases(), [caseInfo])
+    useEffect(() => fetchCases(), [isNewCase])
 
     const fetchCases = () => {
         console.log("fetching...")
