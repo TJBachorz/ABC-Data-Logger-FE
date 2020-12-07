@@ -3,10 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-let currentDate = new Date()
+import utilities from './Utilities';
 
 const defaultDay = () => {
-    const currentDay = currentDate.getDate()
+    const currentDay = utilities.currentDate.getDate()
     if (currentDay < 10) {
         return `0${currentDay}`
     } else {
@@ -15,7 +15,7 @@ const defaultDay = () => {
 }
 
 const defaultMinutes = () => {
-    const minutes = currentDate.getMinutes()
+    const minutes = utilities.currentDate.getMinutes()
     if (minutes < 10) {
         return `0${minutes}`
     } else {
@@ -24,7 +24,7 @@ const defaultMinutes = () => {
 }   
 
 const defaultMonth = () => {
-    const currentMonth = currentDate.getMonth() + 1
+    const currentMonth = utilities.currentDate.getMonth() + 1
     if (currentMonth < 10) {
         return `0${currentMonth}`
     } else {
@@ -33,7 +33,7 @@ const defaultMonth = () => {
 }
 
 const defaultHours = () => {
-    let hours = currentDate.getHours()
+    let hours = utilities.currentDate.getHours()
     if (hours > 12) {
         hours -= 12
     }
@@ -54,7 +54,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
     }
 
     useEffect(() => {
-        setIncident({"year": `${currentDate.getFullYear()}`,
+        setIncident({"year": `${utilities.currentYear}`,
         "month": `${defaultMonth()}`,
         "hour": `${defaultHours()}`,
         "minute": `${defaultMinutes()}`,

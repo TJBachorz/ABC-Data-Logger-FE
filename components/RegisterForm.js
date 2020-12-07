@@ -2,8 +2,9 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import utilities from './Utilities';
+
 import { Formik } from 'formik';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function RegisterForm({ navigation }) {
 
@@ -22,6 +23,11 @@ export default function RegisterForm({ navigation }) {
             })
         }).then(response => response.json())
         .then(data => loginUser(data, values))
+        .catch(error => {
+            console.error(error)
+            alert(error.message)
+            throw error.message
+        })
     }
     
     const loginUser = (data, values) => {
@@ -37,7 +43,12 @@ export default function RegisterForm({ navigation }) {
                     password: values.password
                 })
             }).then(response => response.json())
-            .then(authorizeUser)
+            .then(userData => utilities.authorizeUser(userData, navigation))
+            .catch(error => {
+                console.error(error)
+                alert(error.message)
+                throw error.message
+            })
         } else {
             createRegisterFailureAlert(data.user)
         }
@@ -52,17 +63,6 @@ export default function RegisterForm({ navigation }) {
             alert(data.password[0])
         } else {
             alert("Invalid Credentials!")
-        }
-    }
-
-    const authorizeUser = (data) => {
-        if (data.token) {
-            AsyncStorage.setItem("token", data.token)
-            navigation.navigate("Case Selection Main")
-        } else {
-            return (
-                alert("Invalid Login!")
-            )
         }
     }
 

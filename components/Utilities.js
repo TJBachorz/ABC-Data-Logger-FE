@@ -1,16 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const authorizeUser = (data) => {
-    if (data.token) {
-        AsyncStorage.setItem('token', data.token)
-        navigation.navigate('Case Selection Main')
-    } else {
-        return (
-            alert("Invalid Email or Password!")
-        )
-    }
-}
-
 const utilities = {
     currentYear: new Date().getFullYear(),
     currentDate: new Date(),
@@ -44,6 +33,20 @@ const utilities = {
         "11": "November",
         "12": "December",  
     },
-    // authorizeUser: authorizeUser(data)
+    createMonthOptions() {
+        return utilities.months.map(month => {
+            return {label: month, value: month}
+        })
+    },
+    authorizeUser(data, navigation) {
+        if (data.token) {
+            AsyncStorage.setItem('token', data.token)
+            navigation.navigate('Case Selection Main')
+        } else {
+            return (
+                alert("Invalid Email or Password!")
+            )
+        }
+    }
 }
 export default utilities;

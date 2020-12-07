@@ -75,12 +75,6 @@ export default function IncidentDateTime({
         return daysList
     }
 
-    const createMonthOptions = () => {
-        return utilities.months.map(month => {
-            return {label: `${month}`, value: `${month}`}
-        })
-    }
-
     const createNumberList = (startingNumber, endNumber) => {
         let numberList = []
         for (let i = startingNumber; i <= endNumber; i++) {
@@ -118,7 +112,7 @@ export default function IncidentDateTime({
                 <DropDownPicker
                     placeholder="Month"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createMonthOptions()}
+                    items={utilities.createMonthOptions()}
                     defaultValue={incident["month"]}
                     dropDownMaxHeight={172}
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}

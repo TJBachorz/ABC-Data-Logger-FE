@@ -41,12 +41,6 @@ export default function DataChart({ incidentHistory, caseInfo }){
         })
     }    
 
-    const createMonthOptions = () => {
-        return utilities.months.map(month => {
-            return {label: month, value: month}
-        })
-    }
-
     const currentYear = dayjs().format("YYYY")
     
     const abbrMonth = () => {
@@ -130,7 +124,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                             zIndex={1}
                             placeholder="Month"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={createMonthOptions()}
+                            items={utilities.createMonths()}
                             dropDownMaxHeight={160}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{

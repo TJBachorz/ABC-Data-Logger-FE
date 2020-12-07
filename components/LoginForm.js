@@ -2,23 +2,11 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilites from './Utilities';
+import utilities from './Utilities';
 
 import { Formik } from 'formik';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function LoginForm({ navigation }) {
-
-    const authorizeUser = (data) => {
-        if (data.token) {
-            AsyncStorage.setItem('token', data.token)
-            navigation.navigate('Case Selection Main')
-        } else {
-            return (
-                alert("Invalid Email or Password!")
-            )
-        }
-    }
 
     const loginUser = (values) => {
         fetch('http://localhost:8000/login', {
@@ -32,7 +20,7 @@ export default function LoginForm({ navigation }) {
                 password: values.password
             })
         }).then(response => response.json())
-            .then(authorizeUser)
+            .then(data => utilities.authorizeUser(data, navigation))
         }
 
     return (
