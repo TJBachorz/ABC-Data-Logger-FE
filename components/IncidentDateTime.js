@@ -1,29 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import utilities from './Utilities';
+
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
-
-const monthsWithDays = {
-    "01": 31, 
-    "02": 28, 
-    "03": 31, 
-    "04": 30, 
-    "05": 31, 
-    "06": 30,
-    "07": 31, 
-    "08": 31, 
-    "09": 30, 
-    "10": 31, 
-    "11": 30, 
-    "12": 31,
-}
-
-let currentDate = new Date()
-let startingYear = currentDate.getFullYear() - 10
 
 export default function IncidentDateTime({
     navigation, 
@@ -74,9 +56,9 @@ export default function IncidentDateTime({
 
     const determineIfLeapYear = (info) => {
         if (info["month"] === "02" && info["year"] % 4 === 0) {
-            return monthsWithDays[info["month"]] + 1
+            return utilities.monthsWithDays[info["month"]] + 1
         } else {
-            return monthsWithDays[info["month"]]
+            return utilities.monthsWithDays[info["month"]]
         }
     }
 
@@ -94,7 +76,7 @@ export default function IncidentDateTime({
     }
 
     const createMonthOptions = () => {
-        return months.map(month => {
+        return utilities.months.map(month => {
             return {label: `${month}`, value: `${month}`}
         })
     }
@@ -120,7 +102,7 @@ export default function IncidentDateTime({
                 <DropDownPicker
                     placeholder="Year"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
+                    items={createNumberList(utilities.startingYear, utilities.currentYear).reverse()}
                     defaultValue={incident["year"]}
                     dropDownMaxHeight={172}
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}

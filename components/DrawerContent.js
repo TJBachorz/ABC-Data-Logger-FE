@@ -8,10 +8,8 @@ import { Drawer } from 'react-native-paper';
 
 
 export default function DrawerContent({ 
-    caseInfo,
     setCaseInfo,
     setAccount,
-    isSignedIn, 
     setIsSignedIn, 
     navigation, 
 }) {

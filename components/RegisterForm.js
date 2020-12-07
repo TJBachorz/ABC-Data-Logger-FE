@@ -25,19 +25,18 @@ export default function RegisterForm({ navigation }) {
     }
     
     const loginUser = (data, values) => {
-        console.log(data)
         if (data.user.id) {
             fetch('http://localhost:8000/login', {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: values.email,
-                password: values.password
-            })
-        }).then(response => response.json())
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: values.email,
+                    password: values.password
+                })
+            }).then(response => response.json())
             .then(authorizeUser)
         } else {
             createRegisterFailureAlert(data.user)

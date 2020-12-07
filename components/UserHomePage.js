@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import { Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import IncidentHeaders from './IncidentHeaders';
 
 export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {

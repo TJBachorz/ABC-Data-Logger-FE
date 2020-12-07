@@ -2,6 +2,8 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
+import utilites from './Utilities';
+
 import { Formik } from 'formik';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
 import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
+import { StyleSheet} from 'react-native';
+import { Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/Fontisto';
+
 import UserHomePage from './UserHomePage';
 import Antecedent from './Antecedent';
 import Behavior from './Behavior';
 import Consequence from './Consequence';
 import IncidentDateTime from './IncidentDateTime';
-import { StyleSheet} from 'react-native';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();
 
@@ -124,8 +125,6 @@ export default function AppMainStackPage({
         </>
     )
 }
-// Make a Universal Case Stack for selecting, creating or deleting cases, write login so that users dont get signed out
-
 
 const styles = StyleSheet.create({
     centeredView: {

@@ -1,32 +1,13 @@
 import React, { useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+import utilities from './Utilities';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import { countBy, uniq } from 'lodash';
 import dayjs from 'dayjs';
 import EmptyGraphSplash from './EmptyGraphSplash';
-
-const monthsNumsAndStrings = {
-    "01": "January",
-    "02": "February",
-    "03": "March",
-    "04": "April",
-    "05": "May",
-    "06": "June",
-    "07": "July",
-    "08": "August",
-    "09": "September",
-    "10": "October",
-    "11": "November",
-    "12": "December",  
-}
-
-const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12",]
 
 export default function DataChart({ incidentHistory, caseInfo }){
 
@@ -61,7 +42,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
     }    
 
     const createMonthOptions = () => {
-        return months.map(month => {
+        return utilities.months.map(month => {
             return {label: month, value: month}
         })
     }
