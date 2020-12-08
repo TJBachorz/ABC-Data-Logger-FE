@@ -46,18 +46,6 @@ export default function DrawerContent({
                         onPress={() => navigation.navigate("Home")} 
                     />
                     <DrawerItem 
-                        label="Profile" 
-                        labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
-                            <Icon
-                                name="id-card"
-                                size={25}
-                                color="#f8f8ff"
-                            />
-                        )}
-                        onPress={() => {}} 
-                    />
-                    <DrawerItem 
                         label="Cases" 
                         labelStyle={styles.itemLabel}
                         icon={({ color, size }) => (
@@ -91,7 +79,7 @@ export default function DrawerContent({
                                 color="#f8f8ff"
                             />
                         )}
-                        onPress={() => {}} 
+                        onPress={() => navigation.navigate("Link Accounts")} 
                     />
                     <DrawerItem 
                         label="Logout"

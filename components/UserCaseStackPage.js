@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
 

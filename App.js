@@ -4,14 +4,14 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
+import UserPortalButtons from './components/UserPortalButtons';
+import CreateNewCase from './components/CreateNewCase';
+import CaseSelection from './components/CaseSelection';
 
 import DrawerContent from './components/DrawerContent';
-import DataChartStackPage from './components/DataChartStackPage';
-import UserPortalButtons from './components/UserPortalButtons';
+import AccountLinkStackPage from './components/AccountLinkStackPage';
 import AppMainStackPage from './components/AppMainStackPage';
-
-import CaseSelection from './components/CaseSelection';
-import CreateNewCase from './components/CreateNewCase';
+import DataChartStackPage from './components/DataChartStackPage';
 import UserCaseStackPage from './components/UserCaseStackPage';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,7 +20,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Image, LogBox } from 'react-native';
 import { Button } from 'react-native-elements';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -145,6 +144,35 @@ export default function App() {
               setCaseInfo={setCaseInfo}
               isNewCase={isNewCase} 
               setIsNewCase={setIsNewCase}
+              {...props} 
+            />}
+          </Drawer.Screen>
+
+          <Drawer.Screen name="Link Accounts"
+            options={{
+              headerTitle: "",
+              headerLeft: () => (
+                  <Button
+                      type="clear"
+                      icon={
+                          <Icon
+                              name="nav-icon-a"
+                              size={20}
+                              color="#1761a0"
+                          />
+                      }
+                      onPress={() => navigation.openDrawer()}
+                      buttonStyle={{
+                      fontWeight: 'bold',
+                      marginLeft: 20,
+                      fontWeight: 200,
+                      backgroundColor: '#f8f8ff',
+                      }}
+                  />
+              )
+          }}>
+            {(props) => <AccountLinkStackPage
+              account={account}
               {...props} 
             />}
           </Drawer.Screen>

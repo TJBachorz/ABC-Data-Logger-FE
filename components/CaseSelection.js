@@ -38,7 +38,7 @@ export default function CaseSelection({
             .then(userAccount => setAccount(userAccount))
     }
     
-    const renderCases = (account) => {
+    const renderCases = () => {
         return account.cases.map(child => {
             return ({
                 label: `${child.name}, age: ${utilities.currentYear - +(child.dob.split("-")[0])}`, 
@@ -70,8 +70,6 @@ export default function CaseSelection({
         }
     }
 
-    // const currentYear = new Date().getFullYear()
-
     return (
         <View style={styles.centeredView}>
             {account.cases !== undefined ?
@@ -81,7 +79,7 @@ export default function CaseSelection({
                     <DropDownPicker
                         placeholder="Select a Case"
                         labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                        items={renderCases(account)}
+                        items={renderCases()}
                         defaultIndex={0}
                         itemStyle={{justifyContent: 'flex-start'}}
                         dropDownStyle={{backgroundColor: '#f8f8ff'}}

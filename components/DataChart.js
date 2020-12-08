@@ -124,7 +124,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                             zIndex={1}
                             placeholder="Month"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={utilities.createMonths()}
+                            items={utilities.createMonthOptions()}
                             dropDownMaxHeight={160}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
