@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 export default function LoginForm({ navigation }) {
 
     const loginUser = (values) => {
-        fetch('http://localhost:8000/login', {
+        fetch(`${utilities.baseURL}/login`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",

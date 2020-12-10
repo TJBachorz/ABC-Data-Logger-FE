@@ -26,7 +26,7 @@ export default function CaseSelection({
     const fetchCases = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                return fetch("http://localhost:8000/accounts/", {
+                return fetch(`${utilities.baseURL}/accounts/`, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",

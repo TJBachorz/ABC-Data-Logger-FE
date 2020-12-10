@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const utilities = {
+    baseURL: "http://localhost:8000",
     currentYear: new Date().getFullYear(),
     currentDate: new Date(),
     startingYear: new Date().getFullYear() - 10,

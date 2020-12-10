@@ -17,7 +17,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
     const createCase = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                fetch("http://localhost:8000/cases/", {
+                fetch(`${utilities.baseURL}/cases/`, {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
@@ -44,7 +44,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
     }
 
     const linkCaseToAccount = (createdCase, token) => {
-        return fetch("http://localhost:8000/caselinks", {
+        return fetch(`${utilities.baseURL}/caselinks`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",

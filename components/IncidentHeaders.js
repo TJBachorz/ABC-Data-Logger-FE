@@ -64,9 +64,7 @@ export default function IncidentHeaders({ history }) {
                                     {utilities.monthsLongForm[month]} {day}, {year}  
                             </Text>
                         </View>
-                        <Collapsible 
-                            collapsed={!activeArray.includes(date)}
-                        >
+                        <Collapsible collapsed={!activeArray.includes(date)}>
                             {filterIncidentsByDate(date).map(incident => {
                                 return (
                                     <Incident key={incident.id} incident={incident}/>

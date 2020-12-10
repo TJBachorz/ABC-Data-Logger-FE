@@ -19,6 +19,12 @@ export default function AccountLink({ account }) {
         })
     }
 
+    const linkAccounts = () => {
+        if (linkInfo.case_id && linkInfo.email) {
+            console.log("fetch request baby!")
+        }
+    }
+
     return (
         <>
             <View style={styles.centeredView}>
@@ -72,7 +78,7 @@ export default function AccountLink({ account }) {
                         shadowOpacity: 0.4,
                         shadowOffset: {width: 2, height: 2}
                     }}
-                    onPress={() => {}}
+                    onPress={() => {linkAccounts}}
                 />
             </View>
         </>

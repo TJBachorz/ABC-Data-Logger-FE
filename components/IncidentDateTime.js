@@ -34,7 +34,7 @@ export default function IncidentDateTime({
 
     const postIncident = () => {
         return AsyncStorage.getItem("token").then(token => {
-            fetch("http://localhost:8000/incidents/", {
+            fetch(`${utilities.baseURL}/incidents/`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",

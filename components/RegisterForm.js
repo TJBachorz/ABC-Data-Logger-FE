@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 export default function RegisterForm({ navigation }) {
 
     const signupUser = (values) => {
-        return fetch('http://localhost:8000/signup/', {
+        return fetch(`${utilities.baseURL}/signup/`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -32,7 +32,7 @@ export default function RegisterForm({ navigation }) {
     
     const loginUser = (data, values) => {
         if (data.user.id) {
-            fetch('http://localhost:8000/login', {
+            fetch(`${utilities.baseURL}/login`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
