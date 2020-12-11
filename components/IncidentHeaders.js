@@ -61,7 +61,7 @@ export default function IncidentHeaders({ history }) {
                                 style={styles.dateHeader}
                                 onPress={(event) => addOrRemoveFromArray(event, date)}
                             >
-                                    {utilities.monthsLongForm[month]} {day}, {year}  
+                                    {utilities.MMMM[month]} {day}, {year}  
                             </Text>
                         </View>
                         <Collapsible collapsed={!activeArray.includes(date)}>

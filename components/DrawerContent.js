@@ -3,8 +3,8 @@ import { StyleSheet, View, Image } from 'react-native';
 
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Drawer } from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function DrawerContent({ 
@@ -82,6 +82,18 @@ export default function DrawerContent({
                         onPress={() => navigation.navigate("Link Accounts")} 
                     />
                     <DrawerItem 
+                        label="Settings" 
+                        labelStyle={styles.itemLabel}
+                        icon={({ color, size }) => (
+                            <Icon
+                                name="settings"
+                                size={25}
+                                color="#f8f8ff"
+                            />
+                        )}
+                        onPress={() => {}} 
+                    />
+                    <DrawerItem 
                         label="Logout"
                         labelStyle={styles.logoutLabel} 
                         style={styles.logoutField}
@@ -108,8 +120,6 @@ const styles = StyleSheet.create({
     },
     drawerSection: {
         marginTop: 15
-    },
-    drawerItem: {
     },
     itemLabel: {
         fontSize: 24,

@@ -6,7 +6,6 @@ import utilities from './Utilities';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import { countBy, uniq } from 'lodash';
-import dayjs from 'dayjs';
 import EmptyGraphSplash from './EmptyGraphSplash';
 
 export default function DataChart({ incidentHistory, caseInfo }){
@@ -35,17 +34,13 @@ export default function DataChart({ incidentHistory, caseInfo }){
 
     const filterIncidentsByDate = (mappedIncidents) => {
         return mappedIncidents.filter(incident => {
-            let month = dayjs(incident.date.split("-")[1]).format("MM")
-            let year = dayjs(incident.date.split("-")[0]).format("YYYY")
+            let month = incident.date.split("-")[1]
+            let year = incident.date.split("-")[0]
             return month === selectedMonth && year === selectedYear
         })
     }    
 
-    const currentYear = dayjs().format("YYYY")
-    
-    const abbrMonth = () => {
-        return dayjs(selectedMonth).format("MMM")
-    }
+    const mon = utilities.MMM[selectedMonth]
 
     const createNumberList = (startingNumber, endNumber) => {
         let numberList = []
@@ -81,11 +76,11 @@ export default function DataChart({ incidentHistory, caseInfo }){
             <View style={styles.pageStyle}>
                 {selectedBehavior && selectedMonth && selectedYear ?
                     <View style={styles.container}>
-                        <Text style={styles.chartHeaderText}>Occurrences of {selectedBehavior} for the month of {dayjs(selectedMonth).format("MMMM")}, {dayjs(selectedYear).format("YYYY")}</Text>
+                        <Text style={styles.chartHeaderText}>Occurrences of "{selectedBehavior}" for the month of {utilities.MMMM[selectedMonth]}, {selectedYear}</Text>
                         <VictoryChart style={styles.graph} domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
                             <VictoryAxis
                                 tickValues={[7, 14, 21, 28]}
-                                tickFormat={[`${abbrMonth()} 7`, `${abbrMonth()} 14`, `${abbrMonth()} 21`, `${abbrMonth()} 28`]}
+                                tickFormat={[`${mon} 7`, `${mon} 14`, `${mon} 21`, `${mon} 28`]}
                             />  
                             <VictoryLine 
                                 style={{ data: { stroke: '#1761a0' } }} 
@@ -108,7 +103,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                             zIndex={1}
                             placeholder="Year"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={createNumberList(+currentYear - 30, +currentYear).reverse()}
+                            items={createNumberList(+utilities.currentYear - 30, +utilities.currentYear).reverse()}
                             dropDownMaxHeight={160}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
