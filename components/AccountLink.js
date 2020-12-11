@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import utilities from './Utilities';
 
 import DropDownPicker from 'react-native-dropdown-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AccountLink({ account }) {
 
@@ -21,7 +22,23 @@ export default function AccountLink({ account }) {
 
     const linkAccounts = () => {
         if (linkInfo.case_id && linkInfo.email) {
-            console.log("fetch request baby!")
+            AsyncStorage.getItem("token")
+                .then(token => {
+                    fetch(`${utilities.baseURL}/caselinks`, {
+                        method: "POST",
+                        headers: {
+                            "Accept": "application/json",
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({
+                            case: linkInfo.case_id,
+                            email: linkInfo.email
+                        })
+                    }).then(response => response.json())
+                })
+        } else {
+            console.log("failure")
         }
     }
 
@@ -56,6 +73,7 @@ export default function AccountLink({ account }) {
                 <Text style={styles.selectionText}>Enter the email of the account you would like to link:</Text>
                 <TextInput 
                     style={styles.input}
+                    autoCapitalize="none"
                     placeholder="Email"
                     placeholderTextColor="#f8f8ff"
                     onChangeText={text => setLinkInfo({
@@ -78,7 +96,7 @@ export default function AccountLink({ account }) {
                         shadowOpacity: 0.4,
                         shadowOffset: {width: 2, height: 2}
                     }}
-                    onPress={() => {linkAccounts}}
+                    onPress={linkAccounts}
                 />
             </View>
         </>
