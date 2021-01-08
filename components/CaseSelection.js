@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { baseURL, currentYear } from './Utilities';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -26,7 +26,7 @@ export default function CaseSelection({
     const fetchCases = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                return fetch(`${utilities.baseURL}/accounts/`, {
+                return fetch(`${baseURL}/accounts/`, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
@@ -41,7 +41,7 @@ export default function CaseSelection({
     const renderCases = () => {
         return account.cases.map(child => {
             return ({
-                label: `${child.name}, age: ${utilities.currentYear - +(child.dob.split("-")[0])}`, 
+                label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
                 value: {id: child.id, name: child.name, dob: child.dob}
             })
         })

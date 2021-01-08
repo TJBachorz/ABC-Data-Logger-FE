@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { baseURL, monthsWithDays, months } from './Utilities';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -17,7 +17,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
     const createCase = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                fetch(`${utilities.baseURL}/cases/`, {
+                fetch(`${baseURL}/cases/`, {
                     method: "POST",
                     headers: {
                         "Accept": "application/json",
@@ -44,7 +44,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
     }
 
     const linkCaseToAccount = (createdCase, token) => {
-        return fetch(`${utilities.baseURL}/caselinks`, {
+        return fetch(`${baseURL}/caselinks`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -57,9 +57,9 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
     const determineIfLeapYear = (info) => {
         if (info["month"] === "02" && info["year"] % 4 === 0) {
-            return utilities.monthsWithDays[info["month"]] + 1
+            return monthsWithDays[info["month"]] + 1
         } else {
-            return utilities.monthsWithDays[info["month"]]
+            return monthsWithDays[info["month"]]
         }
     }
 
@@ -77,7 +77,7 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
     }
 
     const createMonthOptions = () => {
-        return utilities.months.map(month => {
+        return months.map(month => {
             return {label: `${month}`, value: `${month}`}
         })
     }

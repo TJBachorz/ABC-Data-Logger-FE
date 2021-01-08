@@ -2,14 +2,14 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Image, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { baseURL, authorizeUser } from './Utilities';
 
 import { Formik } from 'formik';
 
 export default function LoginForm({ navigation }) {
 
     const loginUser = (values) => {
-        fetch(`${utilities.baseURL}/login`, {
+        fetch(`${baseURL}/login`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -20,7 +20,7 @@ export default function LoginForm({ navigation }) {
                 password: values.password
             })
         }).then(response => response.json())
-            .then(data => utilities.authorizeUser(data, navigation))
+            .then(data => authorizeUser(data, navigation))
         }
 
     return (

@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import utilities from './Utilities';
+import { baseURL } from './Utilities';
 import IncidentHeaders from './IncidentHeaders';
 
 export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {
@@ -17,8 +17,8 @@ export default function UserHomePage({ incidentHistory, setIncidentHistory, navi
     
     const fetchIncidents = () => {
         AsyncStorage.getItem("token")
-        .then(token => {
-                fetch(`${utilities.baseURL}/cases/${caseInfo.id}/`, {
+            .then(token => {
+                fetch(`${baseURL}/cases/${caseInfo.id}/`, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",

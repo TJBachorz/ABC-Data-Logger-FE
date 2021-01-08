@@ -2,14 +2,14 @@ import React from 'react';
 import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { baseURL, authorizeUser } from './Utilities';
 
 import { Formik } from 'formik';
 
 export default function RegisterForm({ navigation }) {
 
     const signupUser = (values) => {
-        return fetch(`${utilities.baseURL}/signup/`, {
+        return fetch(`${baseURL}/signup/`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -32,7 +32,7 @@ export default function RegisterForm({ navigation }) {
     
     const loginUser = (data, values) => {
         if (data.user.id) {
-            fetch(`${utilities.baseURL}/login`, {
+            fetch(`${baseURL}/login`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -43,7 +43,7 @@ export default function RegisterForm({ navigation }) {
                     password: values.password
                 })
             }).then(response => response.json())
-            .then(userData => utilities.authorizeUser(userData, navigation))
+            .then(userData => authorizeUser(userData, navigation))
             .catch(error => {
                 console.error(error)
                 alert(error.message)

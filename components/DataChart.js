@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import utilities from './Utilities';
+import { MMM, MMMM, currentYear, createMonthOptions } from './Utilities';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
@@ -40,7 +40,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
         })
     }    
 
-    const mon = utilities.MMM[selectedMonth]
+    const monthMMM = MMM[selectedMonth]
 
     const createNumberList = (startingNumber, endNumber) => {
         let numberList = []
@@ -76,11 +76,11 @@ export default function DataChart({ incidentHistory, caseInfo }){
             <View style={styles.pageStyle}>
                 {selectedBehavior && selectedMonth && selectedYear ?
                     <View style={styles.container}>
-                        <Text style={styles.chartHeaderText}>Occurrences of "{selectedBehavior}" for the month of {utilities.MMMM[selectedMonth]}, {selectedYear}</Text>
+                        <Text style={styles.chartHeaderText}>Occurrences of "{selectedBehavior}" for the month of {MMMM[selectedMonth]}, {selectedYear}</Text>
                         <VictoryChart style={styles.graph} domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
                             <VictoryAxis
                                 tickValues={[7, 14, 21, 28]}
-                                tickFormat={[`${mon} 7`, `${mon} 14`, `${mon} 21`, `${mon} 28`]}
+                                tickFormat={[`${monthMMM} 7`, `${monthMMM} 14`, `${monthMMM} 21`, `${monthMMM} 28`]}
                             />  
                             <VictoryLine 
                                 style={{ data: { stroke: '#1761a0' } }} 
@@ -103,7 +103,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                             zIndex={1}
                             placeholder="Year"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={createNumberList(+utilities.currentYear - 30, +utilities.currentYear).reverse()}
+                            items={createNumberList(+currentYear - 30, +currentYear).reverse()}
                             dropDownMaxHeight={160}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
@@ -119,7 +119,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                             zIndex={1}
                             placeholder="Month"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={utilities.createMonthOptions()}
+                            items={createMonthOptions()}
                             dropDownMaxHeight={160}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{

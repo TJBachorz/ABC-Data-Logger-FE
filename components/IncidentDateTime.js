@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from './Utilities';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -34,7 +34,7 @@ export default function IncidentDateTime({
 
     const postIncident = () => {
         return AsyncStorage.getItem("token").then(token => {
-            fetch(`${utilities.baseURL}/incidents/`, {
+            fetch(`${baseURL}/incidents/`, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -56,9 +56,9 @@ export default function IncidentDateTime({
 
     const determineIfLeapYear = (info) => {
         if (info["month"] === "02" && info["year"] % 4 === 0) {
-            return utilities.monthsWithDays[info["month"]] + 1
+            return monthsWithDays[info["month"]] + 1
         } else {
-            return utilities.monthsWithDays[info["month"]]
+            return monthsWithDays[info["month"]]
         }
     }
 
@@ -96,7 +96,7 @@ export default function IncidentDateTime({
                 <DropDownPicker
                     placeholder="Year"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createNumberList(utilities.startingYear, utilities.currentYear).reverse()}
+                    items={createNumberList(startingYear, currentYear).reverse()}
                     defaultValue={incident["year"]}
                     dropDownMaxHeight={172}
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}
@@ -112,7 +112,7 @@ export default function IncidentDateTime({
                 <DropDownPicker
                     placeholder="Month"
                     labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={utilities.createMonthOptions()}
+                    items={createMonthOptions()}
                     defaultValue={incident["month"]}
                     dropDownMaxHeight={172}
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}

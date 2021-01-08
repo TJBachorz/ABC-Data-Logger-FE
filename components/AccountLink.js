@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Button } from 'react-native-elements';
 
-import utilities from './Utilities';
+import { currentYear, baseURL } from './Utilities';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -14,7 +14,7 @@ export default function AccountLink({ account }) {
     const renderCases = () => {
         return account.cases.map(child => {
             return ({
-                label: `${child.name}, age: ${utilities.currentYear - +(child.dob.split("-")[0])}`, 
+                label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
                 value: {id: child.id}
             })
         })
@@ -24,7 +24,7 @@ export default function AccountLink({ account }) {
         if (linkInfo.case_id && linkInfo.email) {
             AsyncStorage.getItem("token")
                 .then(token => {
-                    fetch(`${utilities.baseURL}/caselinks`, {
+                    fetch(`${baseURL}/caselinks`, {
                         method: "POST",
                         headers: {
                             "Accept": "application/json",

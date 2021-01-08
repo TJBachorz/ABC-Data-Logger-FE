@@ -5,7 +5,7 @@ import { uniq } from 'lodash';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import utilities from './Utilities';
+import { MMMM } from './Utilities';
 import Incident from './Incident';
 
 export default function IncidentHeaders({ history }) {
@@ -61,7 +61,7 @@ export default function IncidentHeaders({ history }) {
                                 style={styles.dateHeader}
                                 onPress={(event) => addOrRemoveFromArray(event, date)}
                             >
-                                    {utilities.MMMM[month]} {day}, {year}  
+                                    {MMMM[month]} {day}, {year}  
                             </Text>
                         </View>
                         <Collapsible collapsed={!activeArray.includes(date)}>
