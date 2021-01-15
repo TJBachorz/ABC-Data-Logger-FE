@@ -4,11 +4,11 @@ import { StyleSheet} from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Fontisto';
 
-import UserHomePage from './UserHomePage';
-import Antecedent from './Antecedent';
-import Behavior from './Behavior';
-import Consequence from './Consequence';
-import IncidentDateTime from './IncidentDateTime';
+import UserHomePage from '../UserHomePage';
+import Antecedent from '../Antecedent';
+import Behavior from '../Behavior';
+import Consequence from '../Consequence';
+import IncidentDateTime from '../IncidentDateTime';
 
 const Stack = createStackNavigator();
 

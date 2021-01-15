@@ -1,6 +1,6 @@
 import React from 'react'
-import CaseSelection from './CaseSelection';
-import CreateNewCase from './CreateNewCase';
+import CaseSelection from '../CaseSelection';
+import CreateNewCase from '../CreateNewCase';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';

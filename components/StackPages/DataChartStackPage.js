@@ -1,5 +1,5 @@
 import React from 'react'
-import DataChart from './DataChart';
+import DataChart from '../DataChart';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';

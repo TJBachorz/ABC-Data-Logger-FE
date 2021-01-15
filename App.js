@@ -9,10 +9,10 @@ import CreateNewCase from './components/CreateNewCase';
 import CaseSelection from './components/CaseSelection';
 
 import DrawerContent from './components/DrawerContent';
-import AccountLinkStackPage from './components/AccountLinkStackPage';
-import AppMainStackPage from './components/AppMainStackPage';
-import DataChartStackPage from './components/DataChartStackPage';
-import UserCaseStackPage from './components/UserCaseStackPage';
+import AccountLinkStackPage from './components/StackPages/AccountLinkStackPage';
+import AppMainStackPage from './components/StackPages/AppMainStackPage';
+import DataChartStackPage from './components/StackPages/DataChartStackPage';
+import UserCaseStackPage from './components/StackPages/UserCaseStackPage';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';

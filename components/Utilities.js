@@ -69,7 +69,7 @@ export const MMMM = {
 }
 
 export const createMonthOptions = () => {
-    return utilities.months.map(month => {
+    return months.map(month => {
         return {label: month, value: month}
     })
 }
