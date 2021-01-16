@@ -1,42 +1,20 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import BigButton from './BigButton';
 import { Button } from 'react-native-elements';
 
-export default function UserPortalButtons({navigation}) {
+
+export default function UserPortalButtons({ navigation }) {
 
     return (
         <View style={styles.buttonContainer}>
-            <Button 
-                type="solid" 
-                title={"LOG IN"} 
-                buttonStyle={{
-                    background: '#4c96d7',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360, 
-                    marginBottom: 10,
-                    shadowColor: 'black',
-                    shadowOpacity: 0.4,
-                    shadowOffset: {width: 2, height: 2}
-                }} 
-                onPress={() => navigation.navigate('Login')}
+            <BigButton 
+                buttonText={"LOG IN"} 
+                handlePress={() => navigation.navigate('Login')}
             />
-            <Button 
-                type="solid" 
-                title={"CREATE ACCOUNT"} 
-                buttonStyle={{
-                    background: '#4c96d7',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360,
-                    marginBottom: 30,
-                    shadowColor: 'black',
-                    shadowOpacity: 0.4,
-                    shadowOffset: {width: 2, height: 2}
-                }} 
-                onPress={() => navigation.navigate('Register')}
+            <BigButton 
+                buttonText={"CREATE ACCOUNT"}
+                handlePress={() => navigation.navigate('Register')}
             />
         </View>
     )

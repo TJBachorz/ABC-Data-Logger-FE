@@ -47,7 +47,9 @@ export default function AccountLink({ account }) {
             <View style={styles.centeredView}>
                 {account.cases !== undefined ?
                     <>
-                        <Text style={styles.selectionText}>Select the case you would like to link:</Text>
+                        <Text style={styles.selectionText}>
+                            Select the case you would like to link:
+                        </Text>
                         <DropDownPicker
                             placeholder="Select a Case"
                             labelStyle={{fontSize: 16, color: 'black', padding: 10}}
@@ -64,7 +66,7 @@ export default function AccountLink({ account }) {
                                 marginTop: 40,
                                 shadowOffset: {width: 1, height: 1}
                             }}
-                            onChangeItem={(item) => setLinkInfo({
+                            onChangeItem={item => setLinkInfo({
                                 ...linkInfo, case_id: item.value.id,
                             })}
                         />
