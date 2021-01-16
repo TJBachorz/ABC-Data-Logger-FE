@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from '../Components/DateFunctions';
+import { 
+    baseURL, 
+    startingYear, 
+    currentYear, 
+    createMonthOptions,
+    createDayOptions,
+    calcHours,
+    createNumberList
+} from '../Components/DateFunctions';
 import BigButton from '../Components/BigButton';
 import { DropDownMedium, DropDownTiny } from '../Components/DropDown';
 import { PickAMPM } from '../Components/Options';
@@ -23,16 +31,6 @@ export default function IncidentDateTime({
         navigation.navigate('Incident History')
     }
 
-    const calcHours = () => {
-        let incidentCopy = JSON.parse(JSON.stringify(incident))
-        if (AMPM === "PM" && incident["hour"] !== "12") {
-            incidentCopy["hour"] = +incidentCopy["hour"] + 12
-        } else if (AMPM === "AM" && incident["hour"] === "12") {
-            incidentCopy["hour"] = "00"
-        }
-        return `${incidentCopy["hour"]}`
-    }
-
     const postIncident = () => {
         return AsyncStorage.getItem("token").then(token => {
             fetch(`${baseURL}/incidents/`, {
@@ -47,43 +45,12 @@ export default function IncidentDateTime({
                     "behavior": `${incident["behavior"]}`,
                     "consequence": `${incident["consequence"]}`,
                     "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
-                    "time": `${calcHours()}:${incident["minute"]}:00`,
+                    "time": `${calcHours(incident)}:${incident["minute"]}:00`,
                     "case": `${caseInfo.id}`
                 })
             }).then(response => response.json())
             .then(newIncident => setIncidentHistory([...incidentHistory, newIncident]))
         })
-    }
-
-    const determineIfLeapYear = (info) => {
-        return info["month"] === "02" && info["year"] % 4 === 0 ?
-            monthsWithDays[info["month"]] + 1
-            : monthsWithDays[info["month"]]
-    }
-
-    const createDayOptions = () => {
-        let info = JSON.parse(JSON.stringify(incident))
-        const daysInMonth = range(1, +determineIfLeapYear(info))
-        return daysInMonth.map(day => {
-            return day < 10 ? 
-                {label: `0${day}`,  value: `0${day}`}
-                : {label: `${day}`, value: `${day}`}
-        })
-    }
-
-    function range(start, end) {
-        return Array(end - start + 1)
-            .fill()
-            .map((_, index) => start + index)
-    }
-
-    const createNumberList = (start, end) => {
-        const numberArray = range(start, end)
-        return numberArray.map(i => {
-            return i < 10 ?
-                {label: `0${i}`, value: `0${i}`}
-                : {label: `${i}`, value: `${i}`}
-            })
     }
 
     return (
@@ -103,7 +70,7 @@ export default function IncidentDateTime({
                     onChangeItem={item => setIncident({...incident, "month": item.value})}
                 />
                 <DropDownMedium
-                    items={createDayOptions()}   
+                    items={createDayOptions(incident)}   
                     defaultValue={incident["day"]}
                     onChangeItem={item => setIncident({...incident, "day": item.value})}
                 />

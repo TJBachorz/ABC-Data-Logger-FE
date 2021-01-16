@@ -72,6 +72,47 @@ export const createMonthOptions = () => {
     })
 }
 
+export const calcHours = (incident) => {
+    let incidentCopy = JSON.parse(JSON.stringify(incident))
+    if (AMPM === "PM" && incident["hour"] !== "12") {
+        incidentCopy["hour"] = +incidentCopy["hour"] + 12
+    } else if (AMPM === "AM" && incident["hour"] === "12") {
+        incidentCopy["hour"] = "00"
+    }
+    return `${incidentCopy["hour"]}`
+}
+
+const range = (start, end) => {
+    return Array(end - start + 1)
+        .fill()
+        .map((_, index) => start + index)
+}
+
+const determineIfLeapYear = (info) => {
+    return info["month"] === "02" && info["year"] % 4 === 0 ?
+        monthsWithDays[info["month"]] + 1
+        : monthsWithDays[info["month"]]
+}
+
+export const createDayOptions = (incident) => {
+    let info = JSON.parse(JSON.stringify(incident))
+    const daysInMonth = range(1, +determineIfLeapYear(info))
+    return daysInMonth.map(day => {
+        return day < 10 ? 
+            {label: `0${day}`,  value: `0${day}`}
+            : {label: `${day}`, value: `${day}`}
+    })
+}
+
+export const createNumberList = (start, end) => {
+    const numberArray = range(start, end)
+    return numberArray.map(i => {
+        return i < 10 ?
+            {label: `0${i}`, value: `0${i}`}
+            : {label: `${i}`, value: `${i}`}
+        })
+}
+
 export const authorizeUser = (data, navigation) => {
     if (data.token) {
         AsyncStorage.setItem('token', data.token)
