@@ -1,10 +1,11 @@
 import React from 'react';
-import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
-import { Button } from 'react-native-elements';
-
-import { baseURL, authorizeUser } from './Utilities';
-
+import { View, Text, Image } from 'react-native';
 import { Formik } from 'formik';
+
+import { BigButton } from '../Components/Button';
+import TextInputField from '../Components/TextInputField';
+import { baseURL, authorizeUser } from '../Components/DateFunctions';
+import { Styles } from '../Components/Styles';
 
 export default function RegisterForm({ navigation }) {
 
@@ -67,10 +68,10 @@ export default function RegisterForm({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={Styles.formContainer}>
             <Image 
-                style={styles.image} 
-                source={require('../assets/abc_logo_white.png')}
+                style={Styles.image} 
+                source={require('../../assets/abc_logo_white.png')}
             />
             <Formik
                 initialValues={{ email: '', password: '' }}
@@ -89,103 +90,49 @@ export default function RegisterForm({ navigation }) {
                 }}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
-                    <>
-                        <TextInput 
-                            style={styles.input}
+                    <>  
+                        <TextInputField
+                            placeholder="Username"
                             autoCapitalize="none"
                             onChangeText={handleChange('username')}
                             onBlur={handleBlur('username')}
                             value={values.username}
-                            placeholder="Username"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            style={styles.input}
+                        <TextInputField
+                            placeholder="Email"
                             autoCapitalize="none"
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
-                            placeholder="Email"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            secureTextEntry={true} 
-                            style={styles.input}
+                        <TextInputField
+                            secure={true}
+                            placeholder="Password"
+                            autoCapitalize="none"
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
-                            placeholder="Password"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            secureTextEntry={true} 
-                            style={styles.input}
+                        <TextInputField
+                            secure={true}
+                            placeholder="Re-type Password"
+                            autoCapitalize="none"
                             onChangeText={handleChange('password2')}
                             onBlur={handleBlur('password2')}
-                            value={values.password2}
-                            placeholder="Re-type Password"
-                            placeholderTextColor="#f8f8ff"
+                            value={values.passworŹ}
                         />
-                        <Button 
-                            type="solid" 
-                            title={"CREATE ACCOUNT"} 
-                            titleStyle={{color: "#1761a0"}}
-                            buttonStyle={{
-                                backgroundColor: '#f8f8ff',
-                                borderRadius: 16,
-                                margin: 1,
-                                marginTop: 25,
-                                height: 50,
-                                width: 360,
-                                shadowColor: 'black',
-                                shadowOpacity: 0.4,
-                                shadowOffset: {width: 2, height: 2}
-                            }} 
-                            onPress={handleSubmit}
+                        <BigButton
+                            invert={true}
+                            buttonText={"CREATE ACCOUNT"}
+                            handlePress={handleSubmit}
                         />
                     </>
                 )}
             </Formik>
-            <View noBorder style={styles.details}>
-                <Text style={styles.detailText}>Already have an account?</Text>
-                <Text style={styles.detailText} onPress={() => navigation.navigate("Login")}>Log In</Text>
+            <View noBorder style={Styles.details}>
+                <Text style={Styles.detailText}>Already have an account?</Text>
+                <Text style={Styles.detailText} onPress={() => navigation.navigate("Login")}>Log In</Text>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    detailText: {
-        color: '#f8f8ff',
-        margin: 7
-    },
-    details: {
-        marginTop: 35,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    image: {
-        height: 250,
-        width: 250,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#1761a0',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    input: {
-        borderRadius: 10,
-        width: '85%',
-        height: 60,
-        backgroundColor: '#4c96d7',
-        fontSize: 24,
-        paddingLeft: 20,
-        marginBottom: 20,
-        color: '#f8f8ff',
-        shadowColor: 'black',
-        shadowOpacity: 0.3,
-        shadowOffset: {width: 2, height: 2}
-    },
-});

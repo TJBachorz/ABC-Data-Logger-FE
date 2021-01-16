@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
-
-import { baseURL, monthsWithDays, months } from './Utilities';
-
+import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DropDownPicker from 'react-native-dropdown-picker';
 
-let currentDate = new Date()
-let startingYear = currentDate.getFullYear() - 20
+import { DropDownMedium } from '../Components/DropDown';
+import { 
+    baseURL, 
+    monthsWithDays, 
+    months, 
+    currentDate, 
+    startingYear 
+} from '../Components/DateFunctions';
+import { BigButton } from '../Components/Button';
+import TextInputField from '../Components/TextInputField';
 
 export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
@@ -40,7 +43,6 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
         }
         setIsNewCase(!isNewCase)
         navigation.navigate("Case Selection Main")
-
     }
 
     const linkCaseToAccount = (createdCase, token) => {
@@ -96,57 +98,42 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
     return (
         <View style={styles.caseCreation}>
-            <Text style={styles.selectionHeader}>Enter a Name and Date of Birth:</Text>
-            <Text>{newCase["name"]}{newCase["year"]}{newCase["month"]}{newCase["day"]}</Text>
-            <TextInput 
-                style={styles.input}
+            <Text style={styles.selectionHeader}>
+                Enter a Name:
+            </Text>
+            <TextInputField
+                autoCapitalize="words"
                 placeholder="Case Name"
-                placeholderTextColor="#f8f8ff"
                 onChangeText={text => setNewCase({...newCase, "name": text})}
             />
             <View style={styles.selectionContainer}>
+                <Text style={styles.selectionHeader}>
+                    Enter a Date of Birth:
+                </Text>
                 <View style={styles.datePickers}>
-                    <DropDownPicker
+                    <DropDownMedium
                         placeholder="Year"
-                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
                         defaultValue={newCase["year"]}
-                        dropDownMaxHeight={250}
-                        containerStyle={{height: 60, width: 110}}
-                        onChangeItem={(item) => setNewCase({...newCase, "year": item.value})}
+                        onChangeItem={item => setNewCase({...newCase, "year": item.value})}
                     />
-                    <DropDownPicker
+                    <DropDownMedium
                         placeholder="Month"
-                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createMonthOptions()}
                         defaultValue={newCase["month"]}
-                        dropDownMaxHeight={250}
-                        containerStyle={{height: 60, width: 130, margin: 5}}
-                        onChangeItem={(item) => setNewCase({...newCase, "month": item.value})}
+                        onChangeItem={item => setNewCase({...newCase, "month": item.value})}
                     />
-                    <DropDownPicker
+                    <DropDownMedium
                         placeholder="Day"
-                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={createDayOptions()}
                         defaultValue={newCase["day"]}
-                        dropDownMaxHeight={250}
-                        containerStyle={{height: 60, width: 110}}
-                        onChangeItem={(item) => setNewCase({...newCase, "day": item.value})}
+                        onChangeItem={item => setNewCase({...newCase, "day": item.value})}
                     />
                 </View>
             </View>
-            <Button
-                title={"Create New Case"}
-                type="solid" 
-                buttonStyle={{
-                    background: '#1761a0',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360,
-                    marginBottom: 30,
-                }}
-                onPress={createCase}
+            <BigButton
+                buttonText={"Create New Case"}
+                handlePress={createCase}
             /> 
         </View>
     )
@@ -162,10 +149,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 50
     },
     selectionHeader: {
         fontSize: 20,
+        marginBottom: 20,
     },
     selectionContainer: {
         flexDirection: 'column',
@@ -174,24 +161,7 @@ const styles = StyleSheet.create({
         marginTop: 50,
         marginBottom: 220,
     },
-    newCaseButton: {
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     labelHeader: {
         fontSize: 48
     },
-    input: {
-        borderRadius: 10,
-        width: '85%',
-        height: 60,
-        backgroundColor: '#4c96d7',
-        fontSize: 24,
-        paddingLeft: 20,
-        marginTop: 40,
-        color: '#f8f8ff',
-        shadowColor: 'black',
-        shadowOpacity: 0.3,
-        shadowOffset: {width: 2, height: 2}
-    }
 })

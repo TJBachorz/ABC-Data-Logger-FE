@@ -6,12 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e00d5e3c-0da8-4f6f-9664-7f4d05dcdbf6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/AppMainPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/AppMainPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/LoginForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/UserHomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/UserHomePage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +41,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="183" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1610734193091">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="183" y="92" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.877@0.23.1440.877" timestamp="1610734193091" />
     <state x="147" y="145" width="1200" height="597" key="AVDManager" timestamp="1604521074046">
       <screen x="0" y="23" width="1440" height="821" />
     </state>

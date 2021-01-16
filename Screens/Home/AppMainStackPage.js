@@ -1,14 +1,13 @@
 import React from 'react';
-import { createStackNavigator, HeaderBackButton } from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet} from 'react-native';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Fontisto';
 
 import UserHomePage from './UserHomePage';
-import Antecedent from './Antecedent';
-import Behavior from './Behavior';
-import Consequence from './Consequence';
-import IncidentDateTime from './IncidentDateTime';
+import Antecedent from '../Log/Antecedent';
+import Behavior from '../Log/Behavior';
+import Consequence from '../Log/Consequence';
+import IncidentDateTime from '../Log/IncidentDateTime';
+import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
@@ -23,38 +22,18 @@ export default function AppMainStackPage({
 
     return (
         <>
-            <Stack.Navigator 
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#f8f8ff',
-                    },
-                }}>
+            <Stack.Navigator screenOptions={{
+                headerStyle: {backgroundColor: '#f8f8ff'},
+            }}>
                     
-                
                 <Stack.Screen 
                     name="Incident History"
                     options={{
                         headerTitle: "",
                         headerLeft: () => (
-                            <Button
-                                type="clear"
-                                icon={
-                                    <Icon
-                                        name="nav-icon-a"
-                                        size={20}
-                                        color="#1761a0"
-                                    />
-                                }
-                                onPress={() => navigation.openDrawer()}
-                                buttonStyle={{
-                                fontWeight: 'bold',
-                                marginLeft: 20,
-                                fontWeight: 200,
-                                backgroundColor: '#f8f8ff',
-                                }}
-                            />
+                            <NavButton onPress={() => navigation.openDrawer()}/>
                         )
-                    }}>
+                }}>
                     {(props) => <UserHomePage 
                             incidentHistory={incidentHistory}
                             setIncidentHistory={setIncidentHistory}
@@ -65,9 +44,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Antecedent"
-                    options={{
-                        headerTitle: ""
-                    }}>
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Antecedent  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -78,10 +56,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Behavior"
-                    options={{
-                        headerTitle: ""
-                    }}>
-
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Behavior  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -92,10 +68,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Consequence"
-                    options={{
-                        headerTitle: ""
-                    }}>
-
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Consequence  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -106,10 +80,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="IncidentDateTime"
-                    options={{
-                        headerTitle: ""
-                    }}>
-                    
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <IncidentDateTime  
                             caseInfo={caseInfo} 
                             incident={incident}

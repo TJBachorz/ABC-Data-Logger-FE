@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-
-import { MMM, MMMM, currentYear, createMonthOptions } from './Utilities';
-
 import DropDownPicker from 'react-native-dropdown-picker';
 import { VictoryLine, VictoryChart, VictoryTheme, VictoryAxis } from "victory-native";
 import { countBy, uniq } from 'lodash';
+
+import { behaviors } from '../../Components/Options';
+import { DropDownMedium } from '../../Components/DropDown';
+import { 
+    MMM, 
+    MMMM, 
+    currentYear, 
+    createMonthOptions 
+} from '../../Components/DateFunctions';
 import EmptyGraphSplash from './EmptyGraphSplash';
 
-export default function DataChart({ incidentHistory, caseInfo }){
+export default function DataChart({ incidentHistory }){
 
     const [selectedMonth, setSelectedMonth] = useState("")
     const [selectedBehavior, setSelectedBehavior] = useState("")
@@ -76,8 +82,15 @@ export default function DataChart({ incidentHistory, caseInfo }){
             <View style={styles.pageStyle}>
                 {selectedBehavior && selectedMonth && selectedYear ?
                     <View style={styles.container}>
-                        <Text style={styles.chartHeaderText}>Occurrences of "{selectedBehavior}" for the month of {MMMM[selectedMonth]}, {selectedYear}</Text>
-                        <VictoryChart style={styles.graph} domainPadding={{ x: 50 }} width={370} theme={VictoryTheme.material}>
+                        <Text style={styles.chartHeaderText}>
+                            Occurrences of "{selectedBehavior}" for the month of {MMMM[selectedMonth]}, {selectedYear}
+                        </Text>
+                        <VictoryChart 
+                            style={styles.graph} 
+                            domainPadding={{ x: 50 }} 
+                            width={370} 
+                            theme={VictoryTheme.material}
+                        >
                             <VictoryAxis
                                 tickValues={[7, 14, 21, 28]}
                                 tickFormat={[`${monthMMM} 7`, `${monthMMM} 14`, `${monthMMM} 21`, `${monthMMM} 28`]}
@@ -98,66 +111,25 @@ export default function DataChart({ incidentHistory, caseInfo }){
                     : <EmptyGraphSplash/>
                 }
                 <View style={styles.pickerContainers}>
-                    <View style={styles.pickersContainer}>
-                        <DropDownPicker
-                            zIndex={1}
+                    <View style={styles.datePickersContainer}>
+                        <DropDownMedium
                             placeholder="Year"
-                            labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={createNumberList(+currentYear - 30, +currentYear).reverse()}
-                            dropDownMaxHeight={160}
-                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                            containerStyle={{
-                                height: 70, 
-                                width: 120, 
-                                shadowColor: 'black',
-                                shadowOpacity: 0.2,
-                                shadowOffset: {width: 1, height: 1}
-                            }}
-                            onChangeItem={(item) => setSelectedYear(item.value)}
+                            onChangeItem={item => setSelectedYear(item.value)}
                         />
-                        <DropDownPicker
-                            zIndex={1}
+                        <DropDownMedium
                             placeholder="Month"
-                            labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={createMonthOptions()}
-                            dropDownMaxHeight={160}
-                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                            containerStyle={{
-                                height: 70, 
-                                width: 120, 
-                                shadowColor: 'black',
-                                shadowOpacity: 0.2,
-                                shadowOffset: {width: 1, height: 1}
-                            }}
-                            onChangeItem={(item) => setSelectedMonth(item.value)}
+                            onChangeItem={item => setSelectedMonth(item.value)}
                         />
                     </View>
                     <View style={styles.behaviorPicker}>
                         <DropDownPicker
-                            zIndex={4000}
                             placeholder="Select a Behavior"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
-                            items={[
-                                {label: 'Refusal to follow directions', value: 'Refusal to follow directions'},
-                                {label: 'Verbal refusal', value: 'Verbal refusal'},
-                                {label: 'Making verbal threats', value: 'Making verbal threats'},
-                                {label: 'Crying/whining', value: 'Crying/whining'},
-                                {label: 'Screaming/yelling', value: 'Screaming/yelling'},
-                                {label: 'Scratching', value: 'Scratching'},
-                                {label: 'Biting', value: 'Biting'},
-                                {label: 'Kicking', value: 'Kicking'},
-                                {label: 'Spitting', value: 'Spitting'},
-                                {label: 'Flopping', value: 'Flopping'},
-                                {label: 'Running away', value: 'Running away'},
-                                {label: 'Destroying property', value: 'Destroying property'},
-                                {label: 'Flipping furniture', value: 'Flipping furniture'},
-                                {label: 'Hitting self', value: 'Hitting self'},
-                                {label: 'Hitting others (students)', value: 'Hitting others (students)'},
-                                {label: 'Hitting others (adults)', value: 'Hitting others (adults)'},
-                            ]}
+                            items={behaviors}
                             itemStyle={{justifyContent: 'flex-start'}}
-                            dropDownMaxHeight={260}
-                            dropDownStyle={{zIndex: 10500}}
+                            dropDownMaxHeight={220}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
                                 height: 70, 
@@ -166,7 +138,7 @@ export default function DataChart({ incidentHistory, caseInfo }){
                                 shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
                             }}
-                            onChangeItem={(item) => setSelectedBehavior(item.value)}
+                            onChangeItem={item => setSelectedBehavior(item.value)}
                         />
                     </View>
                 </View>
@@ -195,7 +167,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
-    pickersContainer: {
+    datePickersContainer: {
         marginTop: 25,
         flexDirection: 'row',
         justifyContent: 'space-evenly',

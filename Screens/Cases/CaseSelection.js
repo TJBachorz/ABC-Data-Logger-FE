@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
-
-import { baseURL, currentYear } from './Utilities';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DropDownPicker from 'react-native-dropdown-picker';
+
+import { DropDownCases } from '../Components/DropDown';
+import { BigButton } from '../Components/Button';
+import { baseURL, currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({
     account,
     setAccount,
     caseInfo,
     setCaseInfo,
-    isSignedIn,
     setIsSignedIn,
     isNewCase,
     navigation 
@@ -62,11 +60,8 @@ export default function CaseSelection({
 
     const signInUser = () => {
         if (caseInfo.id) {
-            if (!isSignedIn) {
-                setIsSignedIn(!isSignedIn)
-                return;
-            }
-            navigation.navigate('Home')
+            setIsSignedIn(true) 
+            return;            
         }
     }
 
@@ -76,62 +71,26 @@ export default function CaseSelection({
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
                     <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
-                    <DropDownPicker
+                    <DropDownCases
                         placeholder="Select a Case"
-                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={renderCases()}
-                        defaultIndex={0}
-                        itemStyle={{justifyContent: 'flex-start'}}
-                        dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                        containerStyle={{
-                            height: 60, 
-                            width: 200, 
-                            shadowColor: 'black',
-                            shadowOpacity: 0.2,
-                            marginBottom: 100, 
-                            marginTop: 40,
-                            shadowOffset: {width: 1, height: 1}
-                        }}
                         onChangeItem={(item) => setSelectedCase({
                             id: item.value.id, 
                             name: item.value.name,
                             dob: item.value.dob
                         })}
                     />
-                    <Button
-                        title={"Select Case"}
-                        type="solid" 
-                        buttonStyle={{
-                            background: '#1761a0',
-                            borderRadius: 16,
-                            margin: 1,
-                            height: 50,
-                            width: 360,
-                            marginBottom: 30,
-                            shadowColor: 'black',
-                            shadowOpacity: 0.4,
-                            shadowOffset: {width: 2, height: 2}
-                        }}
-                        onPress={() => setIsCaseSelected(true)}
+                    <BigButton
+                        buttonText={"Select Case"}
+                        handlePress={() => setIsCaseSelected(true)}
                     /> 
-                </> : <Text>No cases Associated with this account</Text>
+                </> 
+                : <Text>No cases Associated with this account</Text>
             }
-            <Button
-                title={"Create New Case"}
-                type="solid" 
-                buttonStyle={{
-                    background: '#1761a0',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360,
-                    marginBottom: 30,
-                    shadowColor: 'black',
-                    shadowOpacity: 0.4,
-                    shadowOffset: {width: 2, height: 2}
-                }}
-                onPress={() => navigation.navigate("Create New Case")}
-            />
+            <BigButton
+                buttonText={"Create New Case"}
+                handlePress={() => navigation.navigate('Create New Case')}
+            /> 
         </View>
     )
 }

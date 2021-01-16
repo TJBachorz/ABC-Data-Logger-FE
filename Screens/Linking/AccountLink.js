@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
-
-import { currentYear, baseURL } from './Utilities';
-
-import DropDownPicker from 'react-native-dropdown-picker';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { currentYear, baseURL } from '../Components/DateFunctions';
+import { BigButton } from '../Components/Button';
+import { DropDownCases } from '../Components/DropDown';
+import TextInputField from '../Components/TextInputField';
 
 export default function AccountLink({ account }) {
 
@@ -47,56 +47,32 @@ export default function AccountLink({ account }) {
             <View style={styles.centeredView}>
                 {account.cases !== undefined ?
                     <>
-                        <Text style={styles.selectionText}>Select the case you would like to link:</Text>
-                        <DropDownPicker
+                        <Text style={styles.selectionText}>
+                            Select the case you would like to link:
+                        </Text>
+                        <DropDownCases
                             placeholder="Select a Case"
-                            labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                             items={renderCases()}
-                            defaultIndex={0}
-                            itemStyle={{justifyContent: 'flex-start'}}
-                            dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                            containerStyle={{
-                                height: 60, 
-                                width: 200, 
-                                shadowColor: 'black',
-                                shadowOpacity: 0.2,
-                                marginBottom: 100, 
-                                marginTop: 40,
-                                shadowOffset: {width: 1, height: 1}
-                            }}
-                            onChangeItem={(item) => setLinkInfo({
+                            onChangeItem={item => setLinkInfo({
                                 ...linkInfo, case_id: item.value.id,
                             })}
                         />
-                    </> : <Text>Add a case to your account in order to link it to others</Text>  
+                        
+                    </> 
+                    : <Text>Add a case to your account in order to link it to others</Text>  
                 }
                 <Text style={styles.selectionText}>Enter the email of the account you would like to link:</Text>
-                <TextInput 
-                    style={styles.input}
-                    autoCapitalize="none"
+                <TextInputField
                     placeholder="Email"
-                    placeholderTextColor="#f8f8ff"
                     onChangeText={text => setLinkInfo({
                         ...linkInfo, email: text,
                     })}
-                /> 
+                />
             </View>
-            <View style={styles.submitButton}>
-                <Button
-                    title={"Link Accounts"}
-                    type="solid" 
-                    buttonStyle={{
-                        background: '#1761a0',
-                        borderRadius: 16,
-                        margin: 1,
-                        height: 50,
-                        width: 360,
-                        marginBottom: 30,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 2, height: 2}
-                    }}
-                    onPress={linkAccounts}
+            <View style={styles.submitButtonView}>
+                <BigButton
+                    buttonText={"Create New Case"}
+                    handlePress={linkAccounts}
                 />
             </View>
         </>
@@ -122,20 +98,7 @@ export default function AccountLink({ account }) {
             fontSize: 14,
             fontWeight: '600'
         },
-        input: {
-            borderRadius: 10,
-            width: '85%',
-            height: 60,
-            backgroundColor: '#4c96d7',
-            fontSize: 24,
-            paddingLeft: 20,
-            marginTop: 40,
-            color: '#f8f8ff',
-            shadowColor: 'black',
-            shadowOpacity: 0.3,
-            shadowOffset: {width: 2, height: 2}
-        },
-        submitButton: {
+        submitButtonView: {
             justifyContent: 'center',
             alignItems: 'center',
             paddingBottom: 30

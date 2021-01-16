@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Button } from 'react-native-elements';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { baseURL } from './Utilities';
-import IncidentHeaders from './IncidentHeaders';
+import { BigButton } from '../Components/Button';
+import { baseURL } from '../Components/DateFunctions';
+import IncidentHeaders from '../Components/IncidentHeaders';
 
 export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {
 
@@ -45,20 +44,10 @@ export default function UserHomePage({ incidentHistory, setIncidentHistory, navi
                 {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
             </ScrollView>
             <View style={styles.incidentButton}>
-                <Button
-                    title={"Log New Incident"}
-                    type="solid" 
-                    buttonStyle={{
-                        background: '#1761a0',
-                        borderRadius: 16,
-                        marginBottom: 35,
-                        height: 50,
-                        width: 360,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 2, height: 2},
-                    }}
-                    onPress={ () => navigation.navigate('Antecedent')} 
+                <BigButton
+                    style={styles.incidentButton}
+                    buttonText={"Log New Incident"}
+                    handlePress={() => navigation.navigate('Antecedent')}
                 />
             </View>
         </>
@@ -74,7 +63,6 @@ const styles = StyleSheet.create({
     caseHeader: {
         fontSize: 20,
         fontWeight: '500',
-
         color: '#1761a0',
     },
     incidentHistoryHeaderView: {
@@ -98,5 +86,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 20,
         marginTop: 20
-    }
+    },
+    incidentButton: {marginBottom: 40}
 })
