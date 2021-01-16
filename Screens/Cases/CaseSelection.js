@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
-import BigButton from './Components/BigButton';
-
-import { baseURL, currentYear } from './Components/DateFunctions';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import DropDownPicker from 'react-native-dropdown-picker';
+
+import { DropDownCases } from '../Components/DropDown';
+import BigButton from '../Components/BigButton';
+import { baseURL, currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({
     account,
@@ -73,22 +71,9 @@ export default function CaseSelection({
                 <>
                     <Text style={styles.selectionText}>Please Select a Case:</Text>
                     <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
-                    <DropDownPicker
+                    <DropDownCases
                         placeholder="Select a Case"
-                        labelStyle={{fontSize: 16, color: 'black', padding: 10}}
                         items={renderCases()}
-                        defaultIndex={0}
-                        itemStyle={{justifyContent: 'flex-start'}}
-                        dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                        containerStyle={{
-                            height: 60, 
-                            width: 200, 
-                            shadowColor: 'black',
-                            shadowOpacity: 0.2,
-                            marginBottom: 100, 
-                            marginTop: 40,
-                            shadowOffset: {width: 1, height: 1}
-                        }}
                         onChangeItem={(item) => setSelectedCase({
                             id: item.value.id, 
                             name: item.value.name,

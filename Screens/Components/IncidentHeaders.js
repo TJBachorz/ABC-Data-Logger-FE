@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
 import { uniq } from 'lodash';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import { MMMM } from './DateFunctions';
-import Incident from '../Incident';
+import Incident from '../Home/Components/Incident';
 
 export default function IncidentHeaders({ history }) {
 

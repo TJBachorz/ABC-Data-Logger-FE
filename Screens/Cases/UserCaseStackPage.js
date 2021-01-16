@@ -1,15 +1,14 @@
 import React from 'react'
-import CaseSelection from '../CaseSelection';
-import CreateNewCase from '../CreateNewCase';
-
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Fontisto';
 
+import CaseSelection from './CaseSelection';
+import CreateNewCase from './CreateNewCase';
+
 const Stack = createStackNavigator();
 
 export default function UserCaseStackPage({ 
-    isSignedIn,
     setIsSignedIn,
     navigation, 
     account, 
@@ -21,12 +20,9 @@ export default function UserCaseStackPage({
 }) {
 
     return (
-        <Stack.Navigator 
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#f8f8ff',
-                    },
-                }}>
+        <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: '#f8f8ff'},
+        }}>
 
             <Stack.Screen 
                 name="Case Selection Main"
@@ -54,16 +50,15 @@ export default function UserCaseStackPage({
                 }}>
                     
                 {(props) => <CaseSelection
-                        isNewCase={isNewCase}
-                        setIsSignedIn={setIsSignedIn}
-                        account={account}
-                        setAccount={setAccount}
-                        caseInfo={caseInfo}
-                        setCaseInfo={setCaseInfo} 
-                        navigation={navigation}
-                        {...props}
-                    />
-                }
+                    isNewCase={isNewCase}
+                    setIsSignedIn={setIsSignedIn}
+                    account={account}
+                    setAccount={setAccount}
+                    caseInfo={caseInfo}
+                    setCaseInfo={setCaseInfo} 
+                    navigation={navigation}
+                    {...props}
+                />}
             </Stack.Screen>
             <Stack.Screen 
                 name="Create New Case"

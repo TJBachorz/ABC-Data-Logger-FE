@@ -1,32 +1,32 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native';
-import BigButton from './Components/BigButton';
-import { DropDownBig } from './Components/DropDown';
-import { consequences } from './Components/Options';
+import BigButton from '../Components/BigButton';
+import { DropDownBig } from '../Components/DropDown';
+import { behaviors } from '../Components/Options';
 
-export default function Consequence({ navigation, incident, setIncident }) {
+export default function Behavior({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
-        incident["consequence"] ? 
-            navigation.navigate('IncidentDateTime')        
-            : alert ("Select a Consequence")
+        incident["behavior"] ? 
+            navigation.navigate("Consequence")
+            : alert ("Select a Behavior")
     }
 
     return (
         <>
             <View style={styles.headerContainer}>
-                <Text style={styles.labelHeader}>C: Consequence</Text>
+                <Text style={styles.labelHeader}>B: Behavior</Text>
             </View>
             <View style={styles.selectionContainer}>
                 <DropDownBig
-                    placeholder={"Select a Consequence"}
-                    items={consequences}
-                    onChangeItem={item => setIncident({...incident, "consequence": item.value})}
+                    placeholder={"Select a Behavior"}
+                    items={behaviors}
+                    onChangeItem={item => setIncident({...incident, "behavior": item.value})}
                 />
             </View>
             <View style={styles.incidentButton}>
                 <BigButton
-                    buttonText={"Submit Consequence"}
+                    buttonText={"Submit Behavior"}
                     handlePress={navigateToNextPage}
                 />
             </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     incidentButton: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 40,
+        marginBottom: 40
     },
     labelHeader: {
         fontSize: 48

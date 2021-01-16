@@ -11,10 +11,11 @@ export default function EmptyGraphSplash() {
         <View style={styles.splashContainer}>
             <Image 
                 style={styles.image} 
-                source={require('../assets/graph-splash.png')}
-                zIndex={1000}
+                source={require('../../../assets/graph-splash.png')}
             />
-            <Text style={styles.splashText}>Select from the dropdown menus to generate a graph showing the frequency of behavior.</Text>
+            <Text style={styles.splashText}>
+                Select from the dropdown menus to generate a graph showing the frequency of behavior.
+            </Text>
         </View>
     )
 }

@@ -1,11 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
-
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 export default function DrawerContent({ 
     setCaseInfo,
@@ -22,13 +20,17 @@ export default function DrawerContent({
         navigation.navigate("Home")
     }
 
+    const CustomIcon = ({ name, color="#f8f8ff" }) => {
+        return <Icon name={name} size={25} color={color}/>
+    }
+
     return (
         <View style={{flex: 1}}>
             <DrawerContentScrollView>
                 <View>
                     <Image 
                         style={styles.image} 
-                        source={require('../assets/abc_logo_white.png')}
+                        source={require('../../../assets/abc_logo_white.png')}
                     />
                 </View>
                 <Drawer.Section style={styles.drawerSection}>
@@ -37,11 +39,7 @@ export default function DrawerContent({
                         style={styles.drawerItemHome}
                         labelStyle={styles.itemLabel}
                         icon={() => (
-                            <Icon
-                                name="home"
-                                size={25}
-                                color="#f8f8ff"
-                            />
+                            <CustomIcon name="home"/>
                         )}
                         onPress={() => navigation.navigate("Home")} 
                     />
@@ -49,35 +47,22 @@ export default function DrawerContent({
                         label="Cases" 
                         labelStyle={styles.itemLabel}
                         icon={() => (
-                            <Icon
-                                name="folder-account"
-                                size={25}
-                                color="#f8f8ff"
-                            />
+                            <CustomIcon name="folder-account"/>
+
                         )}
                         onPress={() => navigation.navigate("Cases")} 
                     />
                     <DrawerItem 
                         label="Data" 
                         labelStyle={styles.itemLabel}
-                        icon={() => (
-                            <Icon
-                                name="chart-bar"
-                                size={25}
-                                color="#f8f8ff"
-                            />
-                        )}
+                        icon={() => ( <CustomIcon name="chart-bar"/>)}
                         onPress={() => navigation.navigate("Data")} 
                     />
                     <DrawerItem 
                         label="Link Accounts" 
                         labelStyle={styles.itemLabel}
                         icon={() => (
-                            <Icon
-                                name="link-variant"
-                                size={25}
-                                color="#f8f8ff"
-                            />
+                            <CustomIcon name="link-variant"/>
                         )}
                         onPress={() => navigation.navigate("Link Accounts")} 
                     />
@@ -85,11 +70,7 @@ export default function DrawerContent({
                         label="Settings" 
                         labelStyle={styles.itemLabel}
                         icon={() => (
-                            <Icon
-                                name="settings"
-                                size={25}
-                                color="#f8f8ff"
-                            />
+                            <CustomIcon name="settings"/>
                         )}
                         onPress={() => {}} 
                     />
@@ -98,11 +79,7 @@ export default function DrawerContent({
                         labelStyle={styles.logoutLabel} 
                         style={styles.logoutField}
                         icon={() => (
-                            <Icon
-                                name="logout"
-                                size={25}
-                                color="#f8f8ff"
-                            />
+                            <CustomIcon name="logout"/>
                         )}
                         onPress={logout} 
                     />

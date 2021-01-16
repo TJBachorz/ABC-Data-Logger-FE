@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
-import BigButton from './Components/BigButton';
-import { DropDownBig } from './Components/DropDown';
-import { antecedents } from './Components/Options';
+import BigButton from '../Components/BigButton';
+import { DropDownBig } from '../Components/DropDown';
+import { antecedents } from '../Components/Options';
 
-import { currentDate, currentYear } from './Components/DateFunctions';
+import { currentDate, currentYear } from '../Components/DateFunctions';
 
 const defaultDay = () => {
     const currentDay = currentDate.getDate()

@@ -4,11 +4,11 @@ import { StyleSheet} from 'react-native';
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Fontisto';
 
-import UserHomePage from '../UserHomePage';
-import Antecedent from '../Antecedent';
-import Behavior from '../Behavior';
-import Consequence from '../Consequence';
-import IncidentDateTime from '../IncidentDateTime';
+import UserHomePage from './UserHomePage';
+import Antecedent from '../Log/Antecedent';
+import Behavior from '../Log/Behavior';
+import Consequence from '../Log/Consequence';
+import IncidentDateTime from '../Log/IncidentDateTime';
 
 const Stack = createStackNavigator();
 
@@ -23,14 +23,10 @@ export default function AppMainStackPage({
 
     return (
         <>
-            <Stack.Navigator 
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#f8f8ff',
-                    },
-                }}>
+            <Stack.Navigator screenOptions={{
+                headerStyle: {backgroundColor: '#f8f8ff'},
+            }}>
                     
-                
                 <Stack.Screen 
                     name="Incident History"
                     options={{
@@ -65,9 +61,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Antecedent"
-                    options={{
-                        headerTitle: ""
-                    }}>
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Antecedent  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -78,10 +73,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Behavior"
-                    options={{
-                        headerTitle: ""
-                    }}>
-
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Behavior  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -92,10 +85,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="Consequence"
-                    options={{
-                        headerTitle: ""
-                    }}>
-
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <Consequence  
                             caseInfo={caseInfo} 
                             incident={incident}
@@ -106,10 +97,8 @@ export default function AppMainStackPage({
                 </Stack.Screen>
 
                 <Stack.Screen name="IncidentDateTime"
-                    options={{
-                        headerTitle: ""
-                    }}>
-                    
+                    options={{ headerTitle: "" }}
+                >
                     {(props) => <IncidentDateTime  
                             caseInfo={caseInfo} 
                             incident={incident}

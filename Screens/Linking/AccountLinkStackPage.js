@@ -1,5 +1,5 @@
 import React from 'react'
-import AccountLink from '../AccountLink';
+import AccountLink from './AccountLink';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
@@ -9,11 +9,9 @@ const Stack = createStackNavigator();
 
 export default function AccountLinkStackPage({ navigation, account }) {
     return (
-        <Stack.Navigator 
-            screenOptions={{
-                headerStyle: { backgroundColor: '#f8f8ff',},
-            }}
-        >
+        <Stack.Navigator screenOptions={{
+            headerStyle: { backgroundColor: '#f8f8ff'},
+        }}>
 
             <Stack.Screen 
                 name="Link Accounts"

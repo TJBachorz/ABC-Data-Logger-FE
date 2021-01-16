@@ -1,5 +1,5 @@
 import React from 'react'
-import DataChart from '../DataChart';
+import DataChart from '../Data/Components/DataChart';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
@@ -7,14 +7,13 @@ import Icon from 'react-native-vector-icons/Fontisto';
 
 const Stack = createStackNavigator();
 
-export default function DataChartStackPage({ navigation, caseInfo, incidentHistory }) {
+export default function DataStackPage({ navigation, caseInfo, incidentHistory }) {
     return (
         <Stack.Navigator 
-                screenOptions={{
-                    headerStyle: {
-                        backgroundColor: '#f8f8ff',
-                    },
-                }}>
+            screenOptions={{
+                headerStyle: { backgroundColor: '#f8f8ff'},
+            }}
+        >
 
             <Stack.Screen 
                 name="Data"
@@ -42,11 +41,10 @@ export default function DataChartStackPage({ navigation, caseInfo, incidentHisto
                 }}>
 
                 {(props) => <DataChart 
-                        incidentHistory={incidentHistory}
-                        caseInfo={caseInfo} 
-                        {...props}
-                    />
-                }
+                    incidentHistory={incidentHistory}
+                    caseInfo={caseInfo} 
+                    {...props}
+                />}
             </Stack.Screen>
         </Stack.Navigator> 
     )

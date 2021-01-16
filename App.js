@@ -1,45 +1,30 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import LoginForm from './Components/LoginForm';
-import RegisterForm from './Components/RegisterForm';
-import UserPortalButtons from './Components/Components/UserPortalButtons';
-import CreateNewCase from './Components/CreateNewCase';
-import CaseSelection from './Components/CaseSelection';
-
-import DrawerContent from './Components/DrawerContent';
-import AccountLinkStackPage from './Components/StackPages/AccountLinkStackPage';
-import AppMainStackPage from './Components/StackPages/AppMainStackPage';
-import DataChartStackPage from './Components/StackPages/DataChartStackPage';
-import UserCaseStackPage from './Components/StackPages/UserCaseStackPage';
+import LoginForm from './Screens/Home/LoginForm';
+import RegisterForm from './Screens/Home/RegisterForm';
+import CreateNewCase from './Screens/Cases/CreateNewCase';
+import CaseSelection from './Screens/Cases/CaseSelection';
+import HomeLogin from './Screens/Home/Components/HomeLogin';
+import DrawerContent from './Screens/Home/Components/DrawerContent';
+import AccountLinkStackPage from './Screens/Linking/AccountLinkStackPage';
+import AppMainStackPage from './Screens/Home/AppMainStackPage';
+import DataChartStackPage from './Screens/Data/DataChartStackPage';
+import UserCaseStackPage from './Screens/Cases/UserCaseStackPage';
 
 // import Reducers from './components/Store/Reducers';
 // import { createStore } from 'redux';
 // import { Provider, useSelector } from 'react-redux';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View, Image } from 'react-native';
-import { Button } from 'react-native-elements';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
-
-function HomeLogin({ navigation }) {
-  return (
-    <>
-      <View style={styles.container}>
-        <Image 
-          style={styles.image} 
-          source={require('./assets/abc_logo_update.png')}
-          />
-      </View>
-      <UserPortalButtons navigation={navigation}/>
-    </>
-  )
-}
 
 export default function App() {
 
@@ -99,12 +84,7 @@ export default function App() {
                       />
                     }
                     onPress={() => navigation.openDrawer()}
-                    buttonStyle={{
-                    fontWeight: 'bold',
-                    marginLeft: 20,
-                    fontWeight: 200,
-                    backgroundColor: '#f8f8ff',
-                    }}
+                    buttonStyle={styles.buttonStyle}
                   />
                 )
             }}>
@@ -129,12 +109,7 @@ export default function App() {
                       />
                     }
                     onPress={() => navigation.openDrawer()}
-                    buttonStyle={{
-                    fontWeight: 'bold',
-                    marginLeft: 20,
-                    fontWeight: 200,
-                    backgroundColor: '#f8f8ff',
-                    }}
+                    buttonStyle={styles.buttonStyle}
                   />
                 )
             }}>
@@ -165,12 +140,7 @@ export default function App() {
                       />
                     }
                       onPress={() => navigation.openDrawer()}
-                      buttonStyle={{
-                        fontWeight: 'bold',
-                        marginLeft: 20,
-                        fontWeight: 200,
-                        backgroundColor: '#f8f8ff',
-                      }}
+                      buttonStyle={styles.buttonStyle}
                   />
                 )
             }}>
@@ -227,14 +197,10 @@ const styles = StyleSheet.create({
   headerImage: {
     bottom: '90%'
   },
-  container: {
-    flex: 1,
+  buttonStyle: {
+    fontWeight: 'bold',
+    marginLeft: 20,
+    fontWeight: '200',
     backgroundColor: '#f8f8ff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    height: 250,
-    width: 250,
-  },
+  }
 });

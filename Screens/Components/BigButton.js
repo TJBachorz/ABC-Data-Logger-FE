@@ -1,26 +1,28 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-export default function BigButton({ buttonText, handlePress, invert=false }) {
+export default function BigButton({ buttonText, handlePress, invert=false }) { 
 
-    const renderButton = () => {
-        return (
-            <TouchableOpacity 
-                invert
-                style={!invert ? styles.button : {...styles.button, backgroundColor: '#f8f8ff'}}
-                onPress={handlePress}
-            >
-                <Text style={!invert ? styles.text : {...styles.text, color: '#4c96d7'}}>
-                    {buttonText}
-                </Text>
-            </TouchableOpacity>
-        )
+    const checkInvertButton = () => {
+        return !invert ? 
+            styles.button 
+            : {...styles.button, backgroundColor: '#f8f8ff'}
+    }
+
+    const checkInvertText = () => {
+        return !invert ? styles.text : {...styles.text, color: '#4c96d7'}
     }
 
     return (
-        <>
-            {renderButton()}
-        </>
+        <TouchableOpacity 
+            invert
+            style={checkInvertButton()}
+            onPress={handlePress}
+        >
+            <Text style={checkInvertText()}>
+                {buttonText}
+            </Text>
+        </TouchableOpacity>
     )
 }
 

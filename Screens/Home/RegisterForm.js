@@ -1,10 +1,10 @@
 import React from 'react';
-import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
-import BigButton from './Components/BigButton';
-
-import { baseURL, authorizeUser } from './Components/DateFunctions';
-
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { Formik } from 'formik';
+
+import BigButton from '../Components/BigButton';
+import TextInputField from '../Components/TextInputField';
+import { baseURL, authorizeUser } from '../Components/DateFunctions';
 
 export default function RegisterForm({ navigation }) {
 
@@ -70,7 +70,7 @@ export default function RegisterForm({ navigation }) {
         <View style={styles.container}>
             <Image 
                 style={styles.image} 
-                source={require('../assets/abc_logo_white.png')}
+                source={require('../../assets/abc_logo_white.png')}
             />
             <Formik
                 initialValues={{ email: '', password: '' }}
@@ -89,42 +89,34 @@ export default function RegisterForm({ navigation }) {
                 }}
             >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
-                    <>
-                        <TextInput 
-                            style={styles.input}
+                    <>  
+                        <TextInputField
+                            placeholder="Username"
                             autoCapitalize="none"
                             onChangeText={handleChange('username')}
                             onBlur={handleBlur('username')}
                             value={values.username}
-                            placeholder="Username"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            style={styles.input}
+                        <TextInputField
+                            placeholder="Email"
                             autoCapitalize="none"
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
-                            placeholder="Email"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            secureTextEntry={true} 
-                            style={styles.input}
+                        <TextInputField
+                            placeholder="Password"
+                            autoCapitalize="none"
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
-                            placeholder="Password"
-                            placeholderTextColor="#f8f8ff"
                         />
-                        <TextInput 
-                            secureTextEntry={true} 
-                            style={styles.input}
-                            onChangeText={handleChange('password2')}
-                            onBlur={handleBlur('password2')}
-                            value={values.password2}
+                        <TextInputField
                             placeholder="Re-type Password"
-                            placeholderTextColor="#f8f8ff"
+                            autoCapitalize="none"
+                            onChangeText={handleChange('password')}
+                            onBlur={handleBlur('password')}
+                            value={values.password}
                         />
                         <BigButton
                             invert={true}
@@ -162,18 +154,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#1761a0',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    input: {
-        borderRadius: 10,
-        width: '85%',
-        height: 60,
-        backgroundColor: '#4c96d7',
-        fontSize: 24,
-        paddingLeft: 20,
-        marginBottom: 20,
-        color: '#f8f8ff',
-        shadowColor: 'black',
-        shadowOpacity: 0.3,
-        shadowOffset: {width: 2, height: 2}
     },
 });
