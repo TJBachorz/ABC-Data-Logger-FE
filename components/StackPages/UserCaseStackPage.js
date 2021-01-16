@@ -44,10 +44,10 @@ export default function UserCaseStackPage({
                             }
                             onPress={() => navigation.openDrawer()}
                             buttonStyle={{
-                            fontWeight: 'bold',
-                            marginLeft: 20,
-                            fontWeight: 200,
-                            backgroundColor: '#f8f8ff',
+                                fontWeight: 'bold',
+                                marginLeft: 20,
+                                fontWeight: 200,
+                                backgroundColor: '#f8f8ff',
                             }}  
                         />
                     )
@@ -55,7 +55,6 @@ export default function UserCaseStackPage({
                     
                 {(props) => <CaseSelection
                         isNewCase={isNewCase}
-                        isSignedIn={isSignedIn}
                         setIsSignedIn={setIsSignedIn}
                         account={account}
                         setAccount={setAccount}
@@ -82,21 +81,21 @@ export default function UserCaseStackPage({
                             }
                             onPress={() => navigation.openDrawer()}
                             buttonStyle={{
-                            fontWeight: 'bold',
-                            marginLeft: 20,
-                            fontWeight: 200,
-                            backgroundColor: '#f8f8ff',
+                                fontWeight: 'bold',
+                                marginLeft: 20,
+                                fontWeight: 200,
+                                backgroundColor: '#f8f8ff',
                             }}  
                         />
                     )
                 }}>
                     
                 {(props) => <CreateNewCase 
-                        isNewCase={isNewCase}
-                        setIsNewCase={setIsNewCase}
-                        navigation={navigation}
-                        {...props}
-                    />
+                    isNewCase={isNewCase}
+                    setIsNewCase={setIsNewCase}
+                    navigation={navigation}
+                    {...props}
+                />
                 }
             </Stack.Screen>
         </Stack.Navigator> 

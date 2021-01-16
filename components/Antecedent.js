@@ -47,19 +47,19 @@ const defaultHours = () => {
 export default function Antecedent({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
-        if (incident["antecedent"]) {
-            navigation.navigate("Behavior")
-        } else {
-            alert ("Select an Antecedent")
-        }
+        incident["antecedent"] ? 
+            navigation.navigate("Behavior") 
+            : alert ("Select an Antecedent")
     }
 
     useEffect(() => {
-        setIncident({"year": `${currentYear}`,
-        "month": `${defaultMonth()}`,
-        "hour": `${defaultHours()}`,
-        "minute": `${defaultMinutes()}`,
-        "day": `${defaultDay()}`})
+        setIncident({
+            "year": `${currentYear}`,
+            "month": `${defaultMonth()}`,
+            "hour": `${defaultHours()}`,
+            "minute": `${defaultMinutes()}`,
+            "day": `${defaultDay()}`
+        })
     }, [])
 
     return (

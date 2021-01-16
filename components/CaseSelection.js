@@ -13,7 +13,6 @@ export default function CaseSelection({
     setAccount,
     caseInfo,
     setCaseInfo,
-    isSignedIn,
     setIsSignedIn,
     isNewCase,
     navigation 
@@ -63,11 +62,8 @@ export default function CaseSelection({
 
     const signInUser = () => {
         if (caseInfo.id) {
-            if (!isSignedIn) {
-                setIsSignedIn(!isSignedIn)
-                return;
-            }
-            navigation.navigate('Home')
+            setIsSignedIn(true) 
+            return;            
         }
     }
 

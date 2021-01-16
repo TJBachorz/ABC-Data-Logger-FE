@@ -7,11 +7,9 @@ import { consequences } from './Components/Options';
 export default function Consequence({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
-        if (incident["consequence"]) {
+        incident["consequence"] ? 
             navigation.navigate('IncidentDateTime')        
-        } else {
-            alert ("Select a Consequence")
-        }
+            : alert ("Select a Consequence")
     }
 
     return (

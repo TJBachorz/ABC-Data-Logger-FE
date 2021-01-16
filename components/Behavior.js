@@ -7,11 +7,9 @@ import { behaviors } from './Components/Options';
 export default function Behavior({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
-        if (incident["behavior"]) {
+        incident["behavior"] ? 
             navigation.navigate("Consequence")
-        } else {
-            alert ("Select a Behavior")
-        }
+            : alert ("Select a Behavior")
     }
 
     return (

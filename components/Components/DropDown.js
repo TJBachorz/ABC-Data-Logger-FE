@@ -84,14 +84,13 @@ export function DropDownTiny({
 export function DropDownCases({ 
     placeholder, 
     items, 
-    defaultValue, 
     onChangeItem 
 }) {   
     return (
         <DropDownPicker
-            placeholder="Select a Case"
+            placeholder={placeholder}
             labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-            items={renderCases()}
+            items={items}
             defaultIndex={0}
             itemStyle={{justifyContent: 'flex-start'}}
             dropDownStyle={{backgroundColor: '#f8f8ff'}}
@@ -104,11 +103,7 @@ export function DropDownCases({
                 marginTop: 40,
                 shadowOffset: {width: 1, height: 1}
             }}
-            onChangeItem={(item) => setSelectedCase({
-                id: item.value.id, 
-                name: item.value.name,
-                dob: item.value.dob
-            })}
+            onChangeItem={onChangeItem}
         />
     )
 }

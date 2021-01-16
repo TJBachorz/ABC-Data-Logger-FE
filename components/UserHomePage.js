@@ -5,7 +5,7 @@ import BigButton from './Components/BigButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { baseURL } from './Components/DateFunctions';
-import IncidentHeaders from './IncidentHeaders';
+import IncidentHeaders from './Components/IncidentHeaders';
 
 export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {
 
