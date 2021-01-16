@@ -3,7 +3,8 @@ import AccountLink from './AccountLink';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Fontisto';
+import { NavIcon } from '../Components/Icon';
+import { Styles } from '../Components/Styles';
 
 const Stack = createStackNavigator();
 
@@ -20,20 +21,9 @@ export default function AccountLinkStackPage({ navigation, account }) {
                     headerLeft: () => (
                         <Button
                             type="clear"
-                            icon={
-                                <Icon
-                                    name="nav-icon-a"
-                                    size={20}
-                                    color="#1761a0"
-                                />
-                            }
+                            icon={ <NavIcon/> }
                             onPress={() => navigation.openDrawer()}
-                            buttonStyle={{
-                            fontWeight: 'bold',
-                            marginLeft: 20,
-                            fontWeight: 200,
-                            backgroundColor: '#f8f8ff',
-                            }}  
+                            buttonStyle={Styles.navButtonStyle}
                         />
                     )
                 }}>

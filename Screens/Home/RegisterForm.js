@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image } from 'react-native';
 import { Formik } from 'formik';
 
-import BigButton from '../Components/BigButton';
+import { BigButton } from '../Components/Button';
 import TextInputField from '../Components/TextInputField';
 import { baseURL, authorizeUser } from '../Components/DateFunctions';
 import { Styles } from '../Components/Styles';

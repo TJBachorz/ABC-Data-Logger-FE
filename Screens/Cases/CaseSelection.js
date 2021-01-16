@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DropDownCases } from '../Components/DropDown';
-import BigButton from '../Components/BigButton';
+import { BigButton } from '../Components/Button';
 import { baseURL, currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({

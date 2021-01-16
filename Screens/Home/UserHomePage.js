@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import BigButton from '../Components/BigButton';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
 import IncidentHeaders from '../Components/IncidentHeaders';
 

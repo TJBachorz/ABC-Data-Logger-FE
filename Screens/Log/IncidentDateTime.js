@@ -11,9 +11,10 @@ import {
     calcHours,
     createNumberList
 } from '../Components/DateFunctions';
-import BigButton from '../Components/BigButton';
+import { BigButton } from '../Components/Button';
 import { DropDownMedium, DropDownTiny } from '../Components/DropDown';
 import { PickAMPM } from '../Components/Options';
+import { Styles } from '../Components/Styles';
 
 export default function IncidentDateTime({
     navigation, 
@@ -45,7 +46,7 @@ export default function IncidentDateTime({
                     "behavior": `${incident["behavior"]}`,
                     "consequence": `${incident["consequence"]}`,
                     "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
-                    "time": `${calcHours(incident)}:${incident["minute"]}:00`,
+                    "time": `${calcHours(incident, AMPM)}:${incident["minute"]}:00`,
                     "case": `${caseInfo.id}`
                 })
             }).then(response => response.json())
@@ -55,8 +56,8 @@ export default function IncidentDateTime({
 
     return (
         <>
-            <View style={styles.headerContainer}>
-                <Text style={styles.labelHeader}>Date & Time</Text>
+            <View style={Styles.headerContainer}>
+                <Text style={Styles.labelHeader}>Date & Time</Text>
             </View>
             <View style={styles.selectionContainer}>
                 <DropDownMedium
@@ -116,11 +117,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginBottom: 100
     },
-    headerContainer: {
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     selectionContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -133,7 +129,4 @@ const styles = StyleSheet.create({
         marginBottom: 100,
         marginBottom: 40,
     },
-    labelHeader: {
-        fontSize: 48
-    }
 })

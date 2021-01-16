@@ -39,5 +39,11 @@ export const Styles = StyleSheet.create({
     },
     labelHeader: {
         fontSize: 48
+    },
+    navButtonStyle: {
+        fontWeight: 'bold',
+        marginLeft: 20,
+        fontWeight: "200",
+        backgroundColor: '#f8f8ff',
     }
 })

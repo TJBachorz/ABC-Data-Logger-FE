@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import BigButton from '../../Components/BigButton';
+import { BigButton } from '../../Components/Button';
 
 export default function UserPortalButtons({ navigation }) {
 

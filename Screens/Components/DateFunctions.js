@@ -72,7 +72,7 @@ export const createMonthOptions = () => {
     })
 }
 
-export const calcHours = (incident) => {
+export const calcHours = (incident, AMPM) => {
     let incidentCopy = JSON.parse(JSON.stringify(incident))
     if (AMPM === "PM" && incident["hour"] !== "12") {
         incidentCopy["hour"] = +incidentCopy["hour"] + 12
@@ -122,4 +122,27 @@ export const authorizeUser = (data, navigation) => {
             alert("Invalid Email or Password!")
         )
     }
+}
+
+export const defaultDay = () => {
+    const currentDay = currentDate.getDate()
+    return currentDay < 10 ? `0${currentDay}` : `${currentDay}`
+}
+
+export const defaultMinutes = () => {
+    const minutes = currentDate.getMinutes()
+    return minutes < 10 ? `0${minutes}` : `${minutes}`
+}   
+
+export const defaultMonth = () => {
+    const currentMonth = currentDate.getMonth() + 1
+    return currentMonth < 10 ? `0${currentMonth}` : `${currentMonth}`
+}
+
+export const defaultHours = () => {
+    let hours = currentDate.getHours()
+    if (hours > 12) {
+        hours -= 12
+    }
+    return hours < 10 ? `0${hours}` : `${hours}`
 }

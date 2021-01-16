@@ -10,7 +10,7 @@ import {
     currentDate, 
     startingYear 
 } from '../Components/DateFunctions';
-import BigButton from '../Components/BigButton';
+import { BigButton } from '../Components/Button';
 import TextInputField from '../Components/TextInputField';
 
 export default function NewCase({ isNewCase, setIsNewCase, navigation }) {

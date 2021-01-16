@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import BigButton from '../Components/BigButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { currentYear, baseURL } from '../Components/DateFunctions';
-
+import { BigButton } from '../Components/Button';
 import { DropDownCases } from '../Components/DropDown';
 import TextInputField from '../Components/TextInputField';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AccountLink({ account }) {
 

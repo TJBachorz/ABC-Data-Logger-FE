@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+// import { NavIcon } from './Icon';
 
-export default function BigButton({ buttonText, handlePress, invert=false }) { 
+export const BigButton = ({ buttonText, handlePress, invert=false }) => { 
 
     const checkInvertButton = () => {
         return !invert ? 
@@ -25,6 +26,10 @@ export default function BigButton({ buttonText, handlePress, invert=false }) {
         </TouchableOpacity>
     )
 }
+
+// export const NavButton = () => {
+
+// }
 
 const styles = StyleSheet.create({
     button: {

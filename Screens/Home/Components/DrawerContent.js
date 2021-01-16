@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Image } from 'react-native';
 import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'react-native-paper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function DrawerContent({ 
     setCaseInfo,
@@ -20,8 +21,8 @@ export default function DrawerContent({
         navigation.navigate("Home")
     }
 
-    const CustomIcon = ({ name, color="#f8f8ff" }) => {
-        return <Icon name={name} size={25} color={color}/>
+    const CustomIcon = ({ name }) => {
+        return <Icon name={name} size={25} color="#f8f8ff"/>
     }
 
     return (
@@ -44,7 +45,7 @@ export default function DrawerContent({
                     <DrawerItem 
                         label="Cases" 
                         labelStyle={styles.itemLabel}
-                        icon={() => <CustomIcon name="folder-account"/>}
+                        icon={() => <CustomIcon name="folder-account" />}
                         onPress={() => navigation.navigate("Cases")} 
                     />
                     <DrawerItem 

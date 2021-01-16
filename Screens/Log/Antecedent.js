@@ -1,35 +1,17 @@
 import React, { useEffect } from 'react'
 import { View, Text } from 'react-native';
 
-import BigButton from '../Components/BigButton';
+import { BigButton } from '../Components/Button';
 import { DropDownBig } from '../Components/DropDown';
 import { antecedents } from '../Components/Options';
-import { currentDate, currentYear } from '../Components/DateFunctions';
+import { 
+    currentYear,
+    defaultDay,
+    defaultMinutes,
+    defaultHours,
+    defaultMonth
+} from '../Components/DateFunctions';
 import { Styles } from '../Components/Styles';
-
-
-const defaultDay = () => {
-    const currentDay = currentDate.getDate()
-    return currentDay < 10 ? `0${currentDay}` : `${currentDay}`
-}
-
-const defaultMinutes = () => {
-    const minutes = currentDate.getMinutes()
-    return minutes < 10 ? `0${minutes}` : `${minutes}`
-}   
-
-const defaultMonth = () => {
-    const currentMonth = currentDate.getMonth() + 1
-    return currentMonth < 10 ? `0${currentMonth}` : `${currentMonth}`
-}
-
-const defaultHours = () => {
-    let hours = currentDate.getHours()
-    if (hours > 12) {
-        hours = hours - 12
-    }
-    return hours < 10 ? `0${hours}` : `${hours}`
-}
 
 export default function Antecedent({ navigation, incident, setIncident }) {
 
