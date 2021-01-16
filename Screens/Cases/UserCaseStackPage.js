@@ -1,12 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/Fontisto';
 
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
-import { NavIcon } from '../Components/Icon';
-import { Styles } from '../Components/Styles';
+import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
@@ -31,14 +28,9 @@ export default function UserCaseStackPage({
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
-                        <Button
-                            type="clear"
-                            icon={ <NavIcon/> }
-                            onPress={() => navigation.openDrawer()}
-                            buttonStyle={Styles.navButtonStyle}  
-                        />
-                    )
-                }}>
+                        <NavButton onPress={() => navigation.openDrawer()}/>
+                    )                
+            }}>
                     
                 {(props) => <CaseSelection
                     isNewCase={isNewCase}

@@ -1,11 +1,9 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import LoginForm from './Screens/Home/LoginForm';
@@ -18,6 +16,8 @@ import AccountLinkStackPage from './Screens/Linking/AccountLinkStackPage';
 import AppMainStackPage from './Screens/Home/AppMainStackPage';
 import DataChartStackPage from './Screens/Data/DataChartStackPage';
 import UserCaseStackPage from './Screens/Cases/UserCaseStackPage';
+import { NavButton } from './Screens/Components/Button';
+import { Styles } from './Screens/Components/Styles';
 
 // import Reducers from './components/Store/Reducers';
 // import { createStore } from 'redux';
@@ -74,18 +74,7 @@ export default function App() {
               options={{
                 headerTitle: "",
                 headerLeft: () => (
-                  <Button
-                    type="clear"
-                    icon={
-                      <Icon
-                        name="nav-icon-a"
-                        size={20}
-                        color="#1761a0"
-                      />
-                    }
-                    onPress={() => navigation.openDrawer()}
-                    buttonStyle={styles.buttonStyle}
-                  />
+                  <NavButton onPress={() => navigation.openDrawer()}/>
                 )
             }}>
               {(props) => <DataChartStackPage
@@ -99,18 +88,7 @@ export default function App() {
               options={{
                 headerTitle: "",
                 headerLeft: () => (
-                  <Button
-                    type="clear"
-                    icon={
-                      <Icon
-                        name="nav-icon-a"
-                        size={20}
-                        color="#1761a0"
-                      />
-                    }
-                    onPress={() => navigation.openDrawer()}
-                    buttonStyle={styles.buttonStyle}
-                  />
+                  <NavButton onPress={() => navigation.openDrawer()}/>
                 )
             }}>
               {(props) => <UserCaseStackPage
@@ -130,18 +108,7 @@ export default function App() {
               options={{
                 headerTitle: "",
                 headerLeft: () => (
-                  <Button
-                    type="clear"
-                    icon={
-                      <Icon
-                        name="nav-icon-a"
-                        size={20}
-                        color="#1761a0"
-                      />
-                    }
-                      onPress={() => navigation.openDrawer()}
-                      buttonStyle={styles.buttonStyle}
-                  />
+                  <NavButton onPress={() => navigation.openDrawer()}/>
                 )
             }}>
               {(props) => <AccountLinkStackPage

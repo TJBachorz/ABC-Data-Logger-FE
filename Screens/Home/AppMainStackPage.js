@@ -1,15 +1,13 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet} from 'react-native';
-import { Button } from 'react-native-elements';
 
 import UserHomePage from './UserHomePage';
 import Antecedent from '../Log/Antecedent';
 import Behavior from '../Log/Behavior';
 import Consequence from '../Log/Consequence';
 import IncidentDateTime from '../Log/IncidentDateTime';
-import { NavIcon } from '../Components/Icon';
-import { Styles } from '../Components/Styles';
+import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
@@ -33,14 +31,9 @@ export default function AppMainStackPage({
                     options={{
                         headerTitle: "",
                         headerLeft: () => (
-                            <Button
-                                type="clear"
-                                icon={ <NavIcon/> }
-                                onPress={() => navigation.openDrawer()}
-                                buttonStyle={Styles.navButtonStyle}
-                            />
+                            <NavButton onPress={() => navigation.openDrawer()}/>
                         )
-                    }}>
+                }}>
                     {(props) => <UserHomePage 
                             incidentHistory={incidentHistory}
                             setIncidentHistory={setIncidentHistory}

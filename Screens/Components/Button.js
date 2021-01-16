@@ -1,6 +1,9 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-// import { NavIcon } from './Icon';
+import { Button } from 'react-native-elements';
+
+import { NavIcon } from './Icon';
+import { Styles } from './Styles';
 
 export const BigButton = ({ buttonText, handlePress, invert=false }) => { 
 
@@ -27,9 +30,16 @@ export const BigButton = ({ buttonText, handlePress, invert=false }) => {
     )
 }
 
-// export const NavButton = () => {
-
-// }
+export const NavButton = ({ onPress }) => {
+    return (
+        <Button
+            type="clear"
+            icon={ <NavIcon/> }
+            onPress={onPress}
+            buttonStyle={Styles.navButtonStyle}
+        />
+    )
+}
 
 const styles = StyleSheet.create({
     button: {
