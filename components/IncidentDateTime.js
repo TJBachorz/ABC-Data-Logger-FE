@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import BigButton from './Components/BigButton';
+import { DropDownMedium, DropDownTiny } from './Components/DropDown';
+import { PickAMPM } from './Components/Options';
 
 import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from './Components/DateFunctions';
 
@@ -93,114 +95,38 @@ export default function IncidentDateTime({
                 <Text style={styles.labelHeader}>Date & Time</Text>
             </View>
             <View style={styles.selectionContainer}>
-                <DropDownPicker
-                    placeholder="Year"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createNumberList(startingYear, currentYear).reverse()}
+                <DropDownMedium
+                    items={createNumberList(startingYear, currentYear).reverse()}   
                     defaultValue={incident["year"]}
-                    dropDownMaxHeight={172}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 115, 
-                        margin: 2.5, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => setIncident({...incident, "year": item.value})}
+                    onChangeItem={item => setIncident({...incident, "year": item.value})}
                 />
-                <DropDownPicker
-                    placeholder="Month"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createMonthOptions()}
+                <DropDownMedium
+                    items={createMonthOptions()}   
                     defaultValue={incident["month"]}
-                    dropDownMaxHeight={172}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 115,
-                        margin: 2.5, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => setIncident({...incident, "month": item.value})}
+                    onChangeItem={item => setIncident({...incident, "month": item.value})}
                 />
-                <DropDownPicker
-                    placeholder="Day"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={createDayOptions()}
+                <DropDownMedium
+                    items={createDayOptions()}   
                     defaultValue={incident["day"]}
-                    dropDownMaxHeight={172}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 115, 
-                        margin: 2.5, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => setIncident({...incident, "day": item.value})}
+                    onChangeItem={item => setIncident({...incident, "day": item.value})}
                 />
             </View>
             <View style={styles.timeContainer}>
-                <DropDownPicker
-                    placeholder="Hour"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                <DropDownMedium
                     items={createNumberList(1, 12)}
                     defaultValue={incident["hour"]}
-                    dropDownMaxHeight={185}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 110, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => setIncident({...incident, "hour": item.value})}
+                    onChangeItem={item => setIncident({...incident, "hour": item.value})}
                 />
                 <Text style={styles.colon}>:</Text>
-                <DropDownPicker
-                    style={styles.dropDown}
-                    placeholder="Minute"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
+                <DropDownMedium
                     items={createNumberList(0, 59)}
                     defaultValue={incident["minute"]}
-                    dropDownMaxHeight={185}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 130, 
-                        margin: 5,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
                     onChangeItem={item => setIncident({...incident, "minute": item.value})}
                 />
-                <DropDownPicker
-                    placeholder="AM/PM"
-                    labelStyle={{fontSize: 16, color: 'black', padding: 10}}
-                    items={[
-                        {label: "AM", value: "AM"},
-                        {label: "PM", value: "PM"}
-                    ]}
+                <DropDownTiny
+                    items={PickAMPM}                    
                     defaultValue={AMPM}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 80, 
-                        width: 90,
-                        margin: 5, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.2,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => {
-                        setAMPM(item.value)}
-                    }
+                    onChangeItem={(item) => setAMPM(item.value)}
                 />
             </View>
             <View style={styles.incidentButton}>
@@ -245,8 +171,5 @@ const styles = StyleSheet.create({
     },
     labelHeader: {
         fontSize: 48
-    },
-    dropDown: {
-        borderRadius: 8
     }
 })

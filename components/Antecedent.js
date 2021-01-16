@@ -1,7 +1,8 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import BigButton from './Components/BigButton';
-import DropDownPicker from 'react-native-dropdown-picker';
+import { DropDownBig } from './Components/DropDown';
+import { antecedents } from './Components/Options';
 
 import { currentDate, currentYear } from './Components/DateFunctions';
 
@@ -35,7 +36,7 @@ const defaultMonth = () => {
 const defaultHours = () => {
     let hours = currentDate.getHours()
     if (hours > 12) {
-        hours -= 12
+        return hours -= 12
     }
     if (hours < 10) {
         return `0${hours}`
@@ -67,37 +68,10 @@ export default function Antecedent({ navigation, incident, setIncident }) {
                 <Text style={styles.labelHeader}>A: Antecedent</Text>
             </View>
             <View style={styles.selectionContainer}>
-                <DropDownPicker
-                    placeholder="Select an Antecedent"
-                    labelStyle={{fontSize: 24, color: 'black', padding: 10}}
-                    items={[
-                        {label: 'Given direction/task/activity', value: 'Given direction/task/activity'},
-                        {label: 'New task or activity', value: 'New task or activity'},
-                        {label: 'Difficult task or activity', value: 'Difficult task or activity'},
-                        {label: 'Waiting', value: 'Waiting'},
-                        {label: 'Preferred activity interrupted', value: 'Preferred activity interrupted'},
-                        {label: 'Activity/item denied (told no)', value: 'Activity/item denied (told no)'},
-                        {label: 'Loud and noisy environment', value: 'Loud and noisy environment'},
-                        {label: 'Given a correction', value: 'Given a correction'},
-                        {label: 'Transition', value: 'Transition'},
-                        {label: 'Attention given to others', value: 'Attention given to others'},
-                        {label: 'Presence of specific person', value: 'Presence of specific person'},
-                        {label: 'Attention not given when wanted', value: 'Attention not given when wanted'},
-                        {label: 'Alone (no activity)', value: 'Alone (no activity)'},
-                        {label: 'Alone (no attention)', value: 'Alone (no attention)'}
-                    ]}
-                    itemStyle={{justifyContent: 'flex-start'}}
-                    defaultIndex={0}
-                    dropDownMaxHeight={375}
-                    dropDownStyle={{backgroundColor: '#f8f8ff'}}
-                    containerStyle={{
-                        height: 100, 
-                        width: 360, 
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 1, height: 1}
-                    }}
-                    onChangeItem={(item) => setIncident({...incident, "antecedent": item.value})}
+                <DropDownBig
+                    placeholder={"Select an Antecedent"}
+                    items={antecedents}
+                    onChangeItem={item => setIncident({...incident, "antecedent": item.value})}
                 />
             </View>
             <View style={styles.incidentButton}>
