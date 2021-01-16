@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Consequence({ navigation, incident, setIncident }) {
@@ -54,21 +54,9 @@ export default function Consequence({ navigation, incident, setIncident }) {
                 />
             </View>
             <View style={styles.incidentButton}>
-                <Button
-                    title={"Submit Consequence"}
-                    type="solid" 
-                    buttonStyle={{
-                        background: '#1761a0',
-                        borderRadius: 16,
-                        margin: 1,
-                        height: 50,
-                        width: 360,
-                        marginBottom: 30,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 2, height: 2}
-                    }}
-                    onPress={navigateToNextPage} 
+                <BigButton
+                    buttonText={"Submit Consequence"}
+                    handlePress={navigateToNextPage}
                 />
             </View>
         </>
@@ -89,7 +77,8 @@ const styles = StyleSheet.create({
     },
     incidentButton: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginBottom: 40,
     },
     labelHeader: {
         fontSize: 48

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 
-import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from './Utilities';
+import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from './Components/DateFunctions';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -102,7 +102,8 @@ export default function IncidentDateTime({
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
                         height: 80, 
-                        width: 110, 
+                        width: 115, 
+                        margin: 2.5, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -118,8 +119,8 @@ export default function IncidentDateTime({
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
                         height: 80, 
-                        width: 130,
-                        margin: 5, 
+                        width: 115,
+                        margin: 2.5, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -135,7 +136,8 @@ export default function IncidentDateTime({
                     dropDownStyle={{backgroundColor: '#f8f8ff'}}
                     containerStyle={{
                         height: 80, 
-                        width: 110, 
+                        width: 115, 
+                        margin: 2.5, 
                         shadowColor: 'black',
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
@@ -177,7 +179,7 @@ export default function IncidentDateTime({
                         shadowOpacity: 0.2,
                         shadowOffset: {width: 1, height: 1}
                     }}
-                    onChangeItem={(item) => setIncident({...incident, "minute": item.value})}
+                    onChangeItem={item => setIncident({...incident, "minute": item.value})}
                 />
                 <DropDownPicker
                     placeholder="AM/PM"
@@ -202,21 +204,9 @@ export default function IncidentDateTime({
                 />
             </View>
             <View style={styles.incidentButton}>
-                <Button
-                    title={"Submit Incident"}
-                    type="solid" 
-                    buttonStyle={{
-                        background: '#1761a0',
-                        borderRadius: 16,
-                        margin: 1,
-                        height: 50,
-                        width: 360,
-                        marginBottom: 30,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 2, height: 2}
-                    }}
-                    onPress={submitIncident}
+                <BigButton
+                    buttonText={"Submit Incident"}
+                    handlePress={submitIncident}
                 />
             </View>
         </>
@@ -250,7 +240,8 @@ const styles = StyleSheet.create({
     },
     incidentButton: {
         justifyContent: 'center',
-        alignItems: 'center'
+        marginBottom: 100,
+        marginBottom: 40,
     },
     labelHeader: {
         fontSize: 48

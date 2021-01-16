@@ -47,10 +47,10 @@ export default function AppMainStackPage({
                                 }
                                 onPress={() => navigation.openDrawer()}
                                 buttonStyle={{
-                                fontWeight: 'bold',
-                                marginLeft: 20,
-                                fontWeight: 200,
-                                backgroundColor: '#f8f8ff',
+                                    fontWeight: 'bold',
+                                    marginLeft: 20,
+                                    fontWeight: 200,
+                                    backgroundColor: '#f8f8ff',
                                 }}
                             />
                         )

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 
-import { baseURL, monthsWithDays, months } from './Utilities';
+import { baseURL, monthsWithDays, months } from './Components/DateFunctions';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -40,7 +40,6 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
         }
         setIsNewCase(!isNewCase)
         navigation.navigate("Case Selection Main")
-
     }
 
     const linkCaseToAccount = (createdCase, token) => {
@@ -96,7 +95,9 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 
     return (
         <View style={styles.caseCreation}>
-            <Text style={styles.selectionHeader}>Enter a Name and Date of Birth:</Text>
+            <Text style={styles.selectionHeader}>
+                Enter a Name and Date of Birth:
+            </Text>
             <Text>{newCase["name"]}{newCase["year"]}{newCase["month"]}{newCase["day"]}</Text>
             <TextInput 
                 style={styles.input}
@@ -135,18 +136,9 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
                     />
                 </View>
             </View>
-            <Button
-                title={"Create New Case"}
-                type="solid" 
-                buttonStyle={{
-                    background: '#1761a0',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360,
-                    marginBottom: 30,
-                }}
-                onPress={createCase}
+            <BigButton
+                buttonText={"Create New Case"}
+                handlePress={createCase}
             /> 
         </View>
     )

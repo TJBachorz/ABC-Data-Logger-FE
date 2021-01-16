@@ -2,21 +2,21 @@ import 'react-native-gesture-handler';
 import React, { useState } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
-import UserPortalButtons from './components/UserPortalButtons';
-import CreateNewCase from './components/CreateNewCase';
-import CaseSelection from './components/CaseSelection';
+import LoginForm from './Components/LoginForm';
+import RegisterForm from './Components/RegisterForm';
+import UserPortalButtons from './Components/Components/UserPortalButtons';
+import CreateNewCase from './Components/CreateNewCase';
+import CaseSelection from './Components/CaseSelection';
 
-import DrawerContent from './components/DrawerContent';
-import AccountLinkStackPage from './components/StackPages/AccountLinkStackPage';
-import AppMainStackPage from './components/StackPages/AppMainStackPage';
-import DataChartStackPage from './components/StackPages/DataChartStackPage';
-import UserCaseStackPage from './components/StackPages/UserCaseStackPage';
+import DrawerContent from './Components/DrawerContent';
+import AccountLinkStackPage from './Components/StackPages/AccountLinkStackPage';
+import AppMainStackPage from './Components/StackPages/AppMainStackPage';
+import DataChartStackPage from './Components/StackPages/DataChartStackPage';
+import UserCaseStackPage from './Components/StackPages/UserCaseStackPage';
 
-import Reducers from './components/Store/Reducers';
-import { createStore } from 'redux';
-import { Provider, useSelector } from 'react-redux';
+// import Reducers from './components/Store/Reducers';
+// import { createStore } from 'redux';
+// import { Provider, useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
@@ -43,18 +43,18 @@ function HomeLogin({ navigation }) {
 
 export default function App() {
 
-  const store = createStore(Reducers())
-  const isSignedIn = useSelector(state => state.setIsSignedIn)
+  // const store = createStore(Reducers())
+  // const isSignedIn = useSelector(state => state.setIsSignedIn)
 
   const [account, setAccount] = useState({})
-  // const [isSignedIn, setIsSignedIn] = useState(false)
+  const [isSignedIn, setIsSignedIn] = useState(false)
   const [caseInfo, setCaseInfo] = useState({})
   const [incidentHistory, setIncidentHistory] = useState([])
   const [incident, setIncident] = useState({})
   const [isNewCase, setIsNewCase] = useState(false)
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <NavigationContainer>
         <StatusBar style="auto"/>
         { isSignedIn && caseInfo.id ? 
@@ -199,8 +199,7 @@ export default function App() {
                 setIsSignedIn={setIsSignedIn}
                 isNewCase={isNewCase}
                 {...props} 
-                />
-              }
+              />}
             </Stack.Screen>
 
             <Stack.Screen name="Create New Case">
@@ -208,14 +207,13 @@ export default function App() {
                 isNewCase={isNewCase}
                 setIsNewCase={setIsNewCase} 
                 {...props} 
-                />
-              }
+              />}
             </Stack.Screen>
 
           </Stack.Navigator>
         }
       </NavigationContainer>
-    </Provider>
+    // </Provider>
   );
 }
 

@@ -36,7 +36,7 @@ export default function DrawerContent({
                         label="Home" 
                         style={styles.drawerItemHome}
                         labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="home"
                                 size={25}
@@ -48,7 +48,7 @@ export default function DrawerContent({
                     <DrawerItem 
                         label="Cases" 
                         labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="folder-account"
                                 size={25}
@@ -60,7 +60,7 @@ export default function DrawerContent({
                     <DrawerItem 
                         label="Data" 
                         labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="chart-bar"
                                 size={25}
@@ -72,7 +72,7 @@ export default function DrawerContent({
                     <DrawerItem 
                         label="Link Accounts" 
                         labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="link-variant"
                                 size={25}
@@ -84,7 +84,7 @@ export default function DrawerContent({
                     <DrawerItem 
                         label="Settings" 
                         labelStyle={styles.itemLabel}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="settings"
                                 size={25}
@@ -97,7 +97,7 @@ export default function DrawerContent({
                         label="Logout"
                         labelStyle={styles.logoutLabel} 
                         style={styles.logoutField}
-                        icon={({ color, size }) => (
+                        icon={() => (
                             <Icon
                                 name="logout"
                                 size={25}

@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextInput, View, StyleSheet, Text, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 
-import { baseURL, authorizeUser } from './Utilities';
+import { baseURL, authorizeUser } from './Components/DateFunctions';
 
 import { Formik } from 'formik';
 
@@ -126,22 +126,10 @@ export default function RegisterForm({ navigation }) {
                             placeholder="Re-type Password"
                             placeholderTextColor="#f8f8ff"
                         />
-                        <Button 
-                            type="solid" 
-                            title={"CREATE ACCOUNT"} 
-                            titleStyle={{color: "#1761a0"}}
-                            buttonStyle={{
-                                backgroundColor: '#f8f8ff',
-                                borderRadius: 16,
-                                margin: 1,
-                                marginTop: 25,
-                                height: 50,
-                                width: 360,
-                                shadowColor: 'black',
-                                shadowOpacity: 0.4,
-                                shadowOffset: {width: 2, height: 2}
-                            }} 
-                            onPress={handleSubmit}
+                        <BigButton
+                            invert={true}
+                            buttonText={"CREATE ACCOUNT"}
+                            handlePress={handleSubmit}
                         />
                     </>
                 )}

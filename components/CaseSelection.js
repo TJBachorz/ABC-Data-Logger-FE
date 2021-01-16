@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 
-import { baseURL, currentYear } from './Utilities';
+import { baseURL, currentYear } from './Components/DateFunctions';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropDownPicker from 'react-native-dropdown-picker';
@@ -98,40 +99,17 @@ export default function CaseSelection({
                             dob: item.value.dob
                         })}
                     />
-                    <Button
-                        title={"Select Case"}
-                        type="solid" 
-                        buttonStyle={{
-                            background: '#1761a0',
-                            borderRadius: 16,
-                            margin: 1,
-                            height: 50,
-                            width: 360,
-                            marginBottom: 30,
-                            shadowColor: 'black',
-                            shadowOpacity: 0.4,
-                            shadowOffset: {width: 2, height: 2}
-                        }}
-                        onPress={() => setIsCaseSelected(true)}
+                    <BigButton
+                        buttonText={"Select Case"}
+                        handlePress={() => setIsCaseSelected(true)}
                     /> 
-                </> : <Text>No cases Associated with this account</Text>
+                </> 
+                : <Text>No cases Associated with this account</Text>
             }
-            <Button
-                title={"Create New Case"}
-                type="solid" 
-                buttonStyle={{
-                    background: '#1761a0',
-                    borderRadius: 16,
-                    margin: 1,
-                    height: 50,
-                    width: 360,
-                    marginBottom: 30,
-                    shadowColor: 'black',
-                    shadowOpacity: 0.4,
-                    shadowOffset: {width: 2, height: 2}
-                }}
-                onPress={() => navigation.navigate("Create New Case")}
-            />
+            <BigButton
+                buttonText={"Create New Case"}
+                handlePress={() => navigation.navigate('Create New Case')}
+            /> 
         </View>
     )
 }

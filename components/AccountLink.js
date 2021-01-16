@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+import BigButton from './Components/BigButton';
 
-import { currentYear, baseURL } from './Utilities';
+import { currentYear, baseURL } from './Components/DateFunctions';
 
 import DropDownPicker from 'react-native-dropdown-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -84,21 +84,9 @@ export default function AccountLink({ account }) {
                 /> 
             </View>
             <View style={styles.submitButton}>
-                <Button
-                    title={"Link Accounts"}
-                    type="solid" 
-                    buttonStyle={{
-                        background: '#1761a0',
-                        borderRadius: 16,
-                        margin: 1,
-                        height: 50,
-                        width: 360,
-                        marginBottom: 30,
-                        shadowColor: 'black',
-                        shadowOpacity: 0.4,
-                        shadowOffset: {width: 2, height: 2}
-                    }}
-                    onPress={linkAccounts}
+                <BigButton
+                    buttonText={"Create New Case"}
+                    handlePress={linkAccounts}
                 />
             </View>
         </>
