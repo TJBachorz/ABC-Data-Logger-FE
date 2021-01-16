@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from '../Components/DateFunctions';
 import BigButton from '../Components/BigButton';
 import { DropDownMedium, DropDownTiny } from '../Components/DropDown';
 import { PickAMPM } from '../Components/Options';
-
-import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from '../Components/DateFunctions';
-
-import DropDownPicker from 'react-native-dropdown-picker';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function IncidentDateTime({
     navigation, 
@@ -58,24 +56,19 @@ export default function IncidentDateTime({
     }
 
     const determineIfLeapYear = (info) => {
-        if (info["month"] === "02" && info["year"] % 4 === 0) {
-            return monthsWithDays[info["month"]] + 1
-        } else {
-            return monthsWithDays[info["month"]]
-        }
+        return info["month"] === "02" && info["year"] % 4 === 0 ?
+            monthsWithDays[info["month"]] + 1
+            : monthsWithDays[info["month"]]
     }
 
     const createDayOptions = () => {
         let info = JSON.parse(JSON.stringify(incident))
-        let daysList = []
-        for (let i = 1; i <= determineIfLeapYear(info); i++) {
-            if (i < 10) {
-                daysList.push({label: `0${i}`,  value: `0${i}`})
-            } else {
-                daysList.push({label: `${i}`, value: `${i}`})
-            }
-        }
-        return daysList
+        const daysInMonth = range(1, +determineIfLeapYear(info))
+        return daysInMonth.map(day => {
+            return day < 10 ? 
+                {label: `0${day}`,  value: `0${day}`}
+                : {label: `${day}`, value: `${day}`}
+        })
     }
 
     function range(start, end) {
