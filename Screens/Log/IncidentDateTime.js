@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import BigButton from '../Components/BigButton';
 import { DropDownMedium, DropDownTiny } from '../Components/DropDown';
 import { PickAMPM } from '../Components/Options';
-import { 
-    baseURL, 
-    monthsWithDays, 
-    startingYear, 
-    currentYear, 
-    createMonthOptions 
-} from '../Components/DateFunctions';
+
+import { baseURL, monthsWithDays, startingYear, currentYear, createMonthOptions } from '../Components/DateFunctions';
+
+import DropDownPicker from 'react-native-dropdown-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function IncidentDateTime({
     navigation, 
@@ -33,8 +29,9 @@ export default function IncidentDateTime({
         let incidentCopy = JSON.parse(JSON.stringify(incident))
         if (AMPM === "PM" && incident["hour"] !== "12") {
             incidentCopy["hour"] = +incidentCopy["hour"] + 12
-        } else if (AMPM === "AM" && incident["hour"] === "12")
+        } else if (AMPM === "AM" && incident["hour"] === "12") {
             incidentCopy["hour"] = "00"
+        }
         return `${incidentCopy["hour"]}`
     }
 
@@ -81,16 +78,19 @@ export default function IncidentDateTime({
         return daysList
     }
 
-    const createNumberList = (startingNumber, endNumber) => {
-        let numberList = []
-        for (let i = startingNumber; i <= endNumber; i++) {
-            if (i < 10) {
-                numberList.push({label: `0${i}`, value: `0${i}`})
-            } else {
-                numberList.push({label: `${i}`, value: `${i}`})
-            }
-        }
-        return numberList
+    function range(start, end) {
+        return Array(end - start + 1)
+            .fill()
+            .map((_, index) => start + index)
+    }
+
+    const createNumberList = (start, end) => {
+        const numberArray = range(start, end)
+        return numberArray.map(i => {
+            return i < 10 ?
+                {label: `0${i}`, value: `0${i}`}
+                : {label: `${i}`, value: `${i}`}
+            })
     }
 
     return (

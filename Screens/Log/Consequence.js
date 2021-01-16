@@ -1,8 +1,10 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
+
 import BigButton from '../Components/BigButton';
 import { DropDownBig } from '../Components/DropDown';
 import { consequences } from '../Components/Options';
+import { Styles } from '../Components/Styles';
 
 export default function Consequence({ navigation, incident, setIncident }) {
 
@@ -14,17 +16,17 @@ export default function Consequence({ navigation, incident, setIncident }) {
 
     return (
         <>
-            <View style={styles.headerContainer}>
-                <Text style={styles.labelHeader}>C: Consequence</Text>
+            <View style={Styles.headerContainer}>
+                <Text style={Styles.labelHeader}>C: Consequence</Text>
             </View>
-            <View style={styles.selectionContainer}>
+            <View style={Styles.selectionContainer}>
                 <DropDownBig
                     placeholder={"Select a Consequence"}
                     items={consequences}
                     onChangeItem={item => setIncident({...incident, "consequence": item.value})}
                 />
             </View>
-            <View style={styles.incidentButton}>
+            <View style={Styles.incidentButton}>
                 <BigButton
                     buttonText={"Submit Consequence"}
                     handlePress={navigateToNextPage}
@@ -33,25 +35,3 @@ export default function Consequence({ navigation, incident, setIncident }) {
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    headerContainer: {
-        marginTop: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    selectionContainer: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginTop: 80,
-    },
-    incidentButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 40,
-    },
-    labelHeader: {
-        fontSize: 48
-    }
-})

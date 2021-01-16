@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Formik } from 'formik';
 
 import BigButton from '../Components/BigButton';
 import TextInputField from '../Components/TextInputField';
 import { baseURL, authorizeUser } from '../Components/DateFunctions';
+import { Styles } from '../Components/Styles';
 
 export default function RegisterForm({ navigation }) {
 
@@ -67,9 +68,9 @@ export default function RegisterForm({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={Styles.formContainer}>
             <Image 
-                style={styles.image} 
+                style={Styles.image} 
                 source={require('../../assets/abc_logo_white.png')}
             />
             <Formik
@@ -105,6 +106,7 @@ export default function RegisterForm({ navigation }) {
                             value={values.email}
                         />
                         <TextInputField
+                            secure={true}
                             placeholder="Password"
                             autoCapitalize="none"
                             onChangeText={handleChange('password')}
@@ -112,11 +114,12 @@ export default function RegisterForm({ navigation }) {
                             value={values.password}
                         />
                         <TextInputField
+                            secure={true}
                             placeholder="Re-type Password"
                             autoCapitalize="none"
-                            onChangeText={handleChange('password')}
-                            onBlur={handleBlur('password')}
-                            value={values.password}
+                            onChangeText={handleChange('password2')}
+                            onBlur={handleBlur('password2')}
+                            value={values.passworŹ}
                         />
                         <BigButton
                             invert={true}
@@ -126,33 +129,10 @@ export default function RegisterForm({ navigation }) {
                     </>
                 )}
             </Formik>
-            <View noBorder style={styles.details}>
-                <Text style={styles.detailText}>Already have an account?</Text>
-                <Text style={styles.detailText} onPress={() => navigation.navigate("Login")}>Log In</Text>
+            <View noBorder style={Styles.details}>
+                <Text style={Styles.detailText}>Already have an account?</Text>
+                <Text style={Styles.detailText} onPress={() => navigation.navigate("Login")}>Log In</Text>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    detailText: {
-        color: '#f8f8ff',
-        margin: 7
-    },
-    details: {
-        marginTop: 35,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    image: {
-        height: 250,
-        width: 250,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#1761a0',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-});

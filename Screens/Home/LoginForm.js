@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Image, Text } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { Formik } from 'formik';
 
 import BigButton from '../Components/BigButton';
 import TextInputField from '../Components/TextInputField';
 import { baseURL, authorizeUser } from '../Components/DateFunctions';
+import { Styles } from '../Components/Styles';
 
 export default function LoginForm({ navigation }) {
 
@@ -24,9 +25,9 @@ export default function LoginForm({ navigation }) {
         }
 
     return (
-        <View style={styles.container}>
+        <View style={Styles.formContainer}>
             <Image 
-                style={styles.image} 
+                style={Styles.image} 
                 source={require('../../assets/abc_logo_white.png')}
             />
             <Formik
@@ -58,36 +59,16 @@ export default function LoginForm({ navigation }) {
                     </>
                 )}
             </Formik>
-            <View noBorder style={styles.details}>
-                <Text style={styles.detailText}>Forgot Password?</Text>
-                <Text style={styles.detailText}>|</Text>
-                <Text style={styles.detailText}
+            <View noBorder style={Styles.details}>
+                <Text style={Styles.detailText}>Forgot Password?</Text>
+                <Text style={Styles.detailText}>|</Text>
+                <Text 
+                    style={Styles.detailText}
                     onPress={() => navigation.navigate('Register')}
-                >Create Account</Text>
+                >
+                    Create Account
+                </Text>
             </View>
         </View>
     )
 }
-
-const styles = StyleSheet.create({
-    detailText: {
-        color: '#f8f8ff',
-        margin: 7
-    },
-    details: {
-        marginTop: 35,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
-    },
-    image: {
-        height: 250,
-        width: 250,
-    },
-    container: {
-        flex: 1,
-        backgroundColor: '#1761a0',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-});

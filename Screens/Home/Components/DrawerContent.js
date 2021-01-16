@@ -33,54 +33,43 @@ export default function DrawerContent({
                         source={require('../../../assets/abc_logo_white.png')}
                     />
                 </View>
-                <Drawer.Section style={styles.drawerSection}>
+                <Drawer.Section style={{marginTop: 15}}>
                     <DrawerItem 
                         label="Home" 
                         style={styles.drawerItemHome}
                         labelStyle={styles.itemLabel}
-                        icon={() => (
-                            <CustomIcon name="home"/>
-                        )}
+                        icon={() => <CustomIcon name="home"/>}
                         onPress={() => navigation.navigate("Home")} 
                     />
                     <DrawerItem 
                         label="Cases" 
                         labelStyle={styles.itemLabel}
-                        icon={() => (
-                            <CustomIcon name="folder-account"/>
-
-                        )}
+                        icon={() => <CustomIcon name="folder-account"/>}
                         onPress={() => navigation.navigate("Cases")} 
                     />
                     <DrawerItem 
                         label="Data" 
                         labelStyle={styles.itemLabel}
-                        icon={() => ( <CustomIcon name="chart-bar"/>)}
+                        icon={() => <CustomIcon name="chart-bar"/>}
                         onPress={() => navigation.navigate("Data")} 
                     />
                     <DrawerItem 
                         label="Link Accounts" 
                         labelStyle={styles.itemLabel}
-                        icon={() => (
-                            <CustomIcon name="link-variant"/>
-                        )}
+                        icon={() => <CustomIcon name="link-variant"/>}
                         onPress={() => navigation.navigate("Link Accounts")} 
                     />
                     <DrawerItem 
                         label="Settings" 
                         labelStyle={styles.itemLabel}
-                        icon={() => (
-                            <CustomIcon name="settings"/>
-                        )}
+                        icon={() => <CustomIcon name="settings"/>}
                         onPress={() => {}} 
                     />
                     <DrawerItem 
                         label="Logout"
                         labelStyle={styles.logoutLabel} 
                         style={styles.logoutField}
-                        icon={() => (
-                            <CustomIcon name="logout"/>
-                        )}
+                        icon={() => <CustomIcon name="logout"/>}
                         onPress={logout} 
                     />
                 </Drawer.Section>
@@ -94,9 +83,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         borderTopColor: "gray",
         paddingTop: 10
-    },
-    drawerSection: {
-        marginTop: 15
     },
     itemLabel: {
         fontSize: 24,
