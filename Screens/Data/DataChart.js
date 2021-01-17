@@ -121,13 +121,11 @@ export default function DataChart({ incidentHistory }){
                     </View>
                     <View style={styles.picker}>
                         <DropDownPicker
-                            zIndex={4000}
                             placeholder="Select a Behavior"
                             labelStyle={{fontSize: 18, color: 'black', padding: 10}}
                             items={behaviors}
                             itemStyle={{justifyContent: 'flex-start'}}
-                            dropDownMaxHeight={260}
-                            dropDownStyle={{zIndex: 10500}}
+                            dropDownMaxHeight={220}
                             dropDownStyle={{backgroundColor: '#f8f8ff'}}
                             containerStyle={{
                                 height: 70, 
@@ -136,7 +134,7 @@ export default function DataChart({ incidentHistory }){
                                 shadowOpacity: 0.2,
                                 shadowOffset: {width: 1, height: 1}
                             }}
-                            onChangeItem={(item) => setSelectedBehavior(item.value)}
+                            onChangeItem={item => setSelectedBehavior(item.value)}
                         />
                     </View>
                 </View>
