@@ -62,7 +62,7 @@ export default function CaseSelection({
     const signInUser = () => {
         if (caseInfo.id) {
             setIsSignedIn(true) 
-            return;            
+            navigation.navigate("Home");            
         }
     }
 
