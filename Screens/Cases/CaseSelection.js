@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DropDownCases } from '../Components/DropDown';
 import { BigButton } from '../Components/Button';
+import { Styles } from '../Components/Styles';
 import { baseURL, currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({
@@ -66,10 +67,10 @@ export default function CaseSelection({
     }
 
     return (
-        <View style={styles.centeredView}>
+        <View style={Styles.pageContainer}>
             {account.cases !== undefined ?
                 <>
-                    <Text style={styles.selectionText}>Please Select a Case:</Text>
+                    <Text style={Styles.promptText}>Please Select a Case:</Text>
                     <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
                     <DropDownCases
                         placeholder="Select a Case"
@@ -101,10 +102,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-    },
-    selectionText: {
-        fontSize: 24,
-        marginBottom: 20
     },
     currentCase: {
         fontSize: 12,

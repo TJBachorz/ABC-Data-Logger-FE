@@ -164,10 +164,4 @@ const styles = StyleSheet.create({
   headerImage: {
     bottom: '90%'
   },
-  buttonStyle: {
-    fontWeight: 'bold',
-    marginLeft: 20,
-    fontWeight: '200',
-    backgroundColor: '#f8f8ff',
-  }
 });

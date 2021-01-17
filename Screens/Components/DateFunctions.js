@@ -4,7 +4,7 @@ export const baseURL = "http://localhost:8000"
 
 export const currentDate = new Date()
 export const currentYear = new Date().getFullYear()
-export const startingYear = new Date().getFullYear() - 10
+export const startingYear = new Date().getFullYear() - 20
 
 export const months = [
     "01", 
@@ -82,7 +82,7 @@ export const calcHours = (incident, AMPM) => {
     return `${incidentCopy["hour"]}`
 }
 
-const range = (start, end) => {
+export const range = (start, end) => {
     return Array(end - start + 1)
         .fill()
         .map((_, index) => start + index)
