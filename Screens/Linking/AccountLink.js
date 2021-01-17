@@ -20,6 +20,14 @@ export default function AccountLink({ account }) {
         })
     }
 
+    const renderAlert = (result) => {
+        if (result.status >= 200 && result.status < 300) {
+            alert ("Account successfully linked!")
+        } else {
+            alert ("An error occurred. Please try again.")
+        }
+    }
+
     const linkAccounts = () => {
         if (linkInfo.case_id && linkInfo.email) {
             AsyncStorage.getItem("token")
@@ -36,9 +44,10 @@ export default function AccountLink({ account }) {
                             email: linkInfo.email
                         })
                     }).then(response => response.json())
+                    .then(renderAlert)
                 })
         } else {
-            console.log("failure")
+            alert ("Please Enter a Valid Email and Select a Case to Link!")
         }
     }
 
@@ -59,9 +68,13 @@ export default function AccountLink({ account }) {
                         />
                         
                     </> 
-                    : <Text>Add a case to your account in order to link it to others</Text>  
+                    : <Text>
+                        Add a case to your account in order to link it to others
+                    </Text>  
                 }
-                <Text style={styles.selectionText}>Enter the email of the account you would like to link:</Text>
+                <Text style={styles.selectionText}>
+                    Enter the email of the account you would like to link:
+                </Text>
                 <TextInputField
                     placeholder="Email"
                     onChangeText={text => setLinkInfo({

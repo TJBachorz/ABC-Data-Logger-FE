@@ -10,7 +10,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
 
     const navigateToNextPage = () => {
         incident["consequence"] ? 
-            navigation.navigate('IncidentDateTime')        
+            navigation.navigate("IncidentDateTime")        
             : alert ("Select a Consequence")
     }
 

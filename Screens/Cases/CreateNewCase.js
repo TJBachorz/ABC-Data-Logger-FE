@@ -4,13 +4,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { DropDownMedium } from '../Components/DropDown';
 import { 
-    baseURL, 
-    monthsWithDays, 
-    months, 
-    currentDate, 
-    startingYear 
+    baseURL,
+    currentYear, 
+    startingYear,
+    createDayOptions,
+    createMonthOptions,
+    createNumberList
 } from '../Components/DateFunctions';
 import { BigButton } from '../Components/Button';
+import { Styles } from '../Components/Styles';
 import TextInputField from '../Components/TextInputField';
 
 export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
@@ -57,48 +59,15 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
         }).then(response => response.json())
     }
 
-    const determineIfLeapYear = (info) => {
-        if (info["month"] === "02" && info["year"] % 4 === 0) {
-            return monthsWithDays[info["month"]] + 1
-        } else {
-            return monthsWithDays[info["month"]]
-        }
-    }
-
-    const createDayOptions = () => {
-        let info = JSON.parse(JSON.stringify(newCase))
-        let daysList = []
-        for (let i = 1; i <= determineIfLeapYear(info); i++) {
-            if (i < 10) {
-                daysList.push({label: `0${i}`,  value: `0${i}`})
-            } else {
-                daysList.push({label: `${i}`, value: `${i}`})
-            }
-        }
-        return daysList
-    }
-
-    const createMonthOptions = () => {
-        return months.map(month => {
-            return {label: `${month}`, value: `${month}`}
-        })
-    }
-
-    const createNumberList = (startingNumber, endNumber) => {
-        let numberList = []
-        for (let i = startingNumber; i <= endNumber; i++) {
-            if (i < 10) {
-                numberList.push({label: `0${i}`, value: `0${i}`})
-            } else {
-                numberList.push({label: `${i}`, value: `${i}`})
-            }
-        }
-        return numberList
+    const generateDays = () => {
+        return (newCase["year"] && newCase ["month"]) ?
+            createDayOptions(newCase)
+            : []
     }
 
     return (
-        <View style={styles.caseCreation}>
-            <Text style={styles.selectionHeader}>
+        <View style={Styles.pageContainer}>
+            <Text style={Styles.promptText}>
                 Enter a Name:
             </Text>
             <TextInputField
@@ -107,26 +76,23 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
                 onChangeText={text => setNewCase({...newCase, "name": text})}
             />
             <View style={styles.selectionContainer}>
-                <Text style={styles.selectionHeader}>
+                <Text style={Styles.promptText}>
                     Enter a Date of Birth:
                 </Text>
                 <View style={styles.datePickers}>
                     <DropDownMedium
                         placeholder="Year"
-                        items={createNumberList(startingYear, currentDate.getFullYear()).reverse()}
-                        defaultValue={newCase["year"]}
+                        items={createNumberList(startingYear, currentYear).reverse()}
                         onChangeItem={item => setNewCase({...newCase, "year": item.value})}
                     />
                     <DropDownMedium
                         placeholder="Month"
                         items={createMonthOptions()}
-                        defaultValue={newCase["month"]}
                         onChangeItem={item => setNewCase({...newCase, "month": item.value})}
                     />
                     <DropDownMedium
                         placeholder="Day"
-                        items={createDayOptions()}
-                        defaultValue={newCase["day"]}
+                        items={generateDays()}
                         onChangeItem={item => setNewCase({...newCase, "day": item.value})}
                     />
                 </View>
@@ -140,19 +106,10 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
 }
 
 const styles = StyleSheet.create({
-    caseCreation:{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
     datePickers: {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    selectionHeader: {
-        fontSize: 20,
-        marginBottom: 20,
     },
     selectionContainer: {
         flexDirection: 'column',
@@ -160,8 +117,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 50,
         marginBottom: 220,
-    },
-    labelHeader: {
-        fontSize: 48
-    },
+    }
 })

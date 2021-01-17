@@ -1,5 +1,5 @@
 import React from 'react'
-import DataChart from '../Data/Components/DataChart';
+import DataChart from './DataChart';
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavButton } from '../Components/Button';
@@ -13,7 +13,6 @@ export default function DataStackPage({ navigation, caseInfo, incidentHistory })
                 headerStyle: { backgroundColor: '#f8f8ff'},
             }}
         >
-
             <Stack.Screen 
                 name="Data"
                 options={{
@@ -22,10 +21,8 @@ export default function DataStackPage({ navigation, caseInfo, incidentHistory })
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )
             }}>
-
                 {(props) => <DataChart 
                     incidentHistory={incidentHistory}
-                    caseInfo={caseInfo} 
                     {...props}
                 />}
             </Stack.Screen>

@@ -45,5 +45,15 @@ export const Styles = StyleSheet.create({
         marginLeft: 20,
         fontWeight: "200",
         backgroundColor: '#f8f8ff',
-    }
+    },
+    promptText: {
+        fontSize: 24,
+        marginBottom: 20
+    },
+    pageContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+    },
 })
