@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import StackNav from './Screens/Navigation/ScreenLogic';
+import StackNav from './Screens/Navigation/StackLogic';
 
 // import Reducers from './components/Store/Reducers';
 // import { createStore } from 'redux';
