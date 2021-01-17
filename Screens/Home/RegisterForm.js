@@ -119,7 +119,7 @@ export default function RegisterForm({ navigation }) {
                             autoCapitalize="none"
                             onChangeText={handleChange('password2')}
                             onBlur={handleBlur('password2')}
-                            value={values.passworŹ}
+                            value={values.password2}
                         />
                         <BigButton
                             invert={true}
