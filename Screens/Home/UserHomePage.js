@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
-import IncidentHeaders from './Components/IncidentHeaders';
+import IncidentHeaders from './Components/NestedIncidentLog';
 import { Styles } from '../Components/Styles';
 
 
@@ -48,9 +48,14 @@ export default function UserHomePage({
                 <Text style={styles.incidentHeader}>Incident History:</Text>
                 <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
             </View>
+
             <ScrollView contentContainerStyle={styles.historyContainer}>
-                {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
+                {incidentHistory.length > 0 ? 
+                    renderIncidents() 
+                    : <Text style={styles.noIncidents}>No Incident History</Text>
+                }
             </ScrollView>
+
             <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Log New Incident"}
