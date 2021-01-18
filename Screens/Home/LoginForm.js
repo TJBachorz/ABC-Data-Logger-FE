@@ -4,25 +4,17 @@ import { Formik } from 'formik';
 
 import { BigButton } from '../Components/Button';
 import TextInputField from '../Components/TextInputField';
-import { baseURL, authorizeUser } from '../Components/DateFunctions';
+import { authorizeUser } from '../Components/DateFunctions';
+import { noAuthFetch } from '../Components/FetchList';
 import { Styles } from '../Components/Styles';
 
 export default function LoginForm({ navigation }) {
 
-    const loginUser = (values) => {
-        fetch(`${baseURL}/login`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: values.email,
-                password: values.password
-            })
-        }).then(response => response.json())
+    const loginUser = ({ email, password }) => {
+        const user = { email, password }
+        noAuthFetch("login", "POST", user)
             .then(data => authorizeUser(data, navigation))
-        }
+    }
 
     return (
         <View style={Styles.formContainer}>

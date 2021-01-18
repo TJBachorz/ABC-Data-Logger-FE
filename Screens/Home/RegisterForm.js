@@ -6,48 +6,29 @@ import { BigButton } from '../Components/Button';
 import TextInputField from '../Components/TextInputField';
 import { baseURL, authorizeUser } from '../Components/DateFunctions';
 import { Styles } from '../Components/Styles';
+import { noAuthFetch } from '../Components/FetchList';
 
 export default function RegisterForm({ navigation }) {
 
-    const signupUser = (values) => {
-        return fetch(`${baseURL}/signup/`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: values.username,
-                email: values.email,
-                password: values.password,
-                password2: values.password2
+    const signupUser = ({ username, email, password, password2 }) => {
+        const user = { username, email, password, password2 }
+        return noAuthFetch("signup/", "POST", user)
+            .catch(error => {
+                console.error(error)
+                alert(error.message)
+                throw error.message
             })
-        }).then(response => response.json())
-        .catch(error => {
-            console.error(error)
-            alert(error.message)
-            throw error.message
-        })
     }
     
-    const loginUser = (values) => {
-        fetch(`${baseURL}/login`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: values.email,
-                password: values.password
+    const loginUser = ({ email, password }) => {
+        const user = { email, password }
+        noAuthFetch("login", "POST", user)
+            .then(data => authorizeUser(data, navigation))
+            .catch(error => {
+                console.error(error)
+                alert(error.message)
+                throw error.message
             })
-        }).then(response => response.json())
-        .then(userData => authorizeUser(userData, navigation))
-        .catch(error => {
-            console.error(error)
-            alert(error.message)
-            throw error.message
-        })
     }
 
     const createRegisterFailureAlert = (data) => {
