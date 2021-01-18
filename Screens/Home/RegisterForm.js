@@ -23,7 +23,6 @@ export default function RegisterForm({ navigation }) {
                 password2: values.password2
             })
         }).then(response => response.json())
-        .then(data => loginUser(data, values))
         .catch(error => {
             console.error(error)
             alert(error.message)
@@ -31,28 +30,24 @@ export default function RegisterForm({ navigation }) {
         })
     }
     
-    const loginUser = (data, values) => {
-        if (data.user.id) {
-            fetch(`${baseURL}/login`, {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    email: values.email,
-                    password: values.password
-                })
-            }).then(response => response.json())
-            .then(userData => authorizeUser(userData, navigation))
-            .catch(error => {
-                console.error(error)
-                alert(error.message)
-                throw error.message
+    const loginUser = (values) => {
+        fetch(`${baseURL}/login`, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: values.email,
+                password: values.password
             })
-        } else {
-            createRegisterFailureAlert(data.user)
-        }
+        }).then(response => response.json())
+        .then(userData => authorizeUser(userData, navigation))
+        .catch(error => {
+            console.error(error)
+            alert(error.message)
+            throw error.message
+        })
     }
 
     const createRegisterFailureAlert = (data) => {
@@ -77,11 +72,11 @@ export default function RegisterForm({ navigation }) {
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => { 
                     if (values.password === values.password2) {
-                        signupUser(values).then(user => {
-                            if (user.id) {
+                        signupUser(values).then(data => {
+                            if ("user" in data) {
                                 loginUser(values)
                             } else {
-                                alert("Invalid credentials")
+                                createRegisterFailureAlert(data)
                             }
                         })
                     } else {
