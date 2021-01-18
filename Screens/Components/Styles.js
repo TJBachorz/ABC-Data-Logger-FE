@@ -38,7 +38,7 @@ export const Styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 80,
     },
-    incidentButton: {
+    bottomButton: {
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 40
@@ -65,5 +65,10 @@ export const Styles = StyleSheet.create({
     noCases: {
         marginBottom: 50,
         fontSize: 18
-    }
+    },
+    colon: {
+        fontSize: 24,
+        padding: 4,
+        paddingLeft: 8
+    },
 })

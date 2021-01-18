@@ -100,9 +100,4 @@ const styles = StyleSheet.create({
     currentCase: {
         fontSize: 12,
     },
-    caseDisplay: {
-        color: '#1761a0',
-        fontSize: 14,
-        fontWeight: '600'
-    }
 })

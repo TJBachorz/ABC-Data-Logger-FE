@@ -26,7 +26,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "consequence": item.value})}
                 />
             </View>
-            <View style={Styles.incidentButton}>
+            <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Consequence"}
                     handlePress={navigateToNextPage}

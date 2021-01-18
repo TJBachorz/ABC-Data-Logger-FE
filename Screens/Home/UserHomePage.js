@@ -48,9 +48,9 @@ export default function UserHomePage({
             <ScrollView contentContainerStyle={styles.historyContainer}>
                 {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
             </ScrollView>
-            <View style={styles.incidentButton}>
+            <View style={styles.bottomButton}>
                 <BigButton
-                    style={styles.incidentButton}
+                    style={styles.bottomButton}
                     buttonText={"Log New Incident"}
                     handlePress={() => navigation.navigate('Antecedent')}
                 />
@@ -75,11 +75,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 3
     },
-    incidentButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 3
-    },
     noIncidents: {
         fontSize: 18,
         marginTop: 50
@@ -92,5 +87,4 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20
     },
-    incidentButton: {marginBottom: 40}
 })

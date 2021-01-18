@@ -82,7 +82,7 @@ export default function IncidentDateTime({
                     defaultValue={incident["hour"]}
                     onChangeItem={item => setIncident({...incident, "hour": item.value})}
                 />
-                <Text style={styles.colon}>:</Text>
+                <Text style={Styles.colon}>:</Text>
                 <DropDownMedium
                     items={createNumberList(0, 59)}
                     defaultValue={incident["minute"]}
@@ -94,7 +94,7 @@ export default function IncidentDateTime({
                     onChangeItem={(item) => setAMPM(item.value)}
                 />
             </View>
-            <View style={styles.incidentButton}>
+            <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Incident"}
                     handlePress={submitIncident}
@@ -105,11 +105,6 @@ export default function IncidentDateTime({
 }
 
 const styles = StyleSheet.create({
-    colon: {
-        fontSize: 24,
-        padding: 4,
-        paddingLeft: 8
-    },
     timeContainer: {
         flex: 1,
         flexDirection: 'row',
@@ -123,10 +118,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 20,
-    },
-    incidentButton: {
-        justifyContent: 'center',
-        marginBottom: 100,
-        marginBottom: 40,
     },
 })

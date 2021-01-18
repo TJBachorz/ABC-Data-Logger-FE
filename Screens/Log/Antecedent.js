@@ -43,7 +43,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "antecedent": item.value})}
                 />
             </View>
-            <View style={Styles.incidentButton}>
+            <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Antecedent"}
                     handlePress={navigateToNextPage}

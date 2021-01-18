@@ -26,7 +26,7 @@ export default function Behavior({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "behavior": item.value})}
                 />
             </View>
-            <View style={Styles.incidentButton}>
+            <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Behavior"}
                     handlePress={navigateToNextPage}
