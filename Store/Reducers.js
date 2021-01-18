@@ -18,6 +18,15 @@ const cases = (state=[], action) => {
     }
 }
 
+const incidentHistory = (state=[], action) => {
+    switch(action.type) {
+        case "CHANGE_INCIDENT_HISTORY":
+            return action.payload
+        default:
+            return state
+    }
+}
+
 // const [caseInfo, setCaseInfo] = useState({})
 // const [incidentHistory, setIncidentHistory] = useState([])
 // const [incident, setIncident] = useState({})
@@ -25,6 +34,7 @@ const cases = (state=[], action) => {
 
 export default combineReducers({
     signedIn,
-    cases
+    cases,
+    incidentHistory
 })
 
