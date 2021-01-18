@@ -11,7 +11,6 @@ import { NavButton } from '../Components/Button';
 const Drawer = createDrawerNavigator();
 
 export default function AuthStack({
-    account,
     caseInfo,
     setCaseInfo,
     incident,
@@ -73,16 +72,13 @@ export default function AuthStack({
             </Drawer.Screen>
 
             <Drawer.Screen name="Link Accounts"
+                component = { AccountLinkStackPage }
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )
             }}>
-                {(props) => <AccountLinkStackPage
-                    account={account}
-                    {...props} 
-                />}
             </Drawer.Screen>
 
         </Drawer.Navigator>   

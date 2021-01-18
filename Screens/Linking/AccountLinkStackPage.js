@@ -14,18 +14,15 @@ export default function AccountLinkStackPage({ navigation, account }) {
 
             <Stack.Screen 
                 name="Link Accounts"
+                component={ AccountLink }
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )
-            }}>
+                }}
+            >
 
-                {(props) => <AccountLink 
-                        account={account} 
-                        {...props}
-                    />
-                }
             </Stack.Screen>
         </Stack.Navigator> 
     )
