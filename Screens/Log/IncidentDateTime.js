@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { 
@@ -59,7 +59,8 @@ export default function IncidentDateTime({
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>Date & Time</Text>
             </View>
-            <View style={styles.selectionContainer}>
+
+            <View style={Styles.dateContainer}>
                 <DropDownMedium
                     items={createNumberList(startingYear, currentYear).reverse()}   
                     defaultValue={incident["year"]}
@@ -76,13 +77,14 @@ export default function IncidentDateTime({
                     onChangeItem={item => setIncident({...incident, "day": item.value})}
                 />
             </View>
-            <View style={styles.timeContainer}>
+
+            <View style={Styles.timeContainer}>
                 <DropDownMedium
                     items={createNumberList(1, 12)}
                     defaultValue={incident["hour"]}
                     onChangeItem={item => setIncident({...incident, "hour": item.value})}
                 />
-                <Text style={styles.colon}>:</Text>
+                <Text style={Styles.colon}>:</Text>
                 <DropDownMedium
                     items={createNumberList(0, 59)}
                     defaultValue={incident["minute"]}
@@ -94,7 +96,8 @@ export default function IncidentDateTime({
                     onChangeItem={(item) => setAMPM(item.value)}
                 />
             </View>
-            <View style={styles.incidentButton}>
+            
+            <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Incident"}
                     handlePress={submitIncident}
@@ -103,30 +106,3 @@ export default function IncidentDateTime({
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    colon: {
-        fontSize: 24,
-        padding: 4,
-        paddingLeft: 8
-    },
-    timeContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 100
-    },
-    selectionContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    incidentButton: {
-        justifyContent: 'center',
-        marginBottom: 100,
-        marginBottom: 40,
-    },
-})

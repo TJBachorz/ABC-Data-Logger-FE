@@ -38,7 +38,7 @@ export const Styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 80,
     },
-    incidentButton: {
+    bottomButton: {
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 40
@@ -54,7 +54,8 @@ export const Styles = StyleSheet.create({
     },
     promptText: {
         fontSize: 24,
-        marginBottom: 20
+        marginBottom: 20,
+        width: "85%"
     },
     pageContainer: {
         flex: 1,
@@ -65,5 +66,24 @@ export const Styles = StyleSheet.create({
     noCases: {
         marginBottom: 50,
         fontSize: 18
-    }
+    },
+    colon: {
+        fontSize: 24,
+        padding: 4,
+        paddingLeft: 8
+    },
+    timeContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 100
+    },
+    dateContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 })

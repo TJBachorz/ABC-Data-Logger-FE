@@ -4,7 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
-import IncidentHeaders from '../Components/IncidentHeaders';
+import IncidentHeaders from './Components/NestedIncidentLog';
+import { Styles } from '../Components/Styles';
+
 
 export default function UserHomePage({ 
     incidentHistory, 
@@ -35,7 +37,8 @@ export default function UserHomePage({
     }
     
     const renderIncidents = () => {
-        let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
+        const byMostRecent = (a, b) => new Date(b["date"]) - new Date(a["date"])
+        const history = incidentHistory.sort(byMostRecent)
         return <IncidentHeaders key={"history"} history={history}/>
     }
 
@@ -43,14 +46,18 @@ export default function UserHomePage({
         <>  
             <View style={styles.incidentHistoryHeaderView}>
                 <Text style={styles.incidentHeader}>Incident History:</Text>
-    <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
+                <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
             </View>
+
             <ScrollView contentContainerStyle={styles.historyContainer}>
-                {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}
+                {incidentHistory.length > 0 ? 
+                    renderIncidents() 
+                    : <Text style={styles.noIncidents}>No Incident History</Text>
+                }
             </ScrollView>
-            <View style={styles.incidentButton}>
+
+            <View style={Styles.bottomButton}>
                 <BigButton
-                    style={styles.incidentButton}
                     buttonText={"Log New Incident"}
                     handlePress={() => navigation.navigate('Antecedent')}
                 />
@@ -75,11 +82,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 3
     },
-    incidentButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: 3
-    },
     noIncidents: {
         fontSize: 18,
         marginTop: 50
@@ -92,5 +94,4 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 20
     },
-    incidentButton: {marginBottom: 40}
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
@@ -8,6 +8,7 @@ import { currentYear, baseURL } from '../Components/DateFunctions';
 import { BigButton } from '../Components/Button';
 import { DropDownCases } from '../Components/DropDown';
 import TextInputField from '../Components/TextInputField';
+import { Styles } from '../Components/Styles';
 
 export default function AccountLink() {
 
@@ -57,10 +58,10 @@ export default function AccountLink() {
 
     return (
         <>
-            <View style={styles.centeredView}>
+            <View style={Styles.pageContainer}>
                 {!isEmpty(cases) ?
                     <>
-                        <Text style={styles.selectionText}>
+                        <Text style={Styles.promptText}>
                             Select the case you would like to link:
                         </Text>
                         <DropDownCases
@@ -76,7 +77,7 @@ export default function AccountLink() {
                         Add a case to your account in order to link it to others
                     </Text>  
                 }
-                <Text style={styles.selectionText}>
+                <Text style={Styles.promptText}>
                     Enter the email of the account you would like to link:
                 </Text>
                 <TextInputField
@@ -86,39 +87,12 @@ export default function AccountLink() {
                     })}
                 />
             </View>
-            <View style={styles.submitButtonView}>
+            <View style={Styles.bottomButton}>
                 <BigButton
-                    buttonText={"Create New Case"}
+                    buttonText={"Link Selected Case"}
                     handlePress={linkAccounts}
                 />
             </View>
         </>
     )
 }
-
-    const styles = StyleSheet.create({
-        centeredView: {
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: 22
-        },
-        selectionText: {
-            fontSize: 24,
-            marginBottom: 20
-        },
-        currentCase: {
-            fontSize: 12,
-        },
-        caseDisplay: {
-            color: '#1761a0',
-            fontSize: 14,
-            fontWeight: '600'
-        },
-        submitButtonView: {
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingBottom: 30
-        }
-    })
-    

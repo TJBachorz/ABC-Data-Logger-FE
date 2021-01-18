@@ -3,10 +3,8 @@ import { StyleSheet, View, Text } from 'react-native';
 
 export default function Incident({ incident }) {
 
-    const timeToString = () => {
-        const time = incident["time"].split(":")
-        const hour = time[0]
-        const minute = time[1]
+    const convertTime = () => {
+        const [hour, minute] = incident["time"].split(":")
         if (+hour > 12) {
             return `${hour-12}:${minute} PM`
         } else if (+hour === 12) {
@@ -24,15 +22,18 @@ export default function Incident({ incident }) {
                 <Text style={[styles.abcTextHeader, styles.A]}>A</Text>
                 <Text style={styles.abcText}>{incident["antecedent"]}</Text>
             </View>
+
             <View style={styles.abcView}>
                 <Text style={[styles.abcTextHeader, styles.B]}>B</Text>
                 <Text style={styles.abcText}>{incident["behavior"]}</Text>
             </View>
+
             <View style={styles.abcView}>
                 <Text style={[styles.abcTextHeader, styles.C]}>C</Text>
                 <Text style={styles.abcText}>{incident["consequence"]}</Text>
             </View>
-            <Text style={styles.datetime}>{timeToString()}</Text>
+
+            <Text style={styles.datetime}>{convertTime()}</Text>
         </View>
     )
 }
