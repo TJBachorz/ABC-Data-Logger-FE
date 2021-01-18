@@ -54,7 +54,8 @@ export const Styles = StyleSheet.create({
     },
     promptText: {
         fontSize: 24,
-        marginBottom: 20
+        marginBottom: 20,
+        width: "85%"
     },
     pageContainer: {
         flex: 1,

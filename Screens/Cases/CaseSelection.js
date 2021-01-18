@@ -25,7 +25,7 @@ export default function CaseSelection({ setCaseInfo, navigation }) {
 
     const [selectedCase, setSelectedCase] = useState({})
 
-    useEffect(() => fetchCases(), [isEmpty(cases)])
+    useEffect(() => fetchCases(), [isEmpty(cases), cases.length])
 
     const fetchCases = () => {
         AsyncStorage.getItem("token")
@@ -96,8 +96,5 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-    },
-    currentCase: {
-        fontSize: 12,
     },
 })
