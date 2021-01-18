@@ -9,15 +9,11 @@ import HomeLogin from '../Home/Components/HomeLogin';
 
 const Stack = createStackNavigator();
 
-export default function GuestStack({
-    account,
-    caseInfo,
-    setCaseInfo,
-}) {
+export default function GuestStack({ caseInfo, setCaseInfo }) {
     return (
         <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
 
-            <Stack.Screen name="Home" options={{ title: '' }} component={ HomeLogin }/>
+            <Stack.Screen name="Home" component={ HomeLogin }/>
 
             <Stack.Screen name="Login" component={ LoginForm }/>
 
@@ -31,11 +27,7 @@ export default function GuestStack({
                 />}
             </Stack.Screen>
 
-            <Stack.Screen name="Create New Case">
-                {(props) => <CreateNewCase
-                    {...props} 
-                />}
-            </Stack.Screen>
+            <Stack.Screen name="Create New Case" component={ CreateNewCase }/>
 
         </Stack.Navigator>
     )

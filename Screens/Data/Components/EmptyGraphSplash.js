@@ -30,10 +30,6 @@ const styles = StyleSheet.create({
         marginTop: 100,
         marginBottom: 50
     },
-    image: {
-        height: 220,
-        width: 220,
-    },
     splashText: {
         color: 'gray',
         fontSize: 14,
