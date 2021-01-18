@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { 
@@ -59,7 +59,7 @@ export default function IncidentDateTime({
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>Date & Time</Text>
             </View>
-            <View style={styles.selectionContainer}>
+            <View style={Styles.dateContainer}>
                 <DropDownMedium
                     items={createNumberList(startingYear, currentYear).reverse()}   
                     defaultValue={incident["year"]}
@@ -76,7 +76,7 @@ export default function IncidentDateTime({
                     onChangeItem={item => setIncident({...incident, "day": item.value})}
                 />
             </View>
-            <View style={styles.timeContainer}>
+            <View style={Styles.timeContainer}>
                 <DropDownMedium
                     items={createNumberList(1, 12)}
                     defaultValue={incident["hour"]}
@@ -103,20 +103,3 @@ export default function IncidentDateTime({
         </>
     )
 }
-
-const styles = StyleSheet.create({
-    timeContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 100
-    },
-    selectionContainer: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 20,
-    },
-})

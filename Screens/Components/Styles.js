@@ -71,4 +71,18 @@ export const Styles = StyleSheet.create({
         padding: 4,
         paddingLeft: 8
     },
+    timeContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 100
+    },
+    dateContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+    },
 })
