@@ -110,6 +110,6 @@ const styles = StyleSheet.create({
     },
     image: {
         marginLeft: 70,
-        marginTop: 10,
+        marginTop: 50,
     },
 });

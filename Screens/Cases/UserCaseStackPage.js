@@ -17,7 +17,6 @@ export default function UserCaseStackPage({
         <Stack.Navigator screenOptions={{
             headerStyle: { backgroundColor: '#f8f8ff'},
         }}>
-
             <Stack.Screen 
                 name="Case Selection Main"
                 options={{
@@ -26,7 +25,6 @@ export default function UserCaseStackPage({
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )                
             }}>
-                    
                 {(props) => <CaseSelection
                     caseInfo={caseInfo}
                     setCaseInfo={setCaseInfo} 

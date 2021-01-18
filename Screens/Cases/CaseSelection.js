@@ -9,11 +9,7 @@ import { BigButton } from '../Components/Button';
 import { Styles } from '../Components/Styles';
 import { baseURL, currentYear } from '../Components/DateFunctions';
 
-export default function CaseSelection({
-    caseInfo,
-    setCaseInfo,
-    navigation 
-}) {
+export default function CaseSelection({ setCaseInfo, navigation }) {
 
     const cases = useSelector(state => state.cases)
 
@@ -28,9 +24,8 @@ export default function CaseSelection({
     }
 
     const [selectedCase, setSelectedCase] = useState({})
-    const [isCaseSelected, setIsCaseSelected] = useState(false)
 
-    useEffect(() => fetchCases(), [isEmpty(cases), cases.length])
+    useEffect(() => fetchCases(), [isEmpty(cases)])
 
     const fetchCases = () => {
         AsyncStorage.getItem("token")
@@ -56,23 +51,13 @@ export default function CaseSelection({
         })
     }
 
-    useEffect(() => makeSetCase(), [isCaseSelected])
-
-    useEffect(() => signInUser(), [caseInfo])
-    
-    const makeSetCase = () => {
-        if (selectedCase && isCaseSelected) {
+    const makeCaseProfile = () => {
+        if (selectedCase.hasOwnProperty("id")) {
             const { id, name, dob } = selectedCase
             setCaseInfo({id, name, dob})
             setSelectedCase({})
-            setIsCaseSelected(false)
-        }
-    }
-
-    const signInUser = () => {
-        if (caseInfo.id) {
             setIsSignedIn(true) 
-            navigation.navigate("Home");            
+            navigation.navigate("Home");         
         }
     }
 
@@ -81,7 +66,6 @@ export default function CaseSelection({
             {!isEmpty(cases) ?
                 <>
                     <Text style={Styles.promptText}>Please Select a Case:</Text>
-                    <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
                     <DropDownCases
                         placeholder="Select a Case"
                         items={renderCases()}
@@ -93,7 +77,7 @@ export default function CaseSelection({
                     />
                     <BigButton
                         buttonText={"Select Case"}
-                        handlePress={() => setIsCaseSelected(true)}
+                        handlePress={makeCaseProfile}
                     /> 
                 </> 
                 : <Text style={Styles.noCases}>No cases Associated with this account</Text>

@@ -21,6 +21,12 @@ export const Styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    homePageContainer: {
+        flex: 1,
+        backgroundColor: '#f8f8ff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     headerContainer: {
         marginTop: 30,
         justifyContent: 'center',
