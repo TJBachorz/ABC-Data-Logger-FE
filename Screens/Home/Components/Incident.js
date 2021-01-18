@@ -7,14 +7,15 @@ export default function Incident({ incident }) {
         const time = incident["time"].split(":")
         const hour = time[0]
         const minute = time[1]
-        if (hour > 12) {
+        if (+hour > 12) {
             return `${hour-12}:${minute} PM`
-        } else if (hour === 12) {
-            return `${hour}:${minute} PM`
-        } else if (hour === 0) {
+        } else if (+hour === 12) {
+            return `12:${minute} PM`
+        } else if (+hour === 0) {
             return `12:${minute} AM`
+        } else {
+            return `${hour}:${minute} AM`
         }
-        return `${hour}:${minute} AM`
     }
 
     return (
