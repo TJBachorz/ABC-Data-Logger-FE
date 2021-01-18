@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
-import IncidentHeaders from '../Components/IncidentHeaders';
+import IncidentHeaders from './Components/IncidentHeaders';
 
 export default function UserHomePage({ 
     incidentHistory, 
@@ -35,7 +35,8 @@ export default function UserHomePage({
     }
     
     const renderIncidents = () => {
-        let history = incidentHistory.sort((a,b) => new Date(b["date"]) - new Date(a["date"]))
+        const byMostRecent = (a, b) => new Date(b["date"]) - new Date(a["date"])
+        const history = incidentHistory.sort(byMostRecent)
         return <IncidentHeaders key={"history"} history={history}/>
     }
 
@@ -43,7 +44,7 @@ export default function UserHomePage({
         <>  
             <View style={styles.incidentHistoryHeaderView}>
                 <Text style={styles.incidentHeader}>Incident History:</Text>
-    <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
+                <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
             </View>
             <ScrollView contentContainerStyle={styles.historyContainer}>
                 {incidentHistory.length > 0 ? renderIncidents() : <Text style={styles.noIncidents}>No Incident History</Text>}

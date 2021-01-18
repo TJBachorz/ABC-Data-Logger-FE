@@ -4,8 +4,8 @@ import { uniq } from 'lodash';
 import Collapsible from 'react-native-collapsible';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { MMMM } from './DateFunctions';
-import Incident from '../Home/Components/Incident';
+import { MMMM } from '../../Components/DateFunctions';
+import Incident from './Incident';
 
 export default function IncidentHeaders({ history }) {
 

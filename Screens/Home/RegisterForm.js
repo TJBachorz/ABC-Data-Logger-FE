@@ -69,14 +69,12 @@ export default function RegisterForm({ navigation }) {
                     <>  
                         <TextInputField
                             placeholder="Username"
-                            autoCapitalize="none"
                             onChangeText={handleChange('username')}
                             onBlur={handleBlur('username')}
                             value={values.username}
                         />
                         <TextInputField
                             placeholder="Email"
-                            autoCapitalize="none"
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
@@ -84,7 +82,6 @@ export default function RegisterForm({ navigation }) {
                         <TextInputField
                             secure={true}
                             placeholder="Password"
-                            autoCapitalize="none"
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
@@ -92,7 +89,6 @@ export default function RegisterForm({ navigation }) {
                         <TextInputField
                             secure={true}
                             placeholder="Re-type Password"
-                            autoCapitalize="none"
                             onChangeText={handleChange('password2')}
                             onBlur={handleBlur('password2')}
                             value={values.password2}

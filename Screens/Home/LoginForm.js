@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { Formik } from 'formik';
 
-import { BigButton } from '../Components/Button';
-import TextInputField from '../Components/TextInputField';
-import { authorizeUser } from '../Components/DateFunctions';
 import { noAuthFetch } from '../Components/FetchList';
+import { authorizeUser } from '../Components/DateFunctions';
 import { Styles } from '../Components/Styles';
+import TextInputField from '../Components/TextInputField';
+import { BigButton } from '../Components/Button';
 
 export default function LoginForm({ navigation }) {
 
@@ -22,6 +22,7 @@ export default function LoginForm({ navigation }) {
                 style={Styles.image} 
                 source={require('../../assets/abc_logo_white.png')}
             />
+
             <Formik
                 initialValues={{ email: '', password: '' }}
                 onSubmit={values => loginUser(values)}
@@ -30,7 +31,6 @@ export default function LoginForm({ navigation }) {
                     <>
                         <TextInputField
                             placeholder="Email"
-                            autoCapitalize="none"
                             onChangeText={handleChange('email')}
                             onBlur={handleBlur('email')}
                             value={values.email}
@@ -38,7 +38,6 @@ export default function LoginForm({ navigation }) {
                         <TextInputField
                             secure={true}
                             placeholder="Password"
-                            autoCapitalize="none"
                             onChangeText={handleChange('password')}
                             onBlur={handleBlur('password')}
                             value={values.password}
@@ -51,6 +50,7 @@ export default function LoginForm({ navigation }) {
                     </>
                 )}
             </Formik>
+
             <View noBorder style={Styles.details}>
                 <Text style={Styles.detailText}>Forgot Password?</Text>
                 <Text style={Styles.detailText}>|</Text>
