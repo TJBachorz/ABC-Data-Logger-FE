@@ -25,7 +25,7 @@ export default function CaseSelection({ setCaseInfo, navigation }) {
 
     const [selectedCase, setSelectedCase] = useState({})
 
-    useEffect(() => fetchCases(), [isEmpty(cases), cases.length])
+    useEffect(() => fetchCases(), [isEmpty(cases)])
 
     const fetchCases = () => {
         AsyncStorage.getItem("token")

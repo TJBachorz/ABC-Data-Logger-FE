@@ -6,11 +6,13 @@ import {
     Image
 } from 'react-native';
 
+import { Styles } from '../../Components/Styles';
+
 export default function EmptyGraphSplash() {
     return (
         <View style={styles.splashContainer}>
             <Image 
-                style={styles.image} 
+                style={Styles.image} 
                 source={require('../../../assets/graph-splash.png')}
             />
             <Text style={styles.splashText}>

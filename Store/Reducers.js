@@ -20,7 +20,7 @@ const cases = (state=[], action) => {
 
 const incidentHistory = (state=[], action) => {
     switch(action.type) {
-        case "CHANGE_INCIDENT_HISTORY":
+        case "RESET_INCIDENT_HISTORY":
             return action.payload
         default:
             return state
