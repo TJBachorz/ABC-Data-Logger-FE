@@ -6,7 +6,7 @@ import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
-export default function AccountLinkStackPage({ navigation, account }) {
+export default function AccountLinkStackPage({ navigation }) {
     return (
         <Stack.Navigator screenOptions={{
             headerStyle: { backgroundColor: '#f8f8ff'},
