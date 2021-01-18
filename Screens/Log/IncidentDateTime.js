@@ -59,6 +59,7 @@ export default function IncidentDateTime({
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>Date & Time</Text>
             </View>
+
             <View style={Styles.dateContainer}>
                 <DropDownMedium
                     items={createNumberList(startingYear, currentYear).reverse()}   
@@ -76,6 +77,7 @@ export default function IncidentDateTime({
                     onChangeItem={item => setIncident({...incident, "day": item.value})}
                 />
             </View>
+
             <View style={Styles.timeContainer}>
                 <DropDownMedium
                     items={createNumberList(1, 12)}
@@ -94,6 +96,7 @@ export default function IncidentDateTime({
                     onChangeItem={(item) => setAMPM(item.value)}
                 />
             </View>
+            
             <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Incident"}

@@ -9,7 +9,7 @@ import Incident from './Incident';
 
 export default function IncidentHeaders({ history }) {
 
-    const [ activeArray, setActiveArray] = useState([])
+    const [activeArray, setActiveArray] = useState([])
     
     const incidentDates = () => {
         return uniq(history.map(incident => incident.date))
@@ -28,11 +28,9 @@ export default function IncidentHeaders({ history }) {
 
     const addOrRemoveFromArray = (event, date) => {
         event.preventDefault()
-        if (activeArray.includes(date)) {
+        activeArray.includes(date) ?
             filterDateOutOfActiveArray(date)
-        } else {
-            setActiveArray([...activeArray, date])
-        }
+            : setActiveArray([...activeArray, date])
     }
 
     const carrotDownOrRight = (date) => {

@@ -19,6 +19,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>C: Consequence</Text>
             </View>
+            
             <View style={Styles.selectionContainer}>
                 <DropDownBig
                     placeholder={"Select a Consequence"}
@@ -26,6 +27,7 @@ export default function Consequence({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "consequence": item.value})}
                 />
             </View>
+
             <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Consequence"}

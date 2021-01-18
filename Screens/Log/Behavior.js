@@ -19,6 +19,7 @@ export default function Behavior({ navigation, incident, setIncident }) {
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>B: Behavior</Text>
             </View>
+
             <View style={Styles.selectionContainer}>
                 <DropDownBig
                     placeholder={"Select a Behavior"}
@@ -26,6 +27,7 @@ export default function Behavior({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "behavior": item.value})}
                 />
             </View>
+            
             <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Behavior"}

@@ -24,10 +24,10 @@ export default function Antecedent({ navigation, incident, setIncident }) {
     useEffect(() => {
         setIncident({
             "year": `${currentYear}`,
-            "month": `${defaultMonth()}`,
-            "hour": `${defaultHours()}`,
-            "minute": `${defaultMinutes()}`,
-            "day": `${defaultDay()}`
+            "month": defaultMonth(),
+            "hour": defaultHours(),
+            "minute": defaultMinutes(),
+            "day": defaultDay()
         })
     }, [])
 
@@ -36,6 +36,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
             <View style={Styles.headerContainer}>
                 <Text style={Styles.labelHeader}>A: Antecedent</Text>
             </View>
+
             <View style={Styles.selectionContainer}>
                 <DropDownBig
                     placeholder={"Select an Antecedent"}
@@ -43,6 +44,7 @@ export default function Antecedent({ navigation, incident, setIncident }) {
                     onChangeItem={item => setIncident({...incident, "antecedent": item.value})}
                 />
             </View>
+            
             <View style={Styles.bottomButton}>
                 <BigButton
                     buttonText={"Submit Antecedent"}
