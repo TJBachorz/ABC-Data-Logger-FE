@@ -8,7 +8,6 @@ import { NavButton } from '../Components/Button';
 const Stack = createStackNavigator();
 
 export default function UserCaseStackPage({ 
-    setIsSignedIn,
     navigation, 
     account, 
     setAccount, 
@@ -34,7 +33,6 @@ export default function UserCaseStackPage({
                     
                 {(props) => <CaseSelection
                     isNewCase={isNewCase}
-                    setIsSignedIn={setIsSignedIn}
                     account={account}
                     setAccount={setAccount}
                     caseInfo={caseInfo}

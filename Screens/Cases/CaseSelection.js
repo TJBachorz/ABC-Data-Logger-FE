@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
 
 import { DropDownCases } from '../Components/DropDown';
 import { BigButton } from '../Components/Button';
@@ -12,10 +13,15 @@ export default function CaseSelection({
     setAccount,
     caseInfo,
     setCaseInfo,
-    setIsSignedIn,
     isNewCase,
     navigation 
 }) {
+
+    const dispatch = useDispatch()
+
+    const setIsSignedIn = (value) => {
+        dispatch({type: "CHANGE_SIGN_IN", payload: value})
+    }
 
     const [selectedCase, setSelectedCase] = useState({})
     const [isCaseSelected, setIsCaseSelected] = useState(false)

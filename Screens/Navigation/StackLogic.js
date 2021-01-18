@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux'; 
 
 import AuthStack from './AuthStack';
 import GuestStack from './GuestStack';
@@ -6,19 +7,18 @@ import GuestStack from './GuestStack';
 export default function StackNav() {
 
     const [account, setAccount] = useState({})
-    const [isSignedIn, setIsSignedIn] = useState(false)
     const [caseInfo, setCaseInfo] = useState({})
     const [incidentHistory, setIncidentHistory] = useState([])
     const [incident, setIncident] = useState({})
     const [isNewCase, setIsNewCase] = useState(false)
+
+    const isSignedIn = useSelector(state => state.signedIn)
     
     const signInCheck = () => isSignedIn ? "AUTH" : "GUEST"
 
     const navigator = {
 
         "AUTH": <AuthStack
-            isSignedIn={isSignedIn}
-            setIsSignedIn={setIsSignedIn}
             account={account}
             setAccount={setAccount}
             caseInfo={caseInfo}
@@ -35,8 +35,6 @@ export default function StackNav() {
             setAccount={setAccount}
             caseInfo={caseInfo} 
             setCaseInfo={setCaseInfo} 
-            isSignedIn={isSignedIn}
-            setIsSignedIn={setIsSignedIn}
             isNewCase={isNewCase}
             setIsNewCase={setIsNewCase}
         />

@@ -4,14 +4,20 @@ import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'react-native-paper';
+import { useDispatch } from 'react-redux';
 
 
 export default function DrawerContent({ 
     setCaseInfo,
     setAccount,
-    setIsSignedIn, 
     navigation, 
 }) {
+
+    const dispatch = useDispatch()
+
+    const setIsSignedIn = (value) => {
+        dispatch({type: "CHANGE_SIGN_IN", payload: value})
+    }
 
     const logout = () => {
         AsyncStorage.clear()

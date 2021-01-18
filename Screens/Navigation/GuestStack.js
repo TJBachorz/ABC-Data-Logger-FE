@@ -14,8 +14,6 @@ export default function GuestStack({
     setAccount,
     caseInfo,
     setCaseInfo,
-    isSignedIn,
-    setIsSignedIn,
     isNewCase,
     setIsNewCase
 }) {
@@ -34,8 +32,6 @@ export default function GuestStack({
                     setAccount={setAccount}
                     caseInfo={caseInfo} 
                     setCaseInfo={setCaseInfo} 
-                    isSignedIn={isSignedIn}
-                    setIsSignedIn={setIsSignedIn}
                     isNewCase={isNewCase}
                     {...props} 
                 />}

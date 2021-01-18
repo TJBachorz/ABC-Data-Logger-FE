@@ -2,23 +2,22 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
-import StackNav from './Screens/Navigation/StackLogic';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-// import Reducers from './components/Store/Reducers';
-// import { createStore } from 'redux';
-// import { Provider, useSelector } from 'react-redux';
+import StackNav from './Screens/Navigation/StackLogic';
+import combineReducers from './Store/Reducers';
 
 export default function App() {
 
-  // const store = createStore(Reducers())
-  // const isSignedIn = useSelector(state => state.setIsSignedIn)
+  const store = createStore(combineReducers)
 
   return (
-    // <Provider store={store}>
+    <Provider store={store}>
       <NavigationContainer>
         <StatusBar style="auto"/>
           <StackNav/>
       </NavigationContainer>
-    // </Provider>
+    </Provider>
   );
 }

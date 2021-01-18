@@ -15,8 +15,6 @@ export default function AuthStack({
     setAccount,
     caseInfo,
     setCaseInfo,
-    isSignedIn,
-    setIsSignedIn,
     incident,
     setIncident,
     incidentHistory,
@@ -31,8 +29,6 @@ export default function AuthStack({
                     setAccount={setAccount}
                     caseInfo={caseInfo} 
                     setCaseInfo={setCaseInfo}
-                    isSignedIn={isSignedIn} 
-                    setIsSignedIn={setIsSignedIn}
                     {...props} />
             }
             drawerStyle={{
@@ -74,8 +70,6 @@ export default function AuthStack({
                     )
             }}>
                 {(props) => <UserCaseStackPage
-                    isSignedIn={isSignedIn}
-                    setIsSignedIn={setIsSignedIn}
                     account={account}
                     setAccount={setAccount}
                     caseInfo={caseInfo}
