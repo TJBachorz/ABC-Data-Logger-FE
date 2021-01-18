@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 import { DropDownCases } from '../Components/DropDown';
 import { BigButton } from '../Components/Button';
@@ -9,13 +10,12 @@ import { Styles } from '../Components/Styles';
 import { baseURL, currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({
-    account,
-    setAccount,
     caseInfo,
     setCaseInfo,
-    isNewCase,
     navigation 
 }) {
+
+    const cases = useSelector(state => state.cases)
 
     const dispatch = useDispatch()
 
@@ -23,10 +23,14 @@ export default function CaseSelection({
         dispatch({type: "CHANGE_SIGN_IN", payload: value})
     }
 
+    const setCases = (value) => {
+        dispatch({type: "CHANGE_CASES", payload: value})
+    }
+
     const [selectedCase, setSelectedCase] = useState({})
     const [isCaseSelected, setIsCaseSelected] = useState(false)
 
-    useEffect(() => fetchCases(), [isNewCase])
+    useEffect(() => fetchCases(), [isEmpty(cases), cases.length])
 
     const fetchCases = () => {
         AsyncStorage.getItem("token")
@@ -40,11 +44,11 @@ export default function CaseSelection({
                     }
                 })
             }).then(response => response.json())
-            .then(userAccount => setAccount(userAccount))
+            .then(userAccount => setCases(userAccount.cases))
     }
-    
+
     const renderCases = () => {
-        return account.cases.map(child => {
+        return cases.map(child => {
             return ({
                 label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
                 value: {id: child.id, name: child.name, dob: child.dob}
@@ -74,7 +78,7 @@ export default function CaseSelection({
 
     return (
         <View style={Styles.pageContainer}>
-            {account.cases !== undefined ?
+            {!isEmpty(cases) ?
                 <>
                     <Text style={Styles.promptText}>Please Select a Case:</Text>
                     <Text style={styles.currentCase}>Current Case: <Text style={styles.caseDisplay}>{caseInfo.name ? `${caseInfo.name}, ${caseInfo.dob}` : "None" }</Text></Text>
@@ -92,7 +96,7 @@ export default function CaseSelection({
                         handlePress={() => setIsCaseSelected(true)}
                     /> 
                 </> 
-                : <Text>No cases Associated with this account</Text>
+                : <Text style={Styles.noCases}>No cases Associated with this account</Text>
             }
             <BigButton
                 buttonText={"Create New Case"}

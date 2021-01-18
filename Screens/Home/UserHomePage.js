@@ -6,7 +6,12 @@ import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
 import IncidentHeaders from '../Components/IncidentHeaders';
 
-export default function UserHomePage({ incidentHistory, setIncidentHistory, navigation, caseInfo }) {
+export default function UserHomePage({ 
+    incidentHistory, 
+    setIncidentHistory, 
+    navigation, 
+    caseInfo 
+}) {
 
     useEffect(() => {
         if (caseInfo.id) {

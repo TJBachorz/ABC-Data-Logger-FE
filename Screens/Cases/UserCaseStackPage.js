@@ -9,11 +9,7 @@ const Stack = createStackNavigator();
 
 export default function UserCaseStackPage({ 
     navigation, 
-    account, 
-    setAccount, 
     caseInfo,
-    isNewCase,
-    setIsNewCase,
     setCaseInfo
 }) {
 
@@ -32,9 +28,6 @@ export default function UserCaseStackPage({
             }}>
                     
                 {(props) => <CaseSelection
-                    isNewCase={isNewCase}
-                    account={account}
-                    setAccount={setAccount}
                     caseInfo={caseInfo}
                     setCaseInfo={setCaseInfo} 
                     navigation={navigation}
@@ -46,8 +39,6 @@ export default function UserCaseStackPage({
                 options={{ headerTitle: ""}}
             >
                 {(props) => <CreateNewCase 
-                    isNewCase={isNewCase}
-                    setIsNewCase={setIsNewCase}
                     navigation={navigation}
                     {...props}
                 />

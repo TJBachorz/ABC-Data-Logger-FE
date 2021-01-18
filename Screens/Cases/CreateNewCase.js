@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch, useSelector } from 'react-redux';
+
+
 
 import { DropDownMedium } from '../Components/DropDown';
 import { 
@@ -15,9 +18,15 @@ import { BigButton } from '../Components/Button';
 import { Styles } from '../Components/Styles';
 import TextInputField from '../Components/TextInputField';
 
-export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
+export default function NewCase({ navigation }) {
 
     const [newCase, setNewCase] = useState({})
+
+    const dispatch = useDispatch()
+
+    const setCases = (value) => {
+        dispatch({type: "CHANGE_CASES", payload: value})
+    }
 
     const createCase = () => {
         AsyncStorage.getItem("token")
@@ -43,11 +52,11 @@ export default function NewCase({ isNewCase, setIsNewCase, navigation }) {
         if (caseLink.status > 300) {
             alert("Error Occurred, Account Failed to link")
         }
-        setIsNewCase(!isNewCase)
         navigation.navigate("Case Selection Main")
     }
 
     const linkCaseToAccount = (createdCase, token) => {
+        setCases(cases => [...cases, createdCase])
         return fetch(`${baseURL}/caselinks`, {
             method: "POST",
             headers: {
