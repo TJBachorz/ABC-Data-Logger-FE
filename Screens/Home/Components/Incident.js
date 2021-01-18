@@ -5,14 +5,16 @@ export default function Incident({ incident }) {
 
     const timeToString = () => {
         const time = incident["time"].split(":")
-        if (+time[0] > 12) {
-            return `${+time[0]-12}:${time[1]} PM`
-        } else if (+time[0] === 12) {
-            return `${time[0]}:${time[1]} PM`
-        } else if (+time[0] === 0) {
-            return `12:${time[1]} AM`
+        const hour = time[0]
+        const minute = time[1]
+        if (hour > 12) {
+            return `${hour-12}:${minute} PM`
+        } else if (hour === 12) {
+            return `${hour}:${minute} PM`
+        } else if (hour === 0) {
+            return `12:${minute} AM`
         }
-        return `${time[0]}:${time[1]} AM`
+        return `${hour}:${minute} AM`
     }
 
     return (
