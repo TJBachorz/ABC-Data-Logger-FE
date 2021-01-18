@@ -13,6 +13,7 @@ export default function HomeLogin({ navigation }) {
                     source={require('../../../assets/abc_logo_update.png')}
                 />
             </View>
+            
             <UserPortalButtons navigation={navigation}/>
         </>
     )
