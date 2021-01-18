@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux';
 
 export default function DrawerContent({ 
     setCaseInfo,
-    setAccount,
     navigation, 
 }) {
 
@@ -19,10 +18,14 @@ export default function DrawerContent({
         dispatch({type: "CHANGE_SIGN_IN", payload: value})
     }
 
+    const setCases = (value) => {
+        dispatch({type: "CHANGE_CASES", payload: value})
+    }
+
     const logout = () => {
         AsyncStorage.clear()
         setCaseInfo({})
-        setAccount({})
+        setCases([])
         setIsSignedIn(false)
         navigation.navigate("Home")
     }

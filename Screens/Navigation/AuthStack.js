@@ -12,21 +12,17 @@ const Drawer = createDrawerNavigator();
 
 export default function AuthStack({
     account,
-    setAccount,
     caseInfo,
     setCaseInfo,
     incident,
     setIncident,
     incidentHistory,
-    setIncidentHistory,
-    isNewCase,
-    setIsNewCase
+    setIncidentHistory
 }) {
     return (
         <Drawer.Navigator
             drawerContent={
                 (props) => <DrawerContent
-                    setAccount={setAccount}
                     caseInfo={caseInfo} 
                     setCaseInfo={setCaseInfo}
                     {...props} />
@@ -70,12 +66,8 @@ export default function AuthStack({
                     )
             }}>
                 {(props) => <UserCaseStackPage
-                    account={account}
-                    setAccount={setAccount}
                     caseInfo={caseInfo}
                     setCaseInfo={setCaseInfo}
-                    isNewCase={isNewCase} 
-                    setIsNewCase={setIsNewCase}
                     {...props} 
                 />}
             </Drawer.Screen>

@@ -11,11 +11,8 @@ const Stack = createStackNavigator();
 
 export default function GuestStack({
     account,
-    setAccount,
     caseInfo,
     setCaseInfo,
-    isNewCase,
-    setIsNewCase
 }) {
     return (
         <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
@@ -28,19 +25,14 @@ export default function GuestStack({
 
             <Stack.Screen name="Case Selection Main">
                 {(props) => <CaseSelection 
-                    account={account}
-                    setAccount={setAccount}
                     caseInfo={caseInfo} 
                     setCaseInfo={setCaseInfo} 
-                    isNewCase={isNewCase}
                     {...props} 
                 />}
             </Stack.Screen>
 
             <Stack.Screen name="Create New Case">
                 {(props) => <CreateNewCase
-                    isNewCase={isNewCase}
-                    setIsNewCase={setIsNewCase} 
                     {...props} 
                 />}
             </Stack.Screen>

@@ -56,4 +56,8 @@ export const Styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22
     },
+    noCases: {
+        marginBottom: 50,
+        fontSize: 18
+    }
 })

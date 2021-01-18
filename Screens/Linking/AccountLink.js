@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSelector } from 'react-redux';
+import { isEmpty } from 'lodash';
 
 import { currentYear, baseURL } from '../Components/DateFunctions';
 import { BigButton } from '../Components/Button';
 import { DropDownCases } from '../Components/DropDown';
 import TextInputField from '../Components/TextInputField';
 
-export default function AccountLink({ account }) {
+export default function AccountLink() {
 
     const [linkInfo, setLinkInfo] = useState({})
+    
+    const cases = useSelector(state => state.cases)
 
     const renderCases = () => {
-        return account.cases.map(child => {
+        return cases.map(child => {
             return ({
                 label: `${child.name}, age: ${currentYear - +(child.dob.split("-")[0])}`, 
                 value: {id: child.id}
@@ -54,7 +58,7 @@ export default function AccountLink({ account }) {
     return (
         <>
             <View style={styles.centeredView}>
-                {account.cases !== undefined ?
+                {!isEmpty(cases) ?
                     <>
                         <Text style={styles.selectionText}>
                             Select the case you would like to link:
