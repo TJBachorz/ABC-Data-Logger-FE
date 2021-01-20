@@ -7,6 +7,8 @@ import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
+// Header back button for new cases?
+
 export default function CaseStackPage({ navigation }) {
 
     return (
@@ -25,11 +27,12 @@ export default function CaseStackPage({ navigation }) {
                     {...props}
                 />}
             </Stack.Screen>
+
             <Stack.Screen 
                 name="Create New Case"
                 options={{ headerTitle: ""}}
             >
-                {(props) => <CreateNewCase 
+                {(props) => <CreateNewCase
                     {...props}
                 />
                 }

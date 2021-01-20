@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useDispatch, useSelector } from 'react-redux';
-
-
+import { useDispatch } from 'react-redux';
 
 import { DropDownMedium } from '../Components/DropDown';
 import { 

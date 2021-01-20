@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import UserHomePage from './UserHomePage';
 import Antecedent from '../Log/Antecedent';

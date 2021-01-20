@@ -1,6 +1,6 @@
 import { baseURL } from './DateFunctions';
 
-export const authFetch = (path, method, rawBody, token) => {
+export const authFetch = (path, method, token, rawBody=null) => {
     const headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
