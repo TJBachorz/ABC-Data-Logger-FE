@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSelector } from 'react-redux';
 
 import { 
     baseURL, 
@@ -21,9 +22,10 @@ export default function IncidentDateTime({
     incidentHistory, 
     setIncidentHistory, 
     incident, 
-    setIncident, 
-    caseInfo
+    setIncident,
 }) {
+
+    const caseProfile = useSelector(state => state.caseProfile)
 
     const [AMPM, setAMPM] = useState("AM")
 
@@ -47,7 +49,7 @@ export default function IncidentDateTime({
                     "consequence": `${incident["consequence"]}`,
                     "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
                     "time": `${calcHours(incident, AMPM)}:${incident["minute"]}:00`,
-                    "case": `${caseInfo.id}`
+                    "case": `${caseProfile.id}`
                 })
             }).then(response => response.json())
             .then(newIncident => setIncidentHistory([...incidentHistory, newIncident]))

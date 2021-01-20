@@ -9,7 +9,7 @@ import { BigButton } from '../Components/Button';
 import { Styles } from '../Components/Styles';
 import { baseURL, currentYear } from '../Components/DateFunctions';
 
-export default function CaseSelection({ setCaseInfo, navigation }) {
+export default function CaseSelection({ navigation }) {
 
     const cases = useSelector(state => state.cases)
 
@@ -21,6 +21,10 @@ export default function CaseSelection({ setCaseInfo, navigation }) {
 
     const setCases = (value) => {
         dispatch({type: "CHANGE_CASES", payload: value})
+    }
+
+    const setCaseProfile = (value) => {
+        dispatch({type: "CHANGE_CASE_PROFILE", payload: value})
     }
 
     const [selectedCase, setSelectedCase] = useState({})
@@ -54,7 +58,7 @@ export default function CaseSelection({ setCaseInfo, navigation }) {
     const makeCaseProfile = () => {
         if (selectedCase.hasOwnProperty("id")) {
             const { id, name, dob } = selectedCase
-            setCaseInfo({id, name, dob})
+            setCaseProfile({id, name, dob})
             setSelectedCase({})
             setIsSignedIn(true) 
             navigation.navigate("Home");         

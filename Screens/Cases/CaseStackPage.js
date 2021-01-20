@@ -7,11 +7,7 @@ import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
-export default function UserCaseStackPage({ 
-    navigation, 
-    caseInfo,
-    setCaseInfo
-}) {
+export default function CaseStackPage({ navigation }) {
 
     return (
         <Stack.Navigator screenOptions={{
@@ -26,9 +22,6 @@ export default function UserCaseStackPage({
                     )                
             }}>
                 {(props) => <CaseSelection
-                    caseInfo={caseInfo}
-                    setCaseInfo={setCaseInfo} 
-                    navigation={navigation}
                     {...props}
                 />}
             </Stack.Screen>
@@ -37,7 +30,6 @@ export default function UserCaseStackPage({
                 options={{ headerTitle: ""}}
             >
                 {(props) => <CreateNewCase 
-                    navigation={navigation}
                     {...props}
                 />
                 }

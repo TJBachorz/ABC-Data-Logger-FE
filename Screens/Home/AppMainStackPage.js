@@ -12,7 +12,6 @@ import { NavButton } from '../Components/Button';
 const Stack = createStackNavigator();
 
 export default function AppMainStackPage({ 
-    caseInfo, 
     navigation, 
     incident, 
     setIncident, 
@@ -37,7 +36,6 @@ export default function AppMainStackPage({
                     {(props) => <UserHomePage 
                             incidentHistory={incidentHistory}
                             setIncidentHistory={setIncidentHistory}
-                            caseInfo={caseInfo} 
                             {...props}
                         />
                     }
@@ -47,7 +45,6 @@ export default function AppMainStackPage({
                     options={{ headerTitle: "" }}
                 >
                     {(props) => <Antecedent  
-                            caseInfo={caseInfo} 
                             incident={incident}
                             setIncident={setIncident}
                             {...props}
@@ -59,7 +56,6 @@ export default function AppMainStackPage({
                     options={{ headerTitle: "" }}
                 >
                     {(props) => <Behavior  
-                            caseInfo={caseInfo} 
                             incident={incident}
                             setIncident={setIncident}
                             {...props}
@@ -71,7 +67,6 @@ export default function AppMainStackPage({
                     options={{ headerTitle: "" }}
                 >
                     {(props) => <Consequence  
-                            caseInfo={caseInfo} 
                             incident={incident}
                             setIncident={setIncident}
                             {...props}
@@ -83,7 +78,6 @@ export default function AppMainStackPage({
                     options={{ headerTitle: "" }}
                 >
                     {(props) => <IncidentDateTime  
-                            caseInfo={caseInfo} 
                             incident={incident}
                             setIncident={setIncident}
                             incidentHistory={incidentHistory}

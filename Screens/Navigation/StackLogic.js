@@ -6,7 +6,6 @@ import GuestStack from './GuestStack';
 
 export default function StackNav() {
 
-    const [caseInfo, setCaseInfo] = useState({})
     const [incidentHistory, setIncidentHistory] = useState([])
     const [incident, setIncident] = useState({})
 
@@ -17,17 +16,12 @@ export default function StackNav() {
     const navigator = {
 
         "AUTH": <AuthStack
-            caseInfo={caseInfo}
-            setCaseInfo={setCaseInfo}
             incident={incident}
             setIncident={setIncident}
             incidentHistory={incidentHistory}
             setIncidentHistory={setIncidentHistory}
         />,
-        "GUEST": <GuestStack
-            caseInfo={caseInfo} 
-            setCaseInfo={setCaseInfo}
-        />
+        "GUEST": <GuestStack/>
     }
 
     return (

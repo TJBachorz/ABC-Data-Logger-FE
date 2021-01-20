@@ -5,14 +5,12 @@ import DrawerContent from '../Home/Components/DrawerContent';
 import AccountLinkStackPage from '../Linking/AccountLinkStackPage';
 import AppMainStackPage from '../Home/AppMainStackPage';
 import DataChartStackPage from '../Data/DataChartStackPage';
-import UserCaseStackPage from '../Cases/UserCaseStackPage';
+import CaseStackPage from '../Cases/CaseStackPage';
 import { NavButton } from '../Components/Button';
 
 const Drawer = createDrawerNavigator();
 
 export default function AuthStack({
-    caseInfo,
-    setCaseInfo,
     incident,
     setIncident,
     incidentHistory,
@@ -22,8 +20,6 @@ export default function AuthStack({
         <Drawer.Navigator
             drawerContent={
                 (props) => <DrawerContent
-                    caseInfo={caseInfo} 
-                    setCaseInfo={setCaseInfo}
                     {...props} />
             }
             drawerStyle={{
@@ -38,7 +34,6 @@ export default function AuthStack({
                     setIncident={setIncident}
                     incidentHistory={incidentHistory}
                     setIncidentHistory={setIncidentHistory}
-                    caseInfo={caseInfo}
                     {...props} 
                 />}
             </Drawer.Screen>
@@ -52,27 +47,22 @@ export default function AuthStack({
             }}>
                 {(props) => <DataChartStackPage
                     incidentHistory={incidentHistory}
-                    caseInfo={caseInfo}
                     {...props} 
                 />}
             </Drawer.Screen>
 
             <Drawer.Screen name="Cases"
+                component={ CaseStackPage }
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )
             }}>
-                {(props) => <UserCaseStackPage
-                    caseInfo={caseInfo}
-                    setCaseInfo={setCaseInfo}
-                    {...props} 
-                />}
             </Drawer.Screen>
 
             <Drawer.Screen name="Link Accounts"
-                component = { AccountLinkStackPage }
+                component={ AccountLinkStackPage }
                 options={{
                     headerTitle: "",
                     headerLeft: () => (

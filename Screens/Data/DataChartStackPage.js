@@ -6,7 +6,7 @@ import { NavButton } from '../Components/Button';
 
 const Stack = createStackNavigator();
 
-export default function DataStackPage({ navigation, caseInfo, incidentHistory }) {
+export default function DataStackPage({ navigation, incidentHistory }) {
     return (
         <Stack.Navigator 
             screenOptions={{

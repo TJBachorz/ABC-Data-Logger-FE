@@ -29,7 +29,7 @@ const incidentHistory = (state=[], action) => {
 
 const caseProfile = (state={}, action) => {
     switch(action.type) {
-        case "SET_CASE_PROFILE":
+        case "CHANGE_CASE_PROFILE":
             return action.payload
         default:
             return state

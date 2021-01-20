@@ -4,7 +4,6 @@ import { StyleSheet, View } from 'react-native';
 import { BigButton } from '../../Components/Button';
 
 export default function UserPortalButtons({ navigation }) {
-
     return (
         <View style={styles.buttonContainer}>
             <BigButton 

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSelector } from 'react-redux';
 
 import { BigButton } from '../Components/Button';
 import { baseURL } from '../Components/DateFunctions';
@@ -12,19 +13,20 @@ export default function UserHomePage({
     incidentHistory, 
     setIncidentHistory, 
     navigation, 
-    caseInfo 
 }) {
 
+    const caseProfile = useSelector(state => state.caseProfile)
+
     useEffect(() => {
-        if (caseInfo.id) {
+        if (caseProfile.id) {
             fetchIncidents()
         }
-    }, [caseInfo.id])
+    }, [caseProfile.id])
     
     const fetchIncidents = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                fetch(`${baseURL}/cases/${caseInfo.id}/`, {
+                fetch(`${baseURL}/cases/${caseProfile.id}/`, {
                     method: "GET",
                     headers: {
                         "Accept": "application/json",
@@ -46,7 +48,7 @@ export default function UserHomePage({
         <>  
             <View style={styles.incidentHistoryHeaderView}>
                 <Text style={styles.incidentHeader}>Incident History:</Text>
-                <Text style={styles.caseHeader}>{caseInfo.name} -- {caseInfo.dob}</Text>
+                <Text style={styles.caseHeader}>{caseProfile.name} -- {caseProfile.dob}</Text>
             </View>
 
             <ScrollView contentContainerStyle={styles.historyContainer}>

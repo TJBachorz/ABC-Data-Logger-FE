@@ -10,7 +10,10 @@ import combineReducers from './Store/Reducers';
 
 export default function App() {
 
-  const store = createStore(combineReducers)
+  const store = createStore(
+    combineReducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  )
 
   return (
     <Provider store={store}>

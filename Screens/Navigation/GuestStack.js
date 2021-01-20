@@ -9,26 +9,18 @@ import HomeLogin from '../Home/Components/HomeLogin';
 
 const Stack = createStackNavigator();
 
-export default function GuestStack({ caseInfo, setCaseInfo }) {
+export default function GuestStack() {
     return (
         <Stack.Navigator headerMode={"Screen"} initialRouteName="Home">
-
             <Stack.Screen name="Home" component={ HomeLogin }/>
 
             <Stack.Screen name="Login" component={ LoginForm }/>
 
             <Stack.Screen name="Register" component={ RegisterForm }/>
 
-            <Stack.Screen name="Case Selection Main">
-                {(props) => <CaseSelection 
-                    caseInfo={caseInfo} 
-                    setCaseInfo={setCaseInfo} 
-                    {...props} 
-                />}
-            </Stack.Screen>
+            <Stack.Screen name="Case Selection Main" component={ CaseSelection }/>
 
             <Stack.Screen name="Create New Case" component={ CreateNewCase }/>
-
         </Stack.Navigator>
     )
 }

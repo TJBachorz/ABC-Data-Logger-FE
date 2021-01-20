@@ -7,10 +7,7 @@ import { Drawer } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 
-export default function DrawerContent({ 
-    setCaseInfo,
-    navigation, 
-}) {
+export default function DrawerContent({ navigation }) {
 
     const dispatch = useDispatch()
 
@@ -22,9 +19,13 @@ export default function DrawerContent({
         dispatch({type: "CHANGE_CASES", payload: value})
     }
 
+    const setCaseProfile = (value) => {
+        dispatch({type: "CHANGE_CASE_PROFILE", payload: value})
+    }
+
     const logout = () => {
         AsyncStorage.clear()
-        setCaseInfo({})
+        setCaseProfile({})
         setCases([])
         setIsSignedIn(false)
         navigation.navigate("Home")
