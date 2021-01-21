@@ -8,7 +8,7 @@ import { authFetch } from '../Components/FetchList';
 import { DropDownCases } from '../Components/DropDown';
 import { BigButton } from '../Components/Button';
 import { Styles } from '../Components/Styles';
-import { baseURL, currentYear } from '../Components/DateFunctions';
+import { currentYear } from '../Components/DateFunctions';
 
 export default function CaseSelection({ navigation }) {
 
@@ -34,16 +34,7 @@ export default function CaseSelection({ navigation }) {
 
     const fetchCases = () => {
         AsyncStorage.getItem("token")
-            .then(token => {
-                return fetch(`${baseURL}/accounts/`, {
-                    method: "GET",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                })
-            }).then(response => response.json())
+            .then(token => authFetch("accounts/", "GET", token))
             .then(userAccount => setCases(userAccount.cases))
     }
 

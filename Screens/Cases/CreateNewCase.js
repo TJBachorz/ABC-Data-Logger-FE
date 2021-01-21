@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 
 import { DropDownMedium } from '../Components/DropDown';
 import { 
-    baseURL,
     currentYear, 
     startingYear,
     createDayOptions,
@@ -15,6 +14,7 @@ import {
 import { BigButton } from '../Components/Button';
 import { Styles } from '../Components/Styles';
 import TextInputField from '../Components/TextInputField';
+import { authFetch } from '../Components/FetchList';
 
 export default function NewCase({ navigation }) {
 
@@ -29,22 +29,15 @@ export default function NewCase({ navigation }) {
     const createCase = () => {
         AsyncStorage.getItem("token")
             .then(token => {
-                fetch(`${baseURL}/cases/`, {
-                    method: "POST",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        name: newCase["name"],
-                        dob: `${newCase["year"]}-${newCase["month"]}-${newCase["day"]}`
-                    })
-                }).then(response => response.json())
-                .then(createdCase => linkCaseToAccount(createdCase, token))
-                .then(caseLinkRedirect)
+                const caseBody = {
+                    name: newCase["name"],
+                    dob: `${newCase["year"]}-${newCase["month"]}-${newCase["day"]}`
+                }
+                authFetch("cases/", "POST", token, caseBody)
+                    .then(createdCase => linkCaseToAccount(createdCase, token))
+                    .then(caseLinkRedirect)
             })
-        }
+    }
         
     const caseLinkRedirect = (caseLink) => {
         if (caseLink.status > 300) {
@@ -55,15 +48,9 @@ export default function NewCase({ navigation }) {
 
     const linkCaseToAccount = (createdCase, token) => {
         setCases(cases => [...cases, createdCase])
-        return fetch(`${baseURL}/caselinks`, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
-            },
-            body: JSON.stringify({case: createdCase.id})
-        }).then(response => response.json())
+        const caseLinkBody = {case: createdCase.id}
+        authFetch("caselinks", "POST", token, caseLinkBody)
+            .then(response => response.json())
     }
 
     const generateDays = () => {
@@ -82,6 +69,7 @@ export default function NewCase({ navigation }) {
                 placeholder="Case Name"
                 onChangeText={text => setNewCase({...newCase, "name": text})}
             />
+
             <View style={styles.selectionContainer}>
                 <Text style={Styles.promptText}>
                     Enter a Date of Birth:
@@ -104,6 +92,7 @@ export default function NewCase({ navigation }) {
                     />
                 </View>
             </View>
+
             <BigButton
                 buttonText={"Create New Case"}
                 handlePress={createCase}

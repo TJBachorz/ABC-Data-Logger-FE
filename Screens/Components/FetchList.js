@@ -6,9 +6,14 @@ export const authFetch = (path, method, token, rawBody=null) => {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
     }
-    const body = JSON.stringify(rawBody)
-    return fetch(`${baseURL}/${path}`, { method, headers, body })
-        .then(response => response.json())
+    if (rawBody !== null) {
+        const body = JSON.stringify(rawBody)
+        return fetch(`${baseURL}/${path}`, { method, headers, body })
+            .then(response => response.json())
+    } else {
+        return fetch(`${baseURL}/${path}`, { method, headers })
+            .then(response => response.json())
+    }
 }
 
 export const noAuthFetch = (path, method, rawBody) => {
