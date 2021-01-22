@@ -3,8 +3,8 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 
+import { authFetch } from '../Components/FetchList';
 import { BigButton } from '../Components/Button';
-import { baseURL } from '../Components/DateFunctions';
 import IncidentHeaders from './Components/NestedIncidentLog';
 import { Styles } from '../Components/Styles';
 
@@ -25,17 +25,8 @@ export default function UserHomePage({
     
     const fetchIncidents = () => {
         AsyncStorage.getItem("token")
-            .then(token => {
-                fetch(`${baseURL}/cases/${caseProfile.id}/`, {
-                    method: "GET",
-                    headers: {
-                        "Accept": "application/json",
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    }
-                }).then(response => response.json())
-                .then(child => setIncidentHistory(child.incidents))
-            })
+            .then(token => authFetch(`cases/${caseProfile.id}/`, "GET", token))
+            .then(child => setIncidentHistory(child.incidents))
     }
     
     const renderIncidents = () => {
@@ -52,7 +43,7 @@ export default function UserHomePage({
             </View>
 
             <ScrollView contentContainerStyle={styles.historyContainer}>
-                {incidentHistory.length > 0 ? 
+                {incidentHistory !== [] ? 
                     renderIncidents() 
                     : <Text style={styles.noIncidents}>No Incident History</Text>
                 }

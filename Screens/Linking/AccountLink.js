@@ -4,7 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 
-import { currentYear, baseURL } from '../Components/DateFunctions';
+import { authFetch } from '../Components/FetchList';
+import { currentYear } from '../Components/DateFunctions';
 import { BigButton } from '../Components/Button';
 import { DropDownCases } from '../Components/DropDown';
 import TextInputField from '../Components/TextInputField';
@@ -35,22 +36,13 @@ export default function AccountLink() {
 
     const linkAccounts = () => {
         if (linkInfo.case_id && linkInfo.email) {
+            const caseLinkBody = {
+                case: linkInfo.case_id,
+                email: linkInfo.email
+            }
             AsyncStorage.getItem("token")
-                .then(token => {
-                    fetch(`${baseURL}/caselinks`, {
-                        method: "POST",
-                        headers: {
-                            "Accept": "application/json",
-                            "Content-Type": "application/json",
-                            "Authorization": `Bearer ${token}`
-                        },
-                        body: JSON.stringify({
-                            case: linkInfo.case_id,
-                            email: linkInfo.email
-                        })
-                    }).then(response => response.json())
-                    .then(renderAlert)
-                })
+                .then(token => authFetch("caselinks", "POST", token, caseLinkBody))
+                .then(renderAlert)
         } else {
             alert ("Please Enter a Valid Email and Select a Case to Link!")
         }

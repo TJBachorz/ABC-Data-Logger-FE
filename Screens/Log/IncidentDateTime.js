@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 
 import { 
-    baseURL, 
     startingYear, 
     currentYear, 
     createMonthOptions,
@@ -12,6 +11,7 @@ import {
     calcHours,
     createNumberList
 } from '../Components/DateFunctions';
+import { authFetch } from '../Components/FetchList';
 import { BigButton } from '../Components/Button';
 import { DropDownMedium, DropDownTiny } from '../Components/DropDown';
 import { PickAMPM } from '../Components/Options';
@@ -35,25 +35,17 @@ export default function IncidentDateTime({
     }
 
     const postIncident = () => {
-        return AsyncStorage.getItem("token").then(token => {
-            fetch(`${baseURL}/incidents/`, {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    "antecedent": `${incident["antecedent"]}`,
-                    "behavior": `${incident["behavior"]}`,
-                    "consequence": `${incident["consequence"]}`,
-                    "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
-                    "time": `${calcHours(incident, AMPM)}:${incident["minute"]}:00`,
-                    "case": `${caseProfile.id}`
-                })
-            }).then(response => response.json())
+        const incidentBody = {
+            "antecedent": `${incident["antecedent"]}`,
+            "behavior": `${incident["behavior"]}`,
+            "consequence": `${incident["consequence"]}`,
+            "date": `${incident["year"]}-${incident["month"]}-${incident["day"]}`,
+            "time": `${calcHours(incident, AMPM)}:${incident["minute"]}:00`,
+            "case": `${caseProfile.id}`
+        }
+        return AsyncStorage.getItem("token")
+            .then(token => authFetch("incidents/", "POST", token, incidentBody))
             .then(newIncident => setIncidentHistory([...incidentHistory, newIncident]))
-        })
     }
 
     return (
