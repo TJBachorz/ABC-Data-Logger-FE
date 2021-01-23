@@ -6,7 +6,7 @@ import AccountLinkStackPage from '../Linking/AccountLinkStackPage';
 import AppMainStackPage from '../Home/AppMainStackPage';
 import DataChartStackPage from '../Data/DataChartStackPage';
 import CaseStackPage from '../Cases/CaseStackPage';
-import { NavButton } from '../Components/Button';
+import { NavButton } from '../../Components/Button';
 
 const Drawer = createDrawerNavigator();
 

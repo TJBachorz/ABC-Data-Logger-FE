@@ -2,7 +2,7 @@ import React from 'react'
 import AccountLink from './AccountLink';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavButton } from '../Components/Button';
+import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 

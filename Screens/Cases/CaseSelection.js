@@ -4,11 +4,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { isEmpty } from 'lodash';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { authFetch } from '../Components/FetchList';
-import { DropDownCases } from '../Components/DropDown';
-import { BigButton } from '../Components/Button';
-import { Styles } from '../Components/Styles';
-import { currentYear } from '../Components/DateFunctions';
+import { authFetch } from '../../Components/FetchList';
+import { DropDownCases } from '../../Components/DropDown';
+import { BigButton } from '../../Components/Button';
+import { Styles } from '../../Components/Styles';
+import { currentYear } from '../../Components/DateFunctions';
 
 export default function CaseSelection({ navigation }) {
 

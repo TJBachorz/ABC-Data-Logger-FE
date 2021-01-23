@@ -3,18 +3,18 @@ import { View, Text, StyleSheet } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useDispatch } from 'react-redux';
 
-import { DropDownMedium } from '../Components/DropDown';
+import { DropDownMedium } from '../../Components/DropDown';
 import { 
     currentYear, 
     startingYear,
     createDayOptions,
     createMonthOptions,
     createNumberList
-} from '../Components/DateFunctions';
-import { BigButton } from '../Components/Button';
-import { Styles } from '../Components/Styles';
-import TextInputField from '../Components/TextInputField';
-import { authFetch } from '../Components/FetchList';
+} from '../../Components/DateFunctions';
+import { BigButton } from '../../Components/Button';
+import { Styles } from '../../Components/Styles';
+import TextInputField from '../../Components/TextInputField';
+import { authFetch } from '../../Components/FetchList';
 
 export default function NewCase({ navigation }) {
 
@@ -26,17 +26,15 @@ export default function NewCase({ navigation }) {
         dispatch({type: "CHANGE_CASES", payload: value})
     }
 
-    const createCase = () => {
-        AsyncStorage.getItem("token")
-            .then(token => {
-                const caseBody = {
-                    name: newCase["name"],
-                    dob: `${newCase["year"]}-${newCase["month"]}-${newCase["day"]}`
-                }
-                authFetch("cases/", "POST", token, caseBody)
-                    .then(createdCase => linkCaseToAccount(createdCase, token))
-                    .then(caseLinkRedirect)
-            })
+    const createCase = async () => {
+        const token = await AsyncStorage.getItem("token")
+        const caseBody = {
+            name: newCase["name"],
+            dob: `${newCase["year"]}-${newCase["month"]}-${newCase["day"]}`
+        }
+        authFetch("cases/", "POST", token, caseBody)
+            .then(createdCase => linkCaseToAccount(createdCase, token))
+            .then(caseLinkRedirect)
     }
         
     const caseLinkRedirect = (caseLink) => {
@@ -49,8 +47,7 @@ export default function NewCase({ navigation }) {
     const linkCaseToAccount = (createdCase, token) => {
         setCases(cases => [...cases, createdCase])
         const caseLinkBody = {case: createdCase.id}
-        authFetch("caselinks", "POST", token, caseLinkBody)
-            .then(response => response.json())
+        return authFetch("caselinks", "POST", token, caseLinkBody)
     }
 
     const generateDays = () => {

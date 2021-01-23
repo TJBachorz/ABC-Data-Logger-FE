@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import { MMMM } from '../../Components/DateFunctions';
+import { MMMM } from '../../../Components/DateFunctions';
 
 export default function IncidentHeader({ date, activeArray, setActiveArray }) {
     

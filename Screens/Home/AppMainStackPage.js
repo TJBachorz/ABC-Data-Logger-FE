@@ -7,7 +7,7 @@ import Antecedent from '../Log/Antecedent';
 import Behavior from '../Log/Behavior';
 import Consequence from '../Log/Consequence';
 import IncidentDateTime from '../Log/IncidentDateTime';
-import { NavButton } from '../Components/Button';
+import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 

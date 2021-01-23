@@ -1,8 +1,8 @@
 import React from 'react'
-import DataChart from './DataChart';
-
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavButton } from '../Components/Button';
+
+import DataChart from './DataChart';
+import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 

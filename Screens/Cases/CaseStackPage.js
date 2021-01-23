@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
-import { NavButton } from '../Components/Button';
+import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 

@@ -6,7 +6,7 @@ import {
     Image
 } from 'react-native';
 
-import { Styles } from '../../Components/Styles';
+import { Styles } from '../../../Components/Styles';
 
 export default function EmptyGraphSplash() {
     return (

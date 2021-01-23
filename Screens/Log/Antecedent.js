@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react'
 import { View, Text } from 'react-native';
 
-import { BigButton } from '../Components/Button';
-import { DropDownBig } from '../Components/DropDown';
-import { antecedents } from '../Components/Options';
+import { BigButton } from '../../Components/Button';
+import { DropDownBig } from '../../Components/DropDown';
+import { antecedents } from '../../Components/Options';
 import { 
     currentYear,
     defaultDay,
     defaultMinutes,
     defaultHours,
     defaultMonth
-} from '../Components/DateFunctions';
-import { Styles } from '../Components/Styles';
+} from '../../Components/DateFunctions';
+import { Styles } from '../../Components/Styles';
 
 export default function Antecedent({ navigation, incident, setIncident }) {
 

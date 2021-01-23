@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 
-import { authFetch } from '../Components/FetchList';
-import { BigButton } from '../Components/Button';
+import { authFetch } from '../../Components/FetchList';
+import { BigButton } from '../../Components/Button';
 import IncidentHeaders from './Components/NestedIncidentLog';
-import { Styles } from '../Components/Styles';
+import { Styles } from '../../Components/Styles';
 
 
 export default function UserHomePage({ 

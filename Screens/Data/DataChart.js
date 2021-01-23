@@ -16,10 +16,10 @@ import {
     createMonthOptions, 
     createNumberList,
     range
-} from '../Components/DateFunctions';
+} from '../../Components/DateFunctions';
 import EmptyGraphSplash from './Components/EmptyGraphSplash';
-import { behaviors } from '../Components/Options';
-import { DropDownMedium } from '../Components/DropDown';
+import { behaviors } from '../../Components/Options';
+import { DropDownMedium } from '../../Components/DropDown';
 
 
 export default function DataChart({ incidentHistory }){

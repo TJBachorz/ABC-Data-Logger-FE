@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native';
 
-import { BigButton } from '../Components/Button';
-import { DropDownBig } from '../Components/DropDown';
-import { behaviors } from '../Components/Options';
-import { Styles } from '../Components/Styles';
+import { BigButton } from '../../Components/Button';
+import { DropDownBig } from '../../Components/DropDown';
+import { behaviors } from '../../Components/Options';
+import { Styles } from '../../Components/Styles';
 
 export default function Behavior({ navigation, incident, setIncident }) {
 

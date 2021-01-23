@@ -4,12 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { isEmpty } from 'lodash';
 
-import { authFetch } from '../Components/FetchList';
-import { currentYear } from '../Components/DateFunctions';
-import { BigButton } from '../Components/Button';
-import { DropDownCases } from '../Components/DropDown';
-import TextInputField from '../Components/TextInputField';
-import { Styles } from '../Components/Styles';
+import { authFetch } from '../../Components/FetchList';
+import { currentYear } from '../../Components/DateFunctions';
+import { BigButton } from '../../Components/Button';
+import { DropDownCases } from '../../Components/DropDown';
+import TextInputField from '../../Components/TextInputField';
+import { Styles } from '../../Components/Styles';
 
 export default function AccountLink() {
 

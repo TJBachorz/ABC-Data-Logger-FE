@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image } from 'react-native';
 
 import UserPortalButtons from './UserPortalButtons';
-import { Styles } from '../../Components/Styles';
+import { Styles } from '../../../Components/Styles';
 
 export default function HomeLogin({ navigation }) {
     return (

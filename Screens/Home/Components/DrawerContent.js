@@ -6,7 +6,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Drawer } from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
-
 export default function DrawerContent({ navigation }) {
 
     const dispatch = useDispatch()
