@@ -9,7 +9,7 @@ import IncidentHeaders from './Components/NestedIncidentLog';
 import { Styles } from '../../Components/Styles';
 
 
-export default function UserHomePage({ 
+export default function incidentHistory({ 
     incidentHistory, 
     setIncidentHistory, 
     navigation, 

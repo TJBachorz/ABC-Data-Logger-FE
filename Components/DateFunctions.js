@@ -116,7 +116,7 @@ export const createNumberList = (start, end) => {
 export const authorizeUser = (data, navigation) => {
     if (data.token) {
         AsyncStorage.setItem('token', data.token)
-        navigation.navigate('Case Selection Main')
+        navigation.navigate('Case Stack')
     } else {
         return (
             alert("Invalid Email or Password!")

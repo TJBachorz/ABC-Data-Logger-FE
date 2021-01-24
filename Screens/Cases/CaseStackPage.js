@@ -1,5 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
+import { Button } from 'react-native';
 
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
@@ -17,26 +18,19 @@ export default function CaseStackPage({ navigation }) {
         }}>
             <Stack.Screen 
                 name="Case Selection Main"
+                component={ CaseSelection }
                 options={{
                     headerTitle: "",
                     headerLeft: () => (
                         <NavButton onPress={() => navigation.openDrawer()}/>
                     )                
-            }}>
-                {(props) => <CaseSelection
-                    {...props}
-                />}
-            </Stack.Screen>
+                }}
+            />
 
             <Stack.Screen 
                 name="Create New Case"
-                options={{ headerTitle: ""}}
-            >
-                {(props) => <CreateNewCase
-                    {...props}
-                />
-                }
-            </Stack.Screen>
+                component={ CreateNewCase }
+            />
         </Stack.Navigator> 
     )
 }

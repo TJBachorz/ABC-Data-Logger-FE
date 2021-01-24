@@ -2,16 +2,16 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 
-import UserHomePage from './UserHomePage';
-import Antecedent from '../Log/Antecedent';
-import Behavior from '../Log/Behavior';
-import Consequence from '../Log/Consequence';
-import IncidentDateTime from '../Log/IncidentDateTime';
+import IncidentHistory from './IncidentHistory';
+import Antecedent from './Antecedent';
+import Behavior from './Behavior';
+import Consequence from './Consequence';
+import IncidentDateTime from './IncidentDateTime';
 import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 
-export default function AppMainStackPage({ 
+export default function IncidentLogStackPage({ 
     navigation, 
     incident, 
     setIncident, 
@@ -25,15 +25,14 @@ export default function AppMainStackPage({
                 headerStyle: {backgroundColor: '#f8f8ff'},
             }}>
                     
-                <Stack.Screen 
-                    name="Incident History"
+                <Stack.Screen name="Incident History"
                     options={{
                         headerTitle: "",
                         headerLeft: () => (
                             <NavButton onPress={() => navigation.openDrawer()}/>
                         )
                 }}>
-                    {(props) => <UserHomePage 
+                    {(props) => <IncidentHistory 
                             incidentHistory={incidentHistory}
                             setIncidentHistory={setIncidentHistory}
                             {...props}

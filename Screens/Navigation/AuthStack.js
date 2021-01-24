@@ -3,7 +3,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import DrawerContent from '../Home/Components/DrawerContent';
 import AccountLinkStackPage from '../Linking/AccountLinkStackPage';
-import AppMainStackPage from '../Home/AppMainStackPage';
+import IncidentLogStackPage from '../Log/IncidentLogStackPage';
 import DataChartStackPage from '../Data/DataChartStackPage';
 import CaseStackPage from '../Cases/CaseStackPage';
 import { NavButton } from '../../Components/Button';
@@ -29,7 +29,7 @@ export default function AuthStack({
             }}
         >
             <Drawer.Screen name="Home">
-                {(props) => <AppMainStackPage
+                {(props) => <IncidentLogStackPage
                     incident={incident}
                     setIncident={setIncident}
                     incidentHistory={incidentHistory}
