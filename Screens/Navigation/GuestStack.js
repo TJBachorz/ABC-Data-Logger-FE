@@ -3,9 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import LoginForm from '../Home/LoginForm';
 import RegisterForm from '../Home/RegisterForm';
-import CreateNewCase from '../Cases/CreateNewCase';
 import CaseStackPage from '../Cases/CaseStackPage';
-import CaseSelection from '../Cases/CaseSelection';
 import HomeLogin from '../Home/Components/HomeLogin';
 
 const Stack = createStackNavigator();
@@ -20,8 +18,6 @@ export default function GuestStack() {
             <Stack.Screen name="Register" component={ RegisterForm }/>
 
             <Stack.Screen name="Case Stack" component={ CaseStackPage }/>
-
-            {/* <Stack.Screen name="Create New Case" component={ CreateNewCase }/> */}
         </Stack.Navigator>
     )
 }

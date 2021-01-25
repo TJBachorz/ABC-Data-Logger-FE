@@ -10,12 +10,8 @@ import { NavButton } from '../../Components/Button';
 
 const Drawer = createDrawerNavigator();
 
-export default function AuthStack({
-    incident,
-    setIncident,
-    incidentHistory,
-    setIncidentHistory
-}) {
+export default function AuthStack({ incidentHistory, setIncidentHistory }) {
+    
     return (
         <Drawer.Navigator
             drawerContent={
@@ -30,8 +26,6 @@ export default function AuthStack({
         >
             <Drawer.Screen name="Home">
                 {(props) => <IncidentLogStackPage
-                    incident={incident}
-                    setIncident={setIncident}
                     incidentHistory={incidentHistory}
                     setIncidentHistory={setIncidentHistory}
                     {...props} 

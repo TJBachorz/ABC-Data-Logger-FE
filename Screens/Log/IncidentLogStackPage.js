@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import IncidentHistory from './IncidentHistory';
 import Antecedent from './Antecedent';
@@ -13,11 +15,17 @@ const Stack = createStackNavigator();
 
 export default function IncidentLogStackPage({ 
     navigation, 
-    incident, 
-    setIncident, 
     incidentHistory, 
     setIncidentHistory 
 }) {
+
+    const incident = useSelector(state => state.incident)
+
+    const dispatch = useDispatch()
+
+    const setIncident = (value) => {
+        dispatch({type: "CHANGE_INCIDENT", payload: value})
+    }
 
     return (
         <>
