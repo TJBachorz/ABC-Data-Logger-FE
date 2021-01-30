@@ -68,9 +68,7 @@ export default function NewCase({ navigation }) {
             />
 
             <View style={styles.selectionContainer}>
-                <Text style={Styles.promptText}>
-                    Enter a Date of Birth:
-                </Text>
+                <Text style={Styles.promptText}>Enter a Date of Birth:</Text>
                 <View style={styles.datePickers}>
                     <DropDownMedium
                         placeholder="Year"

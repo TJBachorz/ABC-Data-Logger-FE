@@ -1,4 +1,5 @@
-import { baseURL } from './DateFunctions';
+const baseURL = "https://abc-dl-backend.herokuapp.com"
+// const baseURL = "http://localhost:8000"
 
 export const authFetch = (path, method, token, rawBody=null) => {
     const headers = {

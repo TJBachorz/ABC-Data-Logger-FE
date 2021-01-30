@@ -10,19 +10,19 @@ export default function NestedIncidentLog({ history }) {
     
     const [activeArray, setActiveArray] = useState([])
     
+    const renderIncidentsByDate = () => uniqIncidentDates().map(renderDates)
+    
+    const uniqIncidentDates = () => uniq(history.map(incident => incident.date))
+    
     const filterIncidentsByDate = (date) => {
         return history.filter(incident => incident.date === date)
     }
-
+    
     const renderIncidents = (incident) => {
         return (
             <Incident key={incident.id} incident={incident}/>
         )
     }
-
-    const incidentDates = () => uniq(history.map(incident => incident.date))
-    
-    const renderIncidentsByDate = () => incidentDates().map(renderDates)
 
     const renderDates = (date) => {
         return (

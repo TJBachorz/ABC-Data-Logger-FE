@@ -16,6 +16,7 @@ export default function CaseStackPage({ navigation }) {
         <Stack.Navigator screenOptions={{
             headerStyle: { backgroundColor: '#f8f8ff'},
         }}>
+
             <Stack.Screen 
                 name="Case Selection Main"
                 component={ CaseSelection }

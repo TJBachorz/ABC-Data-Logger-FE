@@ -24,6 +24,7 @@ export default function AuthStack({ incidentHistory, setIncidentHistory }) {
                 width: 350,
             }}
         >
+
             <Drawer.Screen name="Home">
                 {(props) => <IncidentLogStackPage
                     incidentHistory={incidentHistory}

@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const baseURL = "http://localhost:8000"
-
 export const currentDate = new Date()
 export const currentYear = new Date().getFullYear()
 export const startingYear = new Date().getFullYear() - 20
@@ -20,7 +18,7 @@ export const months = [
     "11", 
     "12"
 ]
-    
+
 export const monthsWithDays = {
     "01": 31, 
     "02": 28, 

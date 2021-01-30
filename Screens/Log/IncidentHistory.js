@@ -5,9 +5,8 @@ import { useSelector } from 'react-redux';
 
 import { authFetch } from '../../Components/FetchList';
 import { BigButton } from '../../Components/Button';
-import IncidentHeaders from './Components/NestedIncidentLog';
+import NestedIncidentHeaders from './Components/NestedIncidentLog';
 import { Styles } from '../../Components/Styles';
-
 
 export default function incidentHistory({ 
     incidentHistory, 
@@ -22,17 +21,17 @@ export default function incidentHistory({
             fetchIncidents()
         }
     }, [caseProfile.id])
-    
+
     const fetchIncidents = () => {
         AsyncStorage.getItem("token")
             .then(token => authFetch(`cases/${caseProfile.id}/`, "GET", token))
             .then(child => setIncidentHistory(child.incidents))
     }
-    
+
     const renderIncidents = () => {
         const byMostRecent = (a, b) => new Date(b["date"]) - new Date(a["date"])
         const history = incidentHistory.sort(byMostRecent)
-        return <IncidentHeaders key={"history"} history={history}/>
+        return <NestedIncidentHeaders key={"history"} history={history}/>
     }
 
     return (

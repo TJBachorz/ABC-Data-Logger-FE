@@ -23,7 +23,7 @@ export default function StackNav() {
 
     return (
         <>
-            { navigator[signInCheck()] }
+            {navigator[signInCheck()]}
         </>
     )
 }
