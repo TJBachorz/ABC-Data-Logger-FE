@@ -6,18 +6,12 @@ import GuestStack from './GuestStack';
 
 export default function StackNav() {
 
-    const [incidentHistory, setIncidentHistory] = useState([])
-
     const isSignedIn = useSelector(state => state.signedIn)
     
     const signInCheck = () => isSignedIn ? "AUTH" : "GUEST"
 
     const navigator = {
-
-        "AUTH": <AuthStack
-            incidentHistory={incidentHistory}
-            setIncidentHistory={setIncidentHistory}
-        />,
+        "AUTH": <AuthStack/>,
         "GUEST": <GuestStack/>
     }
 

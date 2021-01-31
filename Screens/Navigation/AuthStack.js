@@ -10,13 +10,12 @@ import { NavButton } from '../../Components/Button';
 
 const Drawer = createDrawerNavigator();
 
-export default function AuthStack({ incidentHistory, setIncidentHistory }) {
-    
+export default function AuthStack() {
+
     return (
         <Drawer.Navigator
             drawerContent={
-                (props) => <DrawerContent
-                    {...props} />
+                (props) => <DrawerContent {...props} />
             }
             drawerStyle={{
                 backgroundColor: "#1761a0",
@@ -25,46 +24,13 @@ export default function AuthStack({ incidentHistory, setIncidentHistory }) {
             }}
         >
 
-            <Drawer.Screen name="Home">
-                {(props) => <IncidentLogStackPage
-                    incidentHistory={incidentHistory}
-                    setIncidentHistory={setIncidentHistory}
-                    {...props} 
-                />}
-            </Drawer.Screen>
+            <Drawer.Screen name="Home" component={ IncidentLogStackPage }/>
 
-            <Drawer.Screen name="Data"
-                options={{
-                    headerTitle: "",
-                    headerLeft: () => (
-                        <NavButton onPress={() => navigation.openDrawer()}/>
-                    )
-            }}>
-                {(props) => <DataChartStackPage
-                    incidentHistory={incidentHistory}
-                    {...props} 
-                />}
-            </Drawer.Screen>
+            <Drawer.Screen name="Data" component={ DataChartStackPage }/>
 
-            <Drawer.Screen name="Cases"
-                component={ CaseStackPage }
-                options={{
-                    headerTitle: "",
-                    headerLeft: () => (
-                        <NavButton onPress={() => navigation.openDrawer()}/>
-                    )
-            }}>
-            </Drawer.Screen>
+            <Drawer.Screen name="Cases" component={ CaseStackPage }/>
 
-            <Drawer.Screen name="Link Accounts"
-                component={ AccountLinkStackPage }
-                options={{
-                    headerTitle: "",
-                    headerLeft: () => (
-                        <NavButton onPress={() => navigation.openDrawer()}/>
-                    )
-            }}>
-            </Drawer.Screen>
+            <Drawer.Screen name="Link Accounts" component={ AccountLinkStackPage }/>
 
         </Drawer.Navigator>   
     )

@@ -13,18 +13,19 @@ import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
 
-export default function IncidentLogStackPage({ 
-    navigation, 
-    incidentHistory, 
-    setIncidentHistory 
-}) {
+export default function IncidentLogStackPage({ navigation }) {
 
     const incident = useSelector(state => state.incident)
+    const incidentHistory = useSelector(state => state.incidentHistory)
 
     const dispatch = useDispatch()
 
     const setIncident = (value) => {
         dispatch({type: "CHANGE_INCIDENT", payload: value})
+    }
+
+    const setIncidentHistory = (value) => {
+        dispatch({type: "RESET_INCIDENT_HISTORY", payload: value})
     }
 
     return (
