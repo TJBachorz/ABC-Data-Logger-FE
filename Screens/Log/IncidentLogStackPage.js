@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-
+import { openDrawerMenu } from '../../Components/ReusableFunctions';
 import IncidentHistory from './IncidentHistory';
 import Antecedent from './Antecedent';
 import Behavior from './Behavior';
@@ -37,9 +37,7 @@ export default function IncidentLogStackPage({ navigation }) {
                 <Stack.Screen name="Incident History"
                     options={{
                         headerTitle: "",
-                        headerLeft: () => (
-                            <NavButton onPress={() => navigation.openDrawer()}/>
-                        )
+                        headerLeft: () => <NavButton onPress={() => openDrawerMenu(navigation)}/>
                 }}>
                     {(props) => <IncidentHistory 
                             incidentHistory={incidentHistory}

@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 
 import { BigButton } from '../../Components/Button';
 import TextInputField from '../../Components/TextInputField';
-import { authorizeUser } from '../../Components/DateFunctions';
+import { authorizeUser } from '../../Components/ReusableFunctions';
 import { Styles } from '../../Components/Styles';
 import { noAuthFetch } from '../../Components/FetchList';
 
