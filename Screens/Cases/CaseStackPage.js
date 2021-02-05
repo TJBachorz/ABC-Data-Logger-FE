@@ -1,9 +1,9 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button } from 'react-native';
 
 import CaseSelection from './CaseSelection';
 import CreateNewCase from './CreateNewCase';
+import { openDrawerMenu } from '../../Components/ReusableFunctions';
 import { NavButton } from '../../Components/Button';
 
 const Stack = createStackNavigator();
@@ -22,9 +22,7 @@ export default function CaseStackPage({ navigation }) {
                 component={ CaseSelection }
                 options={{
                     headerTitle: "",
-                    headerLeft: () => (
-                        <NavButton onPress={() => navigation.openDrawer()}/>
-                    )                
+                    headerLeft: () => <NavButton onPress={() => openDrawerMenu(navigation)}/>
                 }}
             />
 
