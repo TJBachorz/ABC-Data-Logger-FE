@@ -1,6 +1,7 @@
 import React from 'react'
 import AccountLink from './AccountLink';
 
+import { openDrawerMenu } from '../../Components/ReusableFunctions';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavButton } from '../../Components/Button';
 
@@ -17,9 +18,7 @@ export default function AccountLinkStackPage({ navigation }) {
                 component={ AccountLink }
                 options={{
                     headerTitle: "",
-                    headerLeft: () => (
-                        <NavButton onPress={() => navigation.openDrawer()}/>
-                    )
+                    headerLeft: () => <NavButton onPress={() => openDrawerMenu(navigation)}/>
                 }}
             >
 
