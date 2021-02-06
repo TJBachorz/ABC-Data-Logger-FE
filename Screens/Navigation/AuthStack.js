@@ -2,11 +2,11 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import DrawerContent from '../Home/Components/DrawerContent';
-import AccountLinkStackPage from '../Linking/AccountLinkStackPage';
 import IncidentLogStackPage from '../Log/IncidentLogStackPage';
 import DataChartStackPage from '../Data/DataChartStackPage';
 import CaseStackPage from '../Cases/CaseStackPage';
-import { NavButton } from '../../Components/Button';
+import AccountLinkStackPage from '../Linking/AccountLinkStackPage';
+import SettingsStackPage from '../Settings/SettingsStackPage';
 
 const Drawer = createDrawerNavigator();
 
@@ -31,6 +31,8 @@ export default function AuthStack() {
             <Drawer.Screen name="Cases" component={ CaseStackPage }/>
 
             <Drawer.Screen name="Link Accounts" component={ AccountLinkStackPage }/>
+
+            <Drawer.Screen name="Settings" component={ SettingsStackPage }/>
 
         </Drawer.Navigator>   
     )
