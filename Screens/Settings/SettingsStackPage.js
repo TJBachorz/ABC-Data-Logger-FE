@@ -1,5 +1,5 @@
 import React from 'react';
-import SettingsMain from './SettingsMain';
+import SettingsMainMenu from './SettingsMainMenu';
 
 import { openDrawerMenu } from '../../Components/ReusableFunctions';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -15,7 +15,7 @@ export default function SettingsStackPage({ navigation }) {
 
             <Stack.Screen 
                 name="Settings"
-                component={ SettingsMain }
+                component={ SettingsMainMenu }
                 options={{
                     headerTitle: "",
                     headerLeft: () => <NavButton onPress={() => openDrawerMenu(navigation)}/>

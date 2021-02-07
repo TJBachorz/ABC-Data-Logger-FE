@@ -9,7 +9,7 @@ export default function TextInputField({
     value,
     autoCapitalize="none"
 }) {
-    
+
     return (
         <TextInput 
             secureTextEntry={secure} 

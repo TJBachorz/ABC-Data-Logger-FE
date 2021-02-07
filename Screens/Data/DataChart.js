@@ -93,7 +93,7 @@ export default function DataChart({ incidentHistory }){
                             />  
                             <VictoryLine 
                                 style={{ data: { stroke: '#1761a0' } }} 
-                                data={behaviorFrequencyToDate('Screaming/yelling')} 
+                                data={behaviorFrequencyToDate()} 
                                 x="date" y="frequency" 
                                 interpolation="basis"
                             />

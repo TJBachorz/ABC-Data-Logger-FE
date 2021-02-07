@@ -59,7 +59,7 @@ export default function CaseSelection({ navigation }) {
 
     return (
         <View style={Styles.pageContainer}>
-            {!isEmpty(cases) ?
+            {!isEmpty(cases) ?  // add !== null
                 <>
                     <Text style={Styles.promptText}>Please Select a Case:</Text>
                     <DropDownCases
@@ -78,6 +78,7 @@ export default function CaseSelection({ navigation }) {
                 </> 
                 : <Text style={Styles.noCases}>No cases Associated with this account</Text>
             }
+
             <BigButton
                 buttonText={"Create New Case"}
                 handlePress={() => navigation.navigate('Create New Case')}

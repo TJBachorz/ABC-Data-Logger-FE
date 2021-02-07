@@ -61,6 +61,7 @@ export default function NewCase({ navigation }) {
             <Text style={Styles.promptText}>
                 Enter a Name:
             </Text>
+
             <TextInputField
                 autoCapitalize="words"
                 placeholder="Case Name"
@@ -69,17 +70,20 @@ export default function NewCase({ navigation }) {
 
             <View style={styles.selectionContainer}>
                 <Text style={Styles.promptText}>Enter a Date of Birth:</Text>
+
                 <View style={styles.datePickers}>
                     <DropDownMedium
                         placeholder="Year"
                         items={createNumberList(startingYear, currentYear).reverse()}
                         onChangeItem={item => setNewCase({...newCase, "year": item.value})}
                     />
+
                     <DropDownMedium
                         placeholder="Month"
                         items={createMonthOptions()}
                         onChangeItem={item => setNewCase({...newCase, "month": item.value})}
                     />
+
                     <DropDownMedium
                         placeholder="Day"
                         items={generateDays()}
